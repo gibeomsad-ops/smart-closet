@@ -2,6 +2,7 @@
 // 로그인은 서버가 발급한 HttpOnly 세션 쿠키로 유지하고,
 // localStorage에는 다음 로그인 때 채워 둘 아이디만 기억한다.
 import { colorName, hexToHsl, HEX_RE } from './color.js';
+import { preparePhoto, PhotoError } from './photo.js';
 
 const ID_KEY = 'smart-closet-code'; // 마지막으로 로그인한 아이디 (예전 버전과 같은 키)
 const CATEGORIES = [
@@ -106,12 +107,14 @@ class ApiError extends Error {
   }
 }
 
-async function api(path, { method = 'GET', body } = {}) {
+// body: JSON으로 보낼 값, blob: 그대로 보낼 파일(사진)
+async function api(path, { method = 'GET', body, blob } = {}) {
   const headers = {};
-  if (body !== undefined) headers['Content-Type'] = 'application/json';
+  if (blob) headers['Content-Type'] = blob.type || 'application/octet-stream';
+  else if (body !== undefined) headers['Content-Type'] = 'application/json';
   const res = await fetch(path, {
     method, headers, credentials: 'same-origin',
-    body: body === undefined ? undefined : JSON.stringify(body),
+    body: blob ?? (body === undefined ? undefined : JSON.stringify(body)),
   });
   const data = res.status === 204 ? null : await res.json().catch(() => null);
   // 로그인한 상태에서 세션이 끝나면 로그인 화면으로 돌아간다.
@@ -176,7 +179,11 @@ function enterApp(id) {
   $('#gate').hidden = true;
   $('#app').hidden = false;
   showGateError('');
-  return loadClothes().then(() => show('today'));
+  // 화면을 먼저 띄우고 옷 목록은 뒤에서 불러온다. (목록을 기다리는 동안 다른 화면으로 옮겨도 되돌아가지 않게)
+  show('today');
+  return loadClothes().then(() => {
+    if (state.view === 'closet') renderCloset();
+  });
 }
 
 function signedOut() {
@@ -415,7 +422,9 @@ function garmentCard(c, { actions = true } = {}) {
   const name = c.color_name ?? colorName(c.color_hex);
   return `<article class="card garment-card">
     <div class="garment-hero ${hexToHsl(safeHex(c.color_hex)).l > 65 ? 'light' : ''}" style="background:${safeHex(c.color_hex)}">
-      ${icon(CATEGORY[c.category].icon, 'icon')}
+      ${c.photo_url
+        ? `<img class="garment-photo" src="${esc(c.photo_url)}" alt="${esc(c.name)} 사진" loading="lazy" decoding="async" />`
+        : icon(CATEGORY[c.category].icon, 'icon')}
       <span class="tag">${CATEGORY[c.category].en}</span>
       <div class="hero-foot">
         <span class="badge ${c.thickness === 'thick' ? 'thick' : ''}">${t.label} · ${t.range.replace(' 코디', '')}</span>
@@ -541,6 +550,7 @@ $('#preset-swatches').innerHTML = PRESETS.map(([name, hex]) =>
   `<button type="button" class="preset" data-hex="${hex}"><span class="swatch" style="background:${hex}"></span>${name}</button>`).join('');
 
 function openForm(item = null) {
+  releasePhotoPreview();
   $('#cloth-form').reset();
   $('#cloth-id').value = item?.id ?? '';
   $('#cloth-name').value = item?.name ?? '';
@@ -549,7 +559,10 @@ function openForm(item = null) {
     category: item?.category ?? 'top',
     thickness: item?.thickness ?? 'medium',
     color: (item?.color_hex ?? '#1F2A44').toUpperCase(),
+    // 사진: keep(기존 유지) | new(새로 고름) | remove(삭제)
+    photo: { mode: 'keep', url: item?.photo_url ?? null, blob: null },
   };
+  $('#photo-input').value = '';
   $('#form-title').textContent = item ? '옷 정보 수정하기' : '새 옷 등록하기';
   $('#form-eyebrow').textContent = item ? 'EDIT ITEM' : 'NEW ITEM REGISTRATION';
   $('#submit-label').textContent = item ? '변경 내용 저장' : '아이템 저장하기';
@@ -571,10 +584,15 @@ function syncForm() {
   $('#name-count').textContent = `${$('#cloth-name').value.length} / 100`;
   $('#memo-count').textContent = `${$('#cloth-memo').value.length} / 500`;
 
+  const { photo } = state.form;
   const preview = {
     id: '', name: $('#cloth-name').value.trim(), memo: $('#cloth-memo').value.trim(),
     category, thickness, color_hex: color, color_name: name,
+    photo_url: photo.mode === 'remove' ? null : photo.url,
   };
+  const hasPhoto = Boolean(preview.photo_url);
+  $('#photo-drop').hidden = hasPhoto;
+  $('#photo-actions').hidden = !hasPhoto;
   $('#preview-card').outerHTML = garmentCard(preview, { actions: false }).replace('<article class="card garment-card">', '<article class="garment-card" id="preview-card">');
   $('#preview-rule').textContent = `${THICK[thickness].label} · ${THICK[thickness].range}에 추천돼요`;
 }
@@ -595,9 +613,58 @@ $('#cloth-color').addEventListener('input', (e) => {
   state.form.color = e.target.value.toUpperCase();
   syncForm();
 });
+// ── 사진 고르기 (클릭/탭, 드래그 앤 드롭) ──
+function releasePhotoPreview() {
+  const { photo } = state.form;
+  if (photo?.mode === 'new' && photo.url) URL.revokeObjectURL(photo.url);
+}
+
+async function choosePhoto(file) {
+  if (!file) return;
+  const drop = $('#photo-drop');
+  drop.classList.add('busy');
+  $('#photo-drop-title').textContent = '사진을 준비하는 중…';
+  try {
+    const blob = await preparePhoto(file);
+    releasePhotoPreview();
+    state.form.photo = { mode: 'new', url: URL.createObjectURL(blob), blob };
+    syncForm();
+  } catch (err) {
+    toast(err instanceof PhotoError ? err.message : '사진을 불러오지 못했어요. 다른 사진으로 시도해 주세요.');
+  } finally {
+    drop.classList.remove('busy');
+    $('#photo-drop-title').textContent = '사진을 끌어다 놓거나 눌러서 선택';
+    $('#photo-input').value = ''; // 같은 파일을 다시 골라도 change가 일어나게
+  }
+}
+
+$('#photo-input').addEventListener('change', (e) => choosePhoto(e.target.files?.[0]));
+$('#photo-remove').addEventListener('click', () => {
+  releasePhotoPreview();
+  state.form.photo = { mode: 'remove', url: null, blob: null };
+  syncForm();
+});
+const drop = $('#photo-drop');
+['dragenter', 'dragover'].forEach((type) => drop.addEventListener(type, (e) => {
+  e.preventDefault();
+  drop.classList.add('dragging');
+}));
+['dragleave', 'drop'].forEach((type) => drop.addEventListener(type, () => drop.classList.remove('dragging')));
+drop.addEventListener('drop', (e) => {
+  e.preventDefault();
+  choosePhoto(e.dataTransfer?.files?.[0]);
+});
+// 사진을 놓을 곳을 조금 벗어나 떨어뜨려도 브라우저가 파일을 열어 버리지 않게 한다.
+['dragover', 'drop'].forEach((type) => window.addEventListener(type, (e) => {
+  if (state.view === 'form' && e.dataTransfer?.types?.includes('Files')) e.preventDefault();
+}));
+
 $('#cloth-name').addEventListener('input', syncForm);
 $('#cloth-memo').addEventListener('input', syncForm);
-$('#cancel-form').addEventListener('click', () => show('closet'));
+$('#cancel-form').addEventListener('click', () => {
+  releasePhotoPreview();
+  show('closet');
+});
 
 $('#cloth-form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -615,17 +682,33 @@ $('#cloth-form').addEventListener('submit', async (e) => {
   }
   const btn = $('#submit-cloth');
   btn.disabled = true;
+  $('#submit-label').textContent = '저장하는 중…';
+  let saved;
   try {
-    if (id) await api(`/api/clothes/${encodeURIComponent(id)}`, { method: 'PUT', body });
-    else await api('/api/clothes', { method: 'POST', body });
-    toast(id ? '수정했어요.' : '옷장에 등록했어요.');
-    await loadClothes();
-    show('closet');
+    saved = id
+      ? await api(`/api/clothes/${encodeURIComponent(id)}`, { method: 'PUT', body })
+      : await api('/api/clothes', { method: 'POST', body });
   } catch (err) {
-    toast(err.message);
-  } finally {
     btn.disabled = false;
+    $('#submit-label').textContent = id ? '변경 내용 저장' : '아이템 저장하기';
+    return toast(err.message);
   }
+
+  // 옷 정보가 저장된 다음 사진을 올리거나 지운다.
+  const { photo } = state.form;
+  const photoPath = `/api/clothes/${encodeURIComponent(saved.id)}/photo`;
+  let message = id ? '수정했어요.' : '옷장에 등록했어요.';
+  try {
+    if (photo.mode === 'new') await api(photoPath, { method: 'PUT', blob: photo.blob });
+    if (photo.mode === 'remove' && id) await api(photoPath, { method: 'DELETE' });
+  } catch (err) {
+    message = `옷 정보는 저장됐지만 사진을 저장하지 못했어요. ${err.message}`;
+  }
+  releasePhotoPreview();
+  btn.disabled = false;
+  toast(message);
+  await loadClothes();
+  show('closet');
 });
 
 // ── 저장한 코디 ──────────────────────────────────────

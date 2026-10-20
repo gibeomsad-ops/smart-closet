@@ -315,7 +315,10 @@ textarea { resize: vertical; }
   background: radial-gradient(ellipse at 50% 30%, rgba(255,255,255,.12), transparent 60%),
               linear-gradient(to bottom, transparent 55%, rgba(14,12,13,.75));
 }
+.garment-hero::before { z-index: 1; }
 .garment-hero .icon { position: relative; font-size: 96px; opacity: .35; }
+.garment-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.garment-hero .tag, .garment-hero .hero-foot { z-index: 2; }
 .garment-hero.light .icon { color: var(--canvas); opacity: .25; }
 .garment-hero .tag { position: absolute; top: 12px; left: 12px; }
 .garment-hero .hero-foot { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
@@ -351,6 +354,24 @@ textarea { resize: vertical; }
 .preview .garment-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-2); }
 .preview .garment-hero { aspect-ratio: 4 / 4.5; }
 .preview-note { display: flex; align-items: center; gap: 8px; font-weight: 400; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.photo-field { display: flex; flex-direction: column; gap: 10px; padding-top: 6px; border-top: 1px solid var(--line); }
+.photo-field .step-head { margin-top: 12px; }
+.photo-drop {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center;
+  padding: 28px 16px; border: 1px dashed #4a3a3d; border-radius: var(--radius); background: var(--input);
+  cursor: pointer; transition: border-color .15s, background .15s; -webkit-tap-highlight-color: transparent;
+}
+.photo-drop strong { font-weight: 500; }
+.photo-drop:hover, .photo-drop.dragging { border-color: var(--primary-border); background: var(--primary-wash); }
+#photo-input:focus-visible + .photo-drop { border-color: var(--gold); }
+.photo-drop.busy { opacity: .6; pointer-events: none; }
+.photo-drop-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 10px; background: var(--surface-2); color: var(--rose); }
+.photo-drop-icon .ms { font-size: 26px; }
+.photo-actions { display: flex; gap: 8px; }
+.photo-actions .btn { flex: 1; }
+.small-btn { padding: 9px 12px; font-size: 13px; cursor: pointer; }
+.danger-text:hover { color: var(--danger); border-color: var(--danger); background: transparent; }
 .form { padding: 36px; display: flex; flex-direction: column; gap: 34px; }
 .step { display: flex; flex-direction: column; gap: 12px; }
 .step-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }

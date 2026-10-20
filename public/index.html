@@ -183,6 +183,20 @@
             <p class="label-caps muted">LIVE PREVIEW</p>
             <div class="garment-card" id="preview-card"></div>
             <p class="preview-note"><span class="ms gold">verified</span> <span id="preview-rule"></span></p>
+
+            <div class="photo-field">
+              <div class="step-head"><span class="label-caps muted">의류 사진 등록</span><span class="muted small">선택 · 사진 1장</span></div>
+              <input type="file" id="photo-input" class="visually-hidden" accept="image/*" />
+              <label for="photo-input" class="photo-drop" id="photo-drop">
+                <span class="photo-drop-icon"><span class="ms">add_photo_alternate</span></span>
+                <strong id="photo-drop-title">사진을 끌어다 놓거나 눌러서 선택</strong>
+                <span class="muted small" id="photo-drop-hint">휴대폰에서는 바로 촬영하거나 앨범에서 고를 수 있어요</span>
+              </label>
+              <div class="photo-actions" id="photo-actions" hidden>
+                <label for="photo-input" class="btn outline small-btn"><span class="ms">sync</span> 사진 바꾸기</label>
+                <button type="button" class="btn outline small-btn danger-text" id="photo-remove"><span class="ms">delete</span> 사진 삭제</button>
+              </div>
+            </div>
           </aside>
 
           <form id="cloth-form" class="card form" novalidate>

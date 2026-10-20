@@ -28,3 +28,10 @@ CREATE TABLE IF NOT EXISTS outfits (
   reason TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+CREATE TABLE IF NOT EXISTS clothing_photos (
+  clothing_id INTEGER PRIMARY KEY REFERENCES clothes(id) ON DELETE CASCADE,
+  mime TEXT NOT NULL CHECK (mime IN ('image/jpeg', 'image/png', 'image/webp')),
+  data BYTEA NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);

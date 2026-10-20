@@ -17,7 +17,8 @@ npm test               # 색조합·추천 규칙 테스트
 ```
 
 테이블이 아직 없다면 `db/schema.sql`을 Neon SQL Editor에서 실행합니다.
-이미 테이블이 있고 비밀번호 기능 이전 버전이라면 `db/002_add_password.sql`을 실행합니다.
+이미 테이블이 있다면 `db/` 폴더의 변경 SQL을 번호 순서대로 실행합니다.
+(`002_add_password.sql`: 비밀번호, `003_add_clothing_photos.sql`: 옷 사진)
 
 ## Vercel 배포
 
@@ -43,5 +44,13 @@ npm test               # 색조합·추천 규칙 테스트
 | GET | `/api/clothes?category=&color=` | 옷 목록 (종류·색상 필터) |
 | POST / PUT / DELETE | `/api/clothes[/:id]` | 옷 등록·수정·삭제 |
 | GET | `/api/weather` | 서울 현재 날씨 |
+| PUT | `/api/clothes/:id/photo` | 옷 사진 올리기 (JPG/PNG/WebP 바이트, 3MB 이하) |
+| GET / DELETE | `/api/clothes/:id/photo` | 옷 사진 보기 · 삭제 |
 | GET | `/api/recommendations` | 오늘 기온 기준 추천 TOP 3 |
 | GET / POST / DELETE | `/api/outfits[/:id]` | 저장한 코디 |
+
+## 옷 사진
+
+사진은 브라우저에서 긴 변 1280px JPEG로 줄인 뒤(보통 100~400KB) 올리고, Neon의 `clothing_photos` 테이블에 저장합니다.
+휴대폰에서는 바로 촬영하거나 앨범에서 고를 수 있고, 노트북에서는 클릭하거나 끌어다 놓아 올립니다.
+옷을 지우면 사진도 함께 지워집니다.
