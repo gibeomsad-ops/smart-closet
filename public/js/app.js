@@ -66,14 +66,42 @@ function toast(message) {
   el.textContent = message;
   el.hidden = false;
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { el.hidden = true; }, 2800);
+  toastTimer = setTimeout(() => { el.hidden = true; }, Math.max(2800, message.length * 70));
+}
+
+// 서버가 돌려주는 원인 종류(kind)를 화면용 이름으로 바꾼다.
+const KIND_LABEL = {
+  DB_CONFIG_MISSING: 'DB 설정 없음',
+  DB_CONFIG_INVALID: 'DB 주소 형식 오류',
+  DB_AUTH: 'DB 로그인 실패',
+  DB_NOT_FOUND: 'DB 이름 오류',
+  DB_UNREACHABLE: 'DB 연결 실패',
+  DB_SCHEMA: 'DB 테이블 구조 오류',
+  DB_CONSTRAINT: 'DB 제약조건 오류',
+  DB_QUERY: 'DB 처리 오류',
+  WEATHER_CONFIG_MISSING: '날씨 키 없음',
+  WEATHER_AUTH: '날씨 키 오류',
+  WEATHER_RATE_LIMIT: '날씨 호출 한도 초과',
+  WEATHER_UNAVAILABLE: '날씨 서버 오류',
+  FUNCTION_FAILED: '서버 실행 실패',
+  UNKNOWN: '알 수 없는 오류',
+};
+
+function errorMessage(status, data) {
+  // JSON이 아닌 응답: 서버 함수가 아예 실행되지 못한 경우(Vercel 오류 페이지 등)
+  if (!data && status >= 500) {
+    return `[${KIND_LABEL.FUNCTION_FAILED}] 서버가 응답하지 못했습니다(HTTP ${status}). 배포 로그에서 서버 함수 오류를 확인해 주세요.`;
+  }
+  const message = data?.error || `요청에 실패했습니다(HTTP ${status}).`;
+  return data?.kind ? `[${KIND_LABEL[data.kind] ?? data.kind}] ${message}` : message;
 }
 
 class ApiError extends Error {
   constructor(status, data) {
-    super(data?.error || '요청에 실패했습니다.');
+    super(errorMessage(status, data));
     this.status = status;
     this.data = data;
+    this.kind = data?.kind ?? (!data && status >= 500 ? 'FUNCTION_FAILED' : null);
   }
 }
 
@@ -256,7 +284,9 @@ async function loadRecommendations() {
     renderLooks();
   } catch (err) {
     if (err.status === 401) return;
-    $('#weather').innerHTML = `<span class="muted">${icon('cloud_off')} 날씨 정보를 불러오지 못했어요.</span>`;
+    const weatherFailed = err.kind?.startsWith('WEATHER');
+    $('#weather').innerHTML = `<span class="muted">${icon(weatherFailed ? 'cloud_off' : 'error')} ${
+      weatherFailed ? '날씨 정보를 불러오지 못했어요.' : '서버 오류로 추천을 불러오지 못했어요.'}</span>`;
     list.innerHTML = `<div class="empty">${esc(err.message)}</div>`;
   }
 }
