@@ -12,9 +12,9 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <!-- ── 옷장 코드 입력 ─────────────────────────── -->
+  <!-- ── 아이디 로그인 ──────────────────────────── -->
   <section id="gate" class="gate" hidden>
-    <p class="eyebrow center"><span class="dot"></span>PRIVATE WARDROBE · CLOSET CODE</p>
+    <p class="eyebrow center"><span class="dot"></span>PRIVATE WARDROBE · YOUR ID</p>
     <div class="gate-card">
       <div class="gate-body">
         <div class="gate-mark"><span class="ms">checkroom</span></div>
@@ -22,22 +22,54 @@
         <p class="label-caps gold">Outfit from your closet <span class="sep">·</span> Atelier</p>
 
         <h1 class="gate-title">내 옷장으로 오늘의 코디를</h1>
-        <p class="muted">옷장 코드를 입력하면 서울의 오늘 날씨와 색조합에 맞춘 코디를 추천해 드려요.</p>
+        <p class="muted">아이디로 내 옷장에 들어가면 서울의 오늘 날씨와 색조합에 맞춘 코디를 추천해 드려요.</p>
 
-        <form id="enter-form" class="gate-form">
-          <label class="field-label" for="enter-code">옷장 코드 <span class="gold">· WARDROBE ACCESS CODE</span></label>
+        <div class="gate-tabs" role="tablist">
+          <button type="button" class="gate-tab active" data-mode="login" role="tab">로그인</button>
+          <button type="button" class="gate-tab" data-mode="signup" role="tab">새 옷장 만들기</button>
+        </div>
+
+        <form id="auth-form" class="gate-form" novalidate>
+          <label class="field-label" for="closet-id-input">아이디 <span class="gold">· WARDROBE ID</span></label>
           <div class="input-icon">
-            <span class="ms">key</span>
-            <input id="enter-code" placeholder="예: 45H8ZK7H52" autocomplete="off" maxlength="12" required />
+            <span class="ms">person</span>
+            <input id="closet-id-input" name="username" placeholder="예: gibeom_closet" autocomplete="username"
+              autocapitalize="none" spellcheck="false" maxlength="20" required />
           </div>
+          <p class="muted small signup-only" hidden>영문 소문자, 숫자, _, - 로 3~20자</p>
+
+          <label class="field-label" for="password-input">비밀번호 <span class="gold">· PASSWORD</span></label>
+          <div class="input-icon">
+            <span class="ms">lock</span>
+            <input id="password-input" type="password" name="password" placeholder="비밀번호" autocomplete="current-password"
+              autocapitalize="none" spellcheck="false" maxlength="20" required />
+            <button type="button" class="reveal" id="toggle-password" title="비밀번호 보기"><span class="ms">visibility</span></button>
+          </div>
+          <div class="signup-only" hidden>
+            <ul class="pw-rules" id="pw-rules">
+              <li data-rule="length">3~20자</li>
+              <li data-rule="letter">영문 포함 (대소문자 구분)</li>
+              <li data-rule="digit">숫자 포함</li>
+              <li data-rule="special">특수문자 1개 이상</li>
+            </ul>
+          </div>
+
+          <div class="signup-only" hidden>
+            <label class="field-label" for="password-confirm">비밀번호 확인</label>
+            <div class="input-icon">
+              <span class="ms">lock</span>
+              <input id="password-confirm" type="password" placeholder="비밀번호 다시 입력" autocomplete="new-password"
+                autocapitalize="none" spellcheck="false" maxlength="20" />
+            </div>
+          </div>
+
           <p id="gate-error" class="error" hidden></p>
-          <button class="btn primary lg wide">입장하기 <span class="ms">arrow_forward</span></button>
+          <button class="btn primary lg wide" id="auth-submit"><span id="auth-label">입장하기</span> <span class="ms">arrow_forward</span></button>
         </form>
-        <button id="create-closet" class="btn quiet lg wide"><span class="ms gold">add_circle</span> 새 옷장 만들기</button>
       </div>
       <div class="gate-foot">
-        <span class="pill-note"><span class="ms">verified_user</span> CLOSET CODE ACCESS</span>
-        <p class="muted small">회원가입 없이 옷장 코드만으로 들어옵니다. 코드는 이 기기에만 기억되니 따로 적어 두세요.</p>
+        <span class="pill-note"><span class="ms">verified_user</span> ID ACCESS</span>
+        <p class="muted small">처음이라면 "새 옷장 만들기"에서 아이디와 비밀번호를 정해 주세요. 예전에 받은 옷장 코드가 있다면 그 코드를 아이디로, 사용할 비밀번호를 입력하면 비밀번호가 설정됩니다.</p>
       </div>
     </div>
   </section>
@@ -55,9 +87,9 @@
         <button class="nav-link" data-view="saved">저장한 코디</button>
       </nav>
       <div class="account">
-        <button id="copy-code" class="code-chip" title="옷장 코드 복사">
-          <span class="ms">key</span><span id="closet-code"></span><span class="ms">content_copy</span>
-        </button>
+        <span class="code-chip" title="로그인한 아이디">
+          <span class="ms">person</span><span id="closet-id"></span>
+        </span>
         <button id="leave" class="icon-btn" title="다른 옷장으로"><span class="ms">logout</span></button>
       </div>
     </header>

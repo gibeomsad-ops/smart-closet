@@ -1,8 +1,9 @@
 // 스마트 옷장(OFYC) 프런트엔드. 데이터는 모두 서버(Neon)에 저장하고,
-// localStorage에는 옷장 코드만 기억한다.
+// 로그인은 서버가 발급한 HttpOnly 세션 쿠키로 유지하고,
+// localStorage에는 다음 로그인 때 채워 둘 아이디만 기억한다.
 import { colorName, hexToHsl, HEX_RE } from './color.js';
 
-const CODE_KEY = 'smart-closet-code';
+const ID_KEY = 'smart-closet-code'; // 마지막으로 로그인한 아이디 (예전 버전과 같은 키)
 const CATEGORIES = [
   { value: 'top', label: '상의', en: 'Top', icon: 'apparel' },
   { value: 'bottom', label: '하의', en: 'Bottom', icon: 'straighten' },
@@ -38,18 +39,18 @@ const PIECE_ORDER = ['outer', 'top', 'bottom', 'shoes'];
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 const state = {
-  code: null, view: 'today', clothes: [], loaded: false,
+  id: null, view: 'today', clothes: [], loaded: false,
   filter: { category: '', color: '', thickness: '', q: '' },
   combos: [], temperature: null,
   form: { category: 'top', thickness: 'medium', color: '#1F2A44' },
 };
 
 // ── 유틸 ─────────────────────────────────────────────
-function storedCode() {
-  try { return localStorage.getItem(CODE_KEY); } catch { return null; }
+function storedId() {
+  try { return localStorage.getItem(ID_KEY); } catch { return null; }
 }
-function storeCode(code) {
-  try { code ? localStorage.setItem(CODE_KEY, code) : localStorage.removeItem(CODE_KEY); } catch {}
+function storeId(id) {
+  try { id ? localStorage.setItem(ID_KEY, id) : localStorage.removeItem(ID_KEY); } catch {}
 }
 
 function esc(value) {
@@ -105,59 +106,119 @@ class ApiError extends Error {
   }
 }
 
-async function api(path, { method = 'GET', body, code = state.code } = {}) {
+async function api(path, { method = 'GET', body } = {}) {
   const headers = {};
-  if (code) headers['X-Closet-Code'] = code;
   if (body !== undefined) headers['Content-Type'] = 'application/json';
-  const res = await fetch(path, { method, headers, body: body === undefined ? undefined : JSON.stringify(body) });
+  const res = await fetch(path, {
+    method, headers, credentials: 'same-origin',
+    body: body === undefined ? undefined : JSON.stringify(body),
+  });
   const data = res.status === 204 ? null : await res.json().catch(() => null);
-  if (res.status === 401 && state.code) {
-    leave();
-    showGateError(data?.error || '옷장 코드를 다시 입력해 주세요.');
+  // 로그인한 상태에서 세션이 끝나면 로그인 화면으로 돌아간다.
+  if (res.status === 401 && state.id) {
+    signedOut();
+    showGateError(data?.error || '다시 로그인해 주세요.');
   }
   if (!res.ok) throw new ApiError(res.status, data);
   return data;
 }
 
-// ── 옷장 코드 ────────────────────────────────────────
+// ── 로그인 · 회원가입 ────────────────────────────────
+// 서버와 같은 규칙
+const ID_RE = /^[a-z0-9][a-z0-9_-]{2,19}$/;
+const ID_RULE = '아이디는 영문 소문자, 숫자, _, - 로 3~20자이며 영문이나 숫자로 시작해야 합니다.';
+const PASSWORD_RULE = '비밀번호는 3~20자로 영문, 숫자, 특수문자를 각각 1개 이상 포함해야 합니다. (공백 제외)';
+const passwordChecks = (pw) => ({
+  length: /^[\x21-\x7E]{3,20}$/.test(pw),
+  letter: /[A-Za-z]/.test(pw),
+  digit: /\d/.test(pw),
+  special: /[^A-Za-z0-9\s]/.test(pw),
+});
+const isValidPassword = (pw) => Object.values(passwordChecks(pw)).every(Boolean);
+
+let authMode = 'login';
+
 function showGateError(message) {
   const el = $('#gate-error');
   el.textContent = message;
   el.hidden = !message;
 }
 
+function setAuthMode(mode) {
+  authMode = mode;
+  const signup = mode === 'signup';
+  $$('.gate-tab').forEach((t) => t.classList.toggle('active', t.dataset.mode === mode));
+  $$('.signup-only').forEach((el) => { el.hidden = !signup; });
+  $('#auth-label').textContent = signup ? '새 옷장 만들기' : '입장하기';
+  $('#password-input').autocomplete = signup ? 'new-password' : 'current-password';
+  showGateError('');
+  updatePasswordRules();
+}
+
+function updatePasswordRules() {
+  const checks = passwordChecks($('#password-input').value);
+  $$('#pw-rules li').forEach((li) => li.classList.toggle('ok', checks[li.dataset.rule]));
+}
+
 function showGate() {
   $('#app').hidden = true;
   $('#gate').hidden = false;
+  $('#password-input').value = '';
+  $('#password-confirm').value = '';
+  const last = storedId();
+  if (last && !$('#closet-id-input').value) $('#closet-id-input').value = last;
 }
 
-async function enter(code) {
-  const me = await api('/api/closets/me', { code });
-  state.code = me.code;
-  storeCode(me.code);
-  $('#closet-code').textContent = me.code;
+function enterApp(id) {
+  state.id = id;
+  storeId(id);
+  $('#closet-id').textContent = id;
   $('#gate').hidden = true;
   $('#app').hidden = false;
   showGateError('');
-  await loadClothes();
-  show('today');
+  return loadClothes().then(() => show('today'));
 }
 
-function leave() {
-  state.code = null;
+function signedOut() {
+  state.id = null;
   state.clothes = [];
   state.loaded = false;
-  storeCode(null);
   showGate();
 }
 
-$('#create-closet').addEventListener('click', async (e) => {
-  const btn = e.currentTarget;
+$$('.gate-tab').forEach((t) => t.addEventListener('click', () => setAuthMode(t.dataset.mode)));
+$('#closet-id-input').addEventListener('input', () => showGateError(''));
+$('#password-input').addEventListener('input', () => { showGateError(''); updatePasswordRules(); });
+$('#toggle-password').addEventListener('click', () => {
+  const input = $('#password-input');
+  const show = input.type === 'password';
+  input.type = show ? 'text' : 'password';
+  $('#password-confirm').type = input.type;
+  $('#toggle-password').innerHTML = icon(show ? 'visibility_off' : 'visibility');
+});
+
+$('#auth-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = $('#closet-id-input').value.trim().toLowerCase();
+  const password = $('#password-input').value;
+  const signup = authMode === 'signup';
+
+  if (!ID_RE.test(id)) return showGateError(signup ? ID_RULE : '아이디를 확인해 주세요.');
+  if (!password) return showGateError('비밀번호를 입력해 주세요.');
+  if (signup) {
+    if (!isValidPassword(password)) return showGateError(PASSWORD_RULE);
+    if (password !== $('#password-confirm').value) return showGateError('비밀번호 확인이 일치하지 않습니다.');
+  }
+
+  const btn = $('#auth-submit');
   btn.disabled = true;
   try {
-    const { code } = await api('/api/closets', { method: 'POST', code: null });
-    await enter(code);
-    toast(`새 옷장이 만들어졌어요. 코드 ${code}를 꼭 기억해 두세요.`);
+    const result = signup
+      ? await api('/api/closets', { method: 'POST', body: { id, password } })
+      : await api('/api/session', { method: 'POST', body: { id, password } });
+    await enterApp(result.id);
+    if (signup) toast(`'${result.id}' 옷장을 만들었어요.`);
+    else if (result.passwordSet) toast('비밀번호가 설정되었어요. 다음부터 이 비밀번호로 로그인하세요.');
   } catch (err) {
     showGateError(err.message);
   } finally {
@@ -165,26 +226,12 @@ $('#create-closet').addEventListener('click', async (e) => {
   }
 });
 
-$('#enter-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
+$('#leave').addEventListener('click', async () => {
+  if (!confirm('로그아웃할까요?')) return;
   try {
-    await enter($('#enter-code').value.trim().toUpperCase());
-  } catch (err) {
-    showGateError(err.message);
-  }
-});
-
-$('#leave').addEventListener('click', () => {
-  if (confirm('이 기기에서 옷장 코드를 지울까요? 코드를 알면 다시 들어올 수 있어요.')) leave();
-});
-
-$('#copy-code').addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(state.code);
-    toast('옷장 코드를 복사했어요.');
-  } catch {
-    toast(`옷장 코드: ${state.code}`);
-  }
+    await api('/api/session', { method: 'DELETE' });
+  } catch {}
+  signedOut();
 });
 
 // ── 화면 전환 ────────────────────────────────────────
@@ -634,14 +681,14 @@ $('#saved-list').addEventListener('click', async (e) => {
 });
 
 // ── 시작 ─────────────────────────────────────────────
+// 세션 쿠키가 살아 있으면 바로 들어가고, 아니면 로그인 화면을 보여 준다.
 (async () => {
-  const code = storedCode();
-  if (!code) return showGate();
+  setAuthMode('login');
   try {
-    await enter(code);
+    const me = await api('/api/closets/me');
+    await enterApp(me.id);
   } catch (err) {
-    storeCode(null);
     showGate();
-    showGateError(err.status === 401 ? '저장된 옷장 코드를 찾을 수 없어요. 다시 입력해 주세요.' : err.message);
+    if (err.status !== 401) showGateError(err.message);
   }
 })();

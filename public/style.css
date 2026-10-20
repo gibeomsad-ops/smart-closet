@@ -110,7 +110,7 @@ textarea { resize: vertical; }
 
 .card { background: var(--surface-1); border: 1px solid var(--line); border-radius: var(--radius); }
 
-/* ── 옷장 코드 화면 ─────────────────────── */
+/* ── 아이디 로그인 화면 ─────────────────────── */
 .gate { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 16px; }
 .gate-card {
   width: 100%; max-width: 640px; background: var(--surface-1); border-radius: var(--radius);
@@ -127,12 +127,26 @@ textarea { resize: vertical; }
 .field-label { font: 600 12px/16px var(--sans); letter-spacing: .04em; }
 .input-icon { position: relative; }
 .input-icon .ms { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); }
-.input-icon input {
-  padding: 18px 16px 18px 50px; font-size: 18px; background: var(--input);
-  text-transform: uppercase; letter-spacing: .1em;
-}
-.input-icon input::placeholder { text-transform: none; letter-spacing: .02em; }
+.input-icon input { padding: 18px 16px 18px 50px; font-size: 18px; background: var(--input); letter-spacing: .04em; }
 .gate-form .btn { margin-top: 18px; }
+.gate-form .field-label:not(:first-child) { margin-top: 8px; }
+.gate-tabs { display: grid; grid-template-columns: 1fr 1fr; margin-top: 22px; border-bottom: 1px solid var(--line); }
+.gate-tab {
+  background: none; border: none; border-bottom: 2px solid transparent; padding: 12px 0; margin-bottom: -1px;
+  cursor: pointer; color: var(--muted); font-size: 15px; font-weight: 400;
+}
+.gate-tab.active { color: var(--text); border-color: var(--rose); }
+.input-icon .reveal {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; padding: 8px; cursor: pointer; color: var(--muted);
+}
+.input-icon .reveal .ms { position: static; transform: none; font-size: 20px; }
+.input-icon .reveal:hover { color: var(--text); }
+.input-icon input[type=password], .input-icon input#password-input { padding-right: 48px; }
+.pw-rules { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); }
+.pw-rules li::before { content: "○ "; }
+.pw-rules li.ok { color: var(--good); }
+.pw-rules li.ok::before { content: "● "; }
 .gate-foot { background: #171415; padding: 22px 40px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .pill-note {
   display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 999px;
@@ -157,12 +171,11 @@ textarea { resize: vertical; }
 .nav-link.active { color: var(--text); border-color: var(--rose); }
 .account { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
 .code-chip {
-  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
   padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface-1);
-  font: 500 12px/16px var(--sans); letter-spacing: .12em;
+  font: 500 13px/16px var(--sans); letter-spacing: .04em;
 }
 .code-chip .ms { font-size: 16px; color: var(--muted); }
-.code-chip:hover { border-color: var(--primary); }
 
 /* ── 페이지 공통 ────────────────────────── */
 .canvas { max-width: 1440px; margin: 0 auto; padding: 44px var(--margin) 72px; }
@@ -449,7 +462,7 @@ textarea { resize: vertical; }
   .saved-hero { min-height: 160px; }
   .saved .pieces { grid-template-columns: minmax(0, 1fr); }
   .search { width: 100%; }
-  .code-chip #closet-code { display: none; }
+  .code-chip { max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .hide-sm, .garment-hero .hex { display: none; }
   .summary-bar .text-link { margin-left: 0; }
 }

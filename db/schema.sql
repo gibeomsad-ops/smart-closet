@@ -1,7 +1,8 @@
 -- 참고용 스키마. Neon에 이미 테이블이 있다면 실행할 필요가 없습니다.
 CREATE TABLE IF NOT EXISTS closets (
   id SERIAL PRIMARY KEY,
-  code TEXT NOT NULL UNIQUE,
+  code TEXT NOT NULL UNIQUE,          -- 사용자가 정한 아이디 (소문자)
+  password_hash TEXT,                 -- scrypt 해시. 평문 비밀번호는 저장하지 않음
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
