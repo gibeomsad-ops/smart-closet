@@ -1,0 +1,20 @@
+{
+  "name": "smart-closet",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "옷장 기록 및 날씨·색조합 기반 코디 추천 웹앱",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0"
+  }
+}

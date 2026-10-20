@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>OFYC — Outfit From Your Closet</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "secondary-fixed-dim": "#e4c285",
+          "secondary": "#e4c285",
+          "on-secondary-fixed-variant": "#5a4312",
+          "on-background": "#e7e1e2",
+          "surface-container-low": "#1d1b1c",
+          "surface-variant": "#373435",
+          "surface": "#151314",
+          "on-primary-fixed": "#400010",
+          "background": "#151314",
+          "primary-fixed-dim": "#ffb2b9",
+          "secondary-container": "#5d4514",
+          "tertiary": "#99d3b5",
+          "surface-container-high": "#2c292a",
+          "surface-dim": "#151314",
+          "outline": "#a38b8c",
+          "on-secondary": "#412d00",
+          "on-tertiary": "#003825",
+          "surface-container-lowest": "#100e0f",
+          "error": "#ffb4ab",
+          "inverse-on-surface": "#323031",
+          "on-primary": "#601122",
+          "on-primary-fixed-variant": "#7e2837",
+          "surface-container-highest": "#373435",
+          "on-primary-container": "#f0818f",
+          "surface-container": "#211f20",
+          "error-container": "#93000a",
+          "secondary-fixed": "#ffdea4",
+          "on-tertiary-container": "#76af92",
+          "on-surface": "#e7e1e2",
+          "surface-tint": "#ffb2b9",
+          "tertiary-container": "#00422c",
+          "outline-variant": "#554243",
+          "on-secondary-container": "#d5b478",
+          "inverse-surface": "#e7e1e2",
+          "on-error": "#690005",
+          "inverse-primary": "#9c404e",
+          "primary": "#ffb2b9",
+          "tertiary-fixed": "#b4f0d0",
+          "on-surface-variant": "#dbc0c2",
+          "on-secondary-fixed": "#261900",
+          "tertiary-fixed-dim": "#99d3b5",
+          "on-tertiary-fixed-variant": "#155039",
+          "primary-fixed": "#ffdadc",
+          "on-tertiary-fixed": "#002114",
+          "surface-bright": "#3b3839",
+          "on-error-container": "#ffdad6",
+          "primary-container": "#6b1a2a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "gutter-desktop": "2.5rem",
+          "space-lg": "1.75rem",
+          "space-sm": "0.5rem",
+          "margin": "1.25rem",
+          "margin-desktop": "4rem",
+          "space-md": "1rem",
+          "space-xs": "0.25rem",
+          "space-xl": "3rem",
+          "gutter": "1.5rem"
+        },
+        "fontFamily": {
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "label-caps": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "body-sm": [
+            "Inter"
+          ],
+          "body-md": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "title-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "headline-sm": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "56px",
+            {
+              "lineHeight": "64px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "38px",
+            {
+              "lineHeight": "46px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-caps": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.14em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "300"
+            }
+          ],
+          "headline-lg": [
+            "40px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "300"
+            }
+          ],
+          "headline-md": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "title-md": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-surface"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl border-b border-outline-variant shadow-[0_12px_36px_-8px_rgba(14,12,13,0.8),0_0_20px_0_rgba(107,26,42,0.08)]"><div class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group" data-path="today-outfit" href="#"><img alt="OFYC Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V9V-2XKW64g3Sce0Hsu7JJyFqg7LANqKP230XD0bCJVSE7Yn6hFFTxIso6jQbcZ3kzIO0QBsQMaRZT7IfE95VgTzNVr7ufsuEVIwshiiR63kDn4PizWY4o_ZOFCsYceU-IGmDv9asZRN9giyMSe9hA6BwQhG48L6VsrB65jjz3wuz8spCK8DOTFAVVjJXJCuDgRXcNcjl9C2y_2HBCC3CUWuNmtj0rQCGW8tXzLoPFnKnVJ_WXrWZnVQ"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">OFYC</span><span class="font-label-caps text-label-caps uppercase text-outline tracking-widest text-[9px]">Atelier</span></div></a></div><nav class="hidden md:flex items-center gap-space-xl" data-active-classes="text-on-surface border-b-2 border-primary pb-1"><a class="font-label-md text-label-md tracking-wide text-on-surface-variant hover:text-on-surface transition-colors pb-1" data-path="today-outfit" href="#">오늘의 코디</a><a class="font-label-md text-label-md tracking-wide text-on-surface-variant hover:text-on-surface transition-colors pb-1" data-path="my-closet" href="#">내 옷장</a><a class="font-label-md text-label-md tracking-wide text-on-surface border-b-2 border-primary pb-1 transition-colors" data-path="saved-outfits" href="#">저장한 코디</a></nav><div class="flex items-center gap-space-md"><button aria-label="Search wardrobe" class="w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">search</span></button><button aria-label="Closet notifications" class="relative w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-surface"></span></button><div class="h-4 w-[1px] bg-outline-variant mx-1"></div><button aria-label="User Profile" class="group flex items-center gap-space-sm pl-1 focus:outline-none" type="button"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ring-1 ring-outline-variant group-hover:ring-primary transition-all"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></button></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-14rem)]"><div class="flex flex-col w-full">
+<!-- Editorial Archival Masthead -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-10">
+<div class="relative overflow-hidden bg-surface-container-low rounded-xl p-8 lg:p-12 shadow-xl">
+<!-- Ambient subtle background depth aura -->
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-primary-container/20 blur-3xl pointer-events-none"></div>
+<div class="absolute -left-20 bottom-0 w-80 h-80 rounded-full bg-secondary-container/15 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+<div class="max-w-3xl space-y-4">
+<div class="flex items-center gap-3">
+<span class="inline-block w-2 h-2 rounded-full bg-primary"></span>
+<p class="font-label-caps text-label-caps uppercase text-outline tracking-widest text-[10px]">
+              Wardrobe Archive • Curated Series № 04
+            </p>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-medium">
+            저장한 코디
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            회원님이 선별하여 저장해 둔 데일리 룩북 아카이브입니다. 날씨와 계절감에 맞춰 언제든 정갈하게 다시 꺼내어 착용할 수 있습니다.
+          </p>
+</div>
+<!-- Archival Status & Quick Metrics -->
+<div class="flex flex-row lg:flex-col items-start sm:items-center lg:items-end justify-between gap-4 p-4 rounded-lg bg-surface-container/70 backdrop-blur-md">
+<div class="text-left lg:text-right">
+<span class="font-label-caps text-label-caps text-outline uppercase block">Archived Outfits</span>
+<div class="flex items-baseline gap-1.5 mt-0.5">
+<span class="font-headline-md text-headline-md text-secondary font-semibold">12</span>
+<span class="font-body-sm text-body-sm text-outline">세트 보관중</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-variant/60 text-on-surface-variant font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span>
+              실시간 날씨 동기화
+            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter & Utility Control Bar -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 pb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-xl bg-surface-container-low">
+<!-- Season & Temperature Filters -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none" id="seasonFilterGroup">
+<button class="season-filter-btn px-4 py-1.5 rounded text-on-surface bg-primary-container font-label-md text-label-md transition-colors" data-filter="all" type="button">
+          전체 (12)
+        </button>
+<button class="season-filter-btn px-4 py-1.5 rounded text-outline hover:text-on-surface bg-surface-variant/40 hover:bg-surface-variant font-label-md text-label-md transition-colors" data-filter="spring-autumn" type="button">
+          봄/가을 (7)
+        </button>
+<button class="season-filter-btn px-4 py-1.5 rounded text-outline hover:text-on-surface bg-surface-variant/40 hover:bg-surface-variant font-label-md text-label-md transition-colors" data-filter="winter" type="button">
+          겨울 (4)
+        </button>
+<button class="season-filter-btn px-4 py-1.5 rounded text-outline hover:text-on-surface bg-surface-variant/40 hover:bg-surface-variant font-label-md text-label-md transition-colors" data-filter="summer" type="button">
+          여름 (1)
+        </button>
+</div>
+<!-- Sorting & View Controls -->
+<div class="flex items-center gap-3 self-end md:self-auto">
+<label class="sr-only" for="sortSelect">정렬 방식</label>
+<div class="relative">
+<select class="appearance-none bg-surface-container text-on-surface font-label-md text-label-md py-2 pl-3.5 pr-8 rounded focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer transition-colors" id="sortSelect">
+<option value="recent">최근 저장순</option>
+<option value="harmony">조화도 높은순</option>
+<option value="temp-asc">기온 낮은순 (쌀쌀함)</option>
+<option value="temp-desc">기온 높은순 (포근함)</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-[18px]">
+            expand_more
+          </span>
+</div>
+<button class="flex items-center justify-center w-9 h-9 rounded bg-surface-container text-outline hover:text-on-surface transition-colors" id="toggleDensityBtn" title="간략히 보기 전환" type="button">
+<span class="material-symbols-outlined text-[19px]">view_agenda</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Saved Outfits Curated List -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 space-y-6 pb-16">
+<!-- Outfit Card 01: High Harmony Fall/Autumn Ensemble -->
+<article class="outfit-card group relative bg-surface-container-low rounded-xl p-6 lg:p-8 transition-all duration-300 hover:bg-surface-container shadow-sm hover:shadow-xl" data-id="card-1">
+<div class="flex flex-col lg:flex-row gap-8 items-start">
+<!-- Look Visual Canvas -->
+<div class="w-full lg:w-72 flex-shrink-0 relative">
+<div class="relative aspect-[3/4] w-full rounded-lg overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Editorial flat-lay of quiet luxury autumn outfit featuring deep navy tailored wool balmacaan coat, soft oatmeal beige fine knit turtleneck sweater, pleated charcoal grey wool trousers, and polished ebony black calfskin loafers on a matte graphite stone backdrop with soft diffused museum-grade lighting, cinematic shadows, high fashion catalog aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTqhs_cFvM2MeUqRKNTQv8on8kw375n4ud3lwvOsKf9i3iaXkC2R0o3JF2sNofTyoSW2U5_22ndGCqX0hFZuqQdDpJuWL_q1SHlicFYy6EkzvgBvfNjsSjC725iNhYsh7LqKGdHY38XQTCaoI9czqxhI9nMclPWJQCbvv-WI_Qf10wVZOe28S3ARu76C5ZViRTTTnsP0GC8vxEJsid2HV8o7l3GaDNZ0DpPUV_v0KIavCELpbQWG1I"/>
+<!-- Visual Tone Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface bg-surface-container-lowest/90 px-2 py-0.5 rounded backdrop-blur-sm">
+                LOOK #01 • 간절기
+              </span>
+<span class="material-symbols-outlined text-secondary text-[18px]" title="검증된 팔레트">verified</span>
+</div>
+</div>
+</div>
+<!-- Outfit Content & Items Grid -->
+<div class="flex-1 flex flex-col justify-between w-full min-w-0">
+<!-- Metadata Bar -->
+<div class="flex flex-wrap items-center justify-between gap-3 pb-4">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps text-outline uppercase">2024.10.22 저장</span>
+<span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">cloud</span>
+<span class="font-body-sm text-body-sm">14°C 서울 • 구름 조금</span>
+</div>
+</div>
+<!-- Harmony Score Capsule & Delete Button -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/40">
+<span class="font-label-caps text-label-caps text-secondary font-semibold tracking-wider">98% 조화도</span>
+</div>
+<button class="delete-outfit-btn p-1.5 rounded text-outline hover:text-error hover:bg-surface-variant transition-colors" data-target="card-1" title="이 코디 저장 해제" type="button">
+<span class="material-symbols-outlined text-[19px]">delete_outline</span>
+</button>
+</div>
+</div>
+<!-- Wardrobe Items Hierarchy -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 py-4">
+<!-- Outer -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#1b2438] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">아우터</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">캐시미어 블렌드 발마칸 코트</span>
+<span class="font-body-sm text-body-sm text-outline truncate">딥 네이비 • 렉토</span>
+</div>
+</div>
+<!-- Top -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#dfd6c8] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">상의</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">파인 메리노울 터틀넥</span>
+<span class="font-body-sm text-body-sm text-outline truncate">소프트 베이지 • 르메르</span>
+</div>
+</div>
+<!-- Bottom -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#343538] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">하의</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">투턱 플리츠 와이드 슬랙스</span>
+<span class="font-body-sm text-body-sm text-outline truncate">차콜 헤더 • 아워레가시</span>
+</div>
+</div>
+<!-- Shoes -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#131314] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">신발</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">카프스킨 클래식 페니 로퍼</span>
+<span class="font-body-sm text-body-sm text-outline truncate">에보니 블랙 • 파라부트</span>
+</div>
+</div>
+</div>
+<!-- Editorial Curation Note -->
+<div class="p-4 rounded-lg bg-surface-container-lowest/80 my-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5 flex-shrink-0">stylus_note</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<span class="text-on-surface font-medium">네이비 + 소프트 오트밀:</span> 정갈한 톤앤매너로 단정하면서도 신뢰감 있는 실루엣을 완성합니다. 14°C 도심 속 일교차에 맞춰 포근한 보온성과 우아한 드레이프를 동시에 제공합니다.
+              </p>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="flex items-center justify-between gap-4 pt-4 mt-2">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-caps text-outline bg-surface-variant/40">
+                실착 2회
+              </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-caps text-tertiary bg-tertiary-container/30">
+                기온 적합도 최상
+              </span>
+</div>
+<div class="flex items-center gap-3">
+<button class="wear-today-btn px-4 py-2 rounded bg-primary-container hover:bg-primary-container/80 text-on-primary font-label-md text-label-md flex items-center gap-1.5 transition-all shadow-md active:scale-95" data-title="네이비 발마칸 &amp; 메리노 터틀넥" type="button">
+<span class="material-symbols-outlined text-[17px]">checkroom</span>
+                오늘 착용하기
+              </button>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Outfit Card 02: Minimal Tailored Blazer Look -->
+<article class="outfit-card group relative bg-surface-container-low rounded-xl p-6 lg:p-8 transition-all duration-300 hover:bg-surface-container shadow-sm hover:shadow-xl" data-id="card-2">
+<div class="flex flex-col lg:flex-row gap-8 items-start">
+<!-- Look Visual Canvas -->
+<div class="w-full lg:w-72 flex-shrink-0 relative">
+<div class="relative aspect-[3/4] w-full rounded-lg overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Modern understated luxury men's outfit flat-lay including an olive charcoal wool blend tailored jacket blazer, pristine heavyweight ivory cotton crewneck t-shirt, selvedge raw indigo denim jeans, and minimal suede tobacco brown derby shoes arranged cleanly on a neutral dark textured linen background with dramatic gentle side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCabQr4cvJp3BvYHE_KpOgmU3efKqB8DFk9y8Hhv0RIg7QloXS0Tbq2Tou_qg-EuNmXuqDwHxr9gE3AIg7mP8qM_kI40F4n6GeRvxZ2PkPS94nomkpCDY87hGI4k26N-QsObKKbcZbhq3T9cx42zlRN_y9T3yLOumIFr_GfYx_pDTChhD1FeLFrSeUeSvIIaZ3OaN3RdAmPiEcmc9l1ORZwhmjk3D40XYPybW2O9I7xuEtF9ZT-pcu9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface bg-surface-container-lowest/90 px-2 py-0.5 rounded backdrop-blur-sm">
+                LOOK #02 • 오피스 &amp; 데일리
+              </span>
+<span class="material-symbols-outlined text-secondary text-[18px]" title="검증된 팔레트">verified</span>
+</div>
+</div>
+</div>
+<!-- Outfit Content & Items Grid -->
+<div class="flex-1 flex flex-col justify-between w-full min-w-0">
+<!-- Metadata Bar -->
+<div class="flex flex-wrap items-center justify-between gap-3 pb-4">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps text-outline uppercase">2024.10.18 저장</span>
+<span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">wb_sunny</span>
+<span class="font-body-sm text-body-sm">18°C 서울 • 맑음</span>
+</div>
+</div>
+<!-- Harmony Score Capsule & Delete Button -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/40">
+<span class="font-label-caps text-label-caps text-secondary font-semibold tracking-wider">95% 조화도</span>
+</div>
+<button class="delete-outfit-btn p-1.5 rounded text-outline hover:text-error hover:bg-surface-variant transition-colors" data-target="card-2" title="이 코디 저장 해제" type="button">
+<span class="material-symbols-outlined text-[19px]">delete_outline</span>
+</button>
+</div>
+</div>
+<!-- Wardrobe Items Hierarchy -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 py-4">
+<!-- Outer -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#42443d] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">아우터</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">언스트럭처드 울 블레이저</span>
+<span class="font-body-sm text-body-sm text-outline truncate">올리브 차콜 • 코스(COS)</span>
+</div>
+</div>
+<!-- Top -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#eae7de] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">상의</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">헤비웨이트 코튼 크루넥 니트</span>
+<span class="font-body-sm text-body-sm text-outline truncate">클린 아이보리 • 오라리</span>
+</div>
+</div>
+<!-- Bottom -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#1b263b] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">하의</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">재패니즈 셀비지 데님 팬츠</span>
+<span class="font-body-sm text-body-sm text-outline truncate">로우 딥인디고 • 아페쎄(A.P.C.)</span>
+</div>
+</div>
+<!-- Shoes -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#634832] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">신발</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">스웨이드 플레인 토 더비</span>
+<span class="font-body-sm text-body-sm text-outline truncate">토바코 브라운 • 버윅</span>
+</div>
+</div>
+</div>
+<!-- Editorial Curation Note -->
+<div class="p-4 rounded-lg bg-surface-container-lowest/80 my-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5 flex-shrink-0">stylus_note</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<span class="text-on-surface font-medium">어스 톤 + 생지 인디고:</span> 단정한 수트 느낌을 덜어내고 캐주얼한 정밀함을 불어넣은 조합. 18°C 온화한 오후에는 블레이저를 가볍게 벗어 걸칠 수 있는 유연한 레이어드입니다.
+              </p>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="flex items-center justify-between gap-4 pt-4 mt-2">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-caps text-outline bg-surface-variant/40">
+                실착 4회
+              </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-caps text-secondary bg-secondary-container/30">
+                비즈니스 캐주얼 추천
+              </span>
+</div>
+<div class="flex items-center gap-3">
+<button class="wear-today-btn px-4 py-2 rounded bg-primary-container hover:bg-primary-container/80 text-on-primary font-label-md text-label-md flex items-center gap-1.5 transition-all shadow-md active:scale-95" data-title="올리브 블레이저 &amp; 셀비지" type="button">
+<span class="material-symbols-outlined text-[17px]">checkroom</span>
+                오늘 착용하기
+              </button>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Outfit Card 03: Crisp Cold Air Winter Trench & Knit -->
+<article class="outfit-card group relative bg-surface-container-low rounded-xl p-6 lg:p-8 transition-all duration-300 hover:bg-surface-container shadow-sm hover:shadow-xl" data-id="card-3">
+<div class="flex flex-col lg:flex-row gap-8 items-start">
+<!-- Look Visual Canvas -->
+<div class="w-full lg:w-72 flex-shrink-0 relative">
+<div class="relative aspect-[3/4] w-full rounded-lg overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Quiet luxury winter ensemble laid out flat: heavyweight dark taupe double-breasted trench coat, chunky charcoal ribbed knit sweater, relaxed off-white ecru denim trousers, and sleek black chelsea leather boots set upon a rich dark oak slate floor with subtle golden hour ray cast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnlnvI0F0n_GYGYvzmBurgxkJ2UD0Jd7y-piUd1-UYy5Gh_axRvrmGBiPd2EL2HdswTg1F6B0n3lHXEWpLNciPEsJAWeORxiyA83A85ahvE3mMNYpsOy7o3fMj3qTe5yU0SejLBhf-emJEhYJbvPeEjp0xUKEAJDIhwpi-DurDVAh1dLU2QOBJOpjCX8RdG9Ftqi93phil57Vn6U9NnmUt1rT_7KOL-X0ZbRbh8-VIjjLstSF6juHS"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface bg-surface-container-lowest/90 px-2 py-0.5 rounded backdrop-blur-sm">
+                LOOK #03 • 늦가을 / 초겨울
+              </span>
+<span class="material-symbols-outlined text-secondary text-[18px]" title="검증된 팔레트">verified</span>
+</div>
+</div>
+</div>
+<!-- Outfit Content & Items Grid -->
+<div class="flex-1 flex flex-col justify-between w-full min-w-0">
+<!-- Metadata Bar -->
+<div class="flex flex-wrap items-center justify-between gap-3 pb-4">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps text-outline uppercase">2024.10.05 저장</span>
+<span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-tertiary">air</span>
+<span class="font-body-sm text-body-sm">11°C 서울 • 쌀쌀한 바람</span>
+</div>
+</div>
+<!-- Harmony Score Capsule & Delete Button -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/40">
+<span class="font-label-caps text-label-caps text-secondary font-semibold tracking-wider">96% 조화도</span>
+</div>
+<button class="delete-outfit-btn p-1.5 rounded text-outline hover:text-error hover:bg-surface-variant transition-colors" data-target="card-3" title="이 코디 저장 해제" type="button">
+<span class="material-symbols-outlined text-[19px]">delete_outline</span>
+</button>
+</div>
+</div>
+<!-- Wardrobe Items Hierarchy -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 py-4">
+<!-- Outer -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#59524b] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">아우터</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">개버딘 더블 트렌치 코트</span>
+<span class="font-body-sm text-body-sm text-outline truncate">다크 토프 • 버버리 프로섬</span>
+</div>
+</div>
+<!-- Top -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#2f3133] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">상의</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">청키 립니트 크루넥</span>
+<span class="font-body-sm text-body-sm text-outline truncate">차콜 블랙 • 스튜디오 니콜슨</span>
+</div>
+</div>
+<!-- Bottom -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#e8e4dc] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">하의</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">릴랙스드 에크루 코튼 팬츠</span>
+<span class="font-body-sm text-body-sm text-outline truncate">내추럴 본 • 토템</span>
+</div>
+</div>
+<!-- Shoes -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#181717] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">신발</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">카프스킨 첼시 부츠</span>
+<span class="font-body-sm text-body-sm text-outline truncate">딥 오닉스 • 블룬드스톤 셀렉트</span>
+</div>
+</div>
+</div>
+<!-- Editorial Curation Note -->
+<div class="p-4 rounded-lg bg-surface-container-lowest/80 my-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5 flex-shrink-0">stylus_note</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<span class="text-on-surface font-medium">토프 + 에크루 콘트라스트:</span> 어두워지기 쉬운 늦가을 룩에 밝은 하의를 매치해 시각적 여백을 부여했습니다. 도톰한 개버딘 원단으로 11°C의 찬 바람을 차단합니다.
+              </p>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="flex items-center justify-between gap-4 pt-4 mt-2">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-caps text-outline bg-surface-variant/40">
+                실착 1회
+              </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-caps text-primary bg-primary-container/20">
+                방풍/체온유지 우수
+              </span>
+</div>
+<div class="flex items-center gap-3">
+<button class="wear-today-btn px-4 py-2 rounded bg-primary-container hover:bg-primary-container/80 text-on-primary font-label-md text-label-md flex items-center gap-1.5 transition-all shadow-md active:scale-95" data-title="다크 토프 트렌치 &amp; 에크루 코튼" type="button">
+<span class="material-symbols-outlined text-[17px]">checkroom</span>
+                오늘 착용하기
+              </button>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Outfit Card 04: Elegant Monochrome Cashmere -->
+<article class="outfit-card group relative bg-surface-container-low rounded-xl p-6 lg:p-8 transition-all duration-300 hover:bg-surface-container shadow-sm hover:shadow-xl" data-id="card-4">
+<div class="flex flex-col lg:flex-row gap-8 items-start">
+<!-- Look Visual Canvas -->
+<div class="w-full lg:w-72 flex-shrink-0 relative">
+<div class="relative aspect-[3/4] w-full rounded-lg overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Quiet luxury all-black and heather slate layering flat-lay featuring a minimal zipped black bomber blouson in virgin wool, slate grey mockneck cashmere knit, fluid draped relaxed charcoal trousers, and minimal black leather minimalist sneakers on dark textured slate background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL4vL8te5kMxTk709tG0n6NJM6HQHvrKWE8hI5SL3HRiFCDlj9aTHNpH1x_636nNCs8D-LIl_A5jiZc5z_h_KLEcEimNWCx6SuU0il5oq9I2Hqp2LHDypDc5lBXkM-UuPWqdYwXkjnbarslPg33BOgjITxIIWxNpjYiJ-6nVLLNHeZX1AdJ9O6EyaW5-gVL0XQUqlFSIvE1WLDWD6of5yyq1I6YVeK3icdUSPW_DYAd9g5UqMQRFXv"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface bg-surface-container-lowest/90 px-2 py-0.5 rounded backdrop-blur-sm">
+                LOOK #04 • 어반 미니멀
+              </span>
+<span class="material-symbols-outlined text-secondary text-[18px]" title="검증된 팔레트">verified</span>
+</div>
+</div>
+</div>
+<!-- Outfit Content & Items Grid -->
+<div class="flex-1 flex flex-col justify-between w-full min-w-0">
+<!-- Metadata Bar -->
+<div class="flex flex-wrap items-center justify-between gap-3 pb-4">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps text-outline uppercase">2024.09.29 저장</span>
+<span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">wb_twilight</span>
+<span class="font-body-sm text-body-sm">16°C 서울 • 쾌적한 저녁</span>
+</div>
+</div>
+<!-- Harmony Score Capsule & Delete Button -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/40">
+<span class="font-label-caps text-label-caps text-secondary font-semibold tracking-wider">93% 조화도</span>
+</div>
+<button class="delete-outfit-btn p-1.5 rounded text-outline hover:text-error hover:bg-surface-variant transition-colors" data-target="card-4" title="이 코디 저장 해제" type="button">
+<span class="material-symbols-outlined text-[19px]">delete_outline</span>
+</button>
+</div>
+</div>
+<!-- Wardrobe Items Hierarchy -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 py-4">
+<!-- Outer -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#1e1e20] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">아우터</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">버진울 집업 블루종</span>
+<span class="font-body-sm text-body-sm text-outline truncate">미드나잇 블랙 • 질샌더</span>
+</div>
+</div>
+<!-- Top -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#75777c] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">상의</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">캐시미어 실크 목넥 니트</span>
+<span class="font-body-sm text-body-sm text-outline truncate">슬레이트 그레이 • 제냐</span>
+</div>
+</div>
+<!-- Bottom -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#292a2c] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">하의</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">스트레이트 핏 드레이프 슬랙스</span>
+<span class="font-body-sm text-body-sm text-outline truncate">딥 차콜 • 아크네 스튜디오</span>
+</div>
+</div>
+<!-- Shoes -->
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container/60 hover:bg-surface-container transition-colors">
+<div class="w-6 h-6 rounded-full bg-[#151515] flex-shrink-0 ring-2 ring-surface shadow-sm"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-outline uppercase text-[10px]">신발</span>
+<span class="font-body-md text-body-md text-on-surface truncate font-normal">미니멀 카프스킨 스니커즈</span>
+<span class="font-body-sm text-body-sm text-outline truncate">퓨어 블랙 • 커먼프로젝트</span>
+</div>
+</div>
+</div>
+<!-- Editorial Curation Note -->
+<div class="p-4 rounded-lg bg-surface-container-lowest/80 my-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5 flex-shrink-0">stylus_note</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<span class="text-on-surface font-medium">톤온톤 모노크롬:</span> 절제된 블랙과 그레이의 질감 대비만으로 깊이감을 완성한 앙상블. 편안하면서도 날렵한 비율로 전시회 및 디너 약속에 제격입니다.
+              </p>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="flex items-center justify-between gap-4 pt-4 mt-2">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-caps text-outline bg-surface-variant/40">
+                실착 5회
+              </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-caps text-tertiary bg-tertiary-container/30">
+                즐겨찾기 코디
+              </span>
+</div>
+<div class="flex items-center gap-3">
+<button class="wear-today-btn px-4 py-2 rounded bg-primary-container hover:bg-primary-container/80 text-on-primary font-label-md text-label-md flex items-center gap-1.5 transition-all shadow-md active:scale-95" data-title="질샌더 울 블루종 &amp; 목넥 니트" type="button">
+<span class="material-symbols-outlined text-[17px]">checkroom</span>
+                오늘 착용하기
+              </button>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<!-- Bottom Archival Status & Pagination -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 pb-12">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-6 py-6 px-8 rounded-xl bg-surface-container-low shadow-inner">
+<div class="flex items-center gap-3 text-outline font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">inventory_2</span>
+<span>보관함 총 12개 중 <strong class="text-on-surface font-medium">1 - 4</strong> 세트 표시 중</span>
+</div>
+<!-- Editorial Pagination -->
+<nav aria-label="Archive Pagination" class="flex items-center gap-1.5">
+<button aria-label="이전 페이지" class="w-8 h-8 flex items-center justify-center rounded text-outline hover:text-on-surface hover:bg-surface-variant transition-colors" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button aria-current="page" class="w-8 h-8 flex items-center justify-center rounded bg-primary-container text-on-primary font-label-md text-label-md" type="button">
+          1
+        </button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-outline hover:text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors" type="button">
+          2
+        </button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-outline hover:text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors" type="button">
+          3
+        </button>
+<button aria-label="다음 페이지" class="w-8 h-8 flex items-center justify-center rounded text-outline hover:text-on-surface hover:bg-surface-variant transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</nav>
+</div>
+</section>
+<!-- Quick Atelier Tip Banner -->
+<section class="w-full max-w-7xl mx-auto px-6 lg:px-12 pb-16">
+<div class="relative overflow-hidden rounded-xl p-6 sm:p-8 bg-surface-container-lowest shadow-md">
+<div class="flex items-start sm:items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container/40 flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[22px]">auto_awesome</span>
+</div>
+<div class="flex-1 space-y-1">
+<h4 class="font-headline-sm text-[16px] text-secondary font-medium tracking-tight">
+            OFYC 큐레이션 노트 • 실시간 스마트 적합도
+          </h4>
+<p class="font-body-sm text-body-sm text-outline leading-relaxed">
+            저장된 코디는 당일 서울 및 외출지의 기온 변화와 풍속, 강수 확률에 맞춰 실시간으로 재추천 우선순위에 자동 반영됩니다. 내일 기온이 급격히 떨어지면 체온 보호에 최적화된 코디가 알림으로 먼저 안내됩니다.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Toast Notification Element (Hidden by default) -->
+<div class="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-5 py-3.5 rounded-lg bg-surface-container-highest/95 backdrop-blur-xl text-on-surface shadow-2xl transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none" id="atelierToast">
+<span class="material-symbols-outlined text-tertiary text-[20px]" id="toastIcon">check_circle</span>
+<span class="font-body-md text-body-md" id="toastMessage">코디가 적용되었습니다.</span>
+</div>
+<!-- Interactive Logic -->
+<script>
+    (function initSavedOutfitsPage() {
+      const toast = document.getElementById('atelierToast');
+      const toastMsg = document.getElementById('toastMessage');
+      let toastTimer = null;
+
+      function showToast(text, isError = false) {
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = text;
+        const icon = document.getElementById('toastIcon');
+        if (icon) {
+          icon.textContent = isError ? 'info' : 'check_circle';
+          icon.className = isError 
+            ? 'material-symbols-outlined text-secondary text-[20px]' 
+            : 'material-symbols-outlined text-tertiary text-[20px]';
+        }
+        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        }, 3200);
+      }
+
+      // '오늘 착용하기' Action handling
+      document.querySelectorAll('.wear-today-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const title = this.getAttribute('data-title') || '선택한 코디';
+          showToast(`'${title}'를 오늘의 착용 코디로 등록했습니다.`);
+        });
+      });
+
+      // '삭제하기' Action handling with smooth removal animation
+      document.querySelectorAll('.delete-outfit-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('data-target');
+          const card = document.querySelector(`article[data-id="${targetId}"]`);
+          if (card) {
+            if (confirm('이 코디를 저장 목록에서 삭제하시겠습니까?')) {
+              card.style.transition = 'all 0.4s ease-out';
+              card.style.opacity = '0';
+              card.style.transform = 'scale(0.96) translateY(-10px)';
+              setTimeout(() => {
+                card.remove();
+                showToast('코디가 아카이브에서 안전하게 제거되었습니다.', true);
+              }, 400);
+            }
+          }
+        });
+      });
+
+      // Season Filter Buttons toggle
+      const seasonButtons = document.querySelectorAll('.season-filter-btn');
+      seasonButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          seasonButtons.forEach(b => {
+            b.classList.remove('bg-primary-container', 'text-on-surface');
+            b.classList.add('bg-surface-variant/40', 'text-outline');
+          });
+          this.classList.add('bg-primary-container', 'text-on-surface');
+          this.classList.remove('bg-surface-variant/40', 'text-outline');
+          const filterName = this.textContent.trim().split(' ')[0];
+          showToast(`'${filterName}' 아카이브 필터가 적용되었습니다.`);
+        });
+      });
+
+      // Sort Select Change
+      const sortSelect = document.getElementById('sortSelect');
+      if (sortSelect) {
+        sortSelect.addEventListener('change', function() {
+          const selectedText = this.options[this.selectedIndex].text;
+          showToast(`'${selectedText}' 기준으로 다시 정렬되었습니다.`);
+        });
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant py-space-xl"><div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex flex-col items-center md:items-start gap-space-xs"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">OFYC</span><span class="font-label-caps text-label-caps text-outline uppercase">Outfit From Your Closet</span></div><p class="font-body-sm text-body-sm text-outline">Intelligent wardrobe curation &amp; private atelier styling.</p></div><div class="flex items-center gap-space-lg font-label-caps text-label-caps uppercase text-outline"><a class="hover:text-on-surface transition-colors" data-path="about-atelier" href="#">About Atelier</a><a class="hover:text-on-surface transition-colors" data-path="curation-guide" href="#">Curation Guide</a><a class="hover:text-on-surface transition-colors" data-path="privacy-terms" href="#">Privacy &amp; Terms</a></div><div class="font-body-sm text-body-sm text-outline-variant tracking-wider text-center md:text-right">© 2025 OFYC Atelier. All rights reserved.</div></div></footer></body></html>

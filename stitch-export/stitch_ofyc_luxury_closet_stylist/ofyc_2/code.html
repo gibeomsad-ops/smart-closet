@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>OFYC — Outfit From Your Closet</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "secondary-fixed-dim": "#e4c285",
+          "secondary": "#e4c285",
+          "on-secondary-fixed-variant": "#5a4312",
+          "on-background": "#e7e1e2",
+          "surface-container-low": "#1d1b1c",
+          "surface-variant": "#373435",
+          "surface": "#151314",
+          "on-primary-fixed": "#400010",
+          "background": "#151314",
+          "primary-fixed-dim": "#ffb2b9",
+          "secondary-container": "#5d4514",
+          "tertiary": "#99d3b5",
+          "surface-container-high": "#2c292a",
+          "surface-dim": "#151314",
+          "outline": "#a38b8c",
+          "on-secondary": "#412d00",
+          "on-tertiary": "#003825",
+          "surface-container-lowest": "#100e0f",
+          "error": "#ffb4ab",
+          "inverse-on-surface": "#323031",
+          "on-primary": "#601122",
+          "on-primary-fixed-variant": "#7e2837",
+          "surface-container-highest": "#373435",
+          "on-primary-container": "#f0818f",
+          "surface-container": "#211f20",
+          "error-container": "#93000a",
+          "secondary-fixed": "#ffdea4",
+          "on-tertiary-container": "#76af92",
+          "on-surface": "#e7e1e2",
+          "surface-tint": "#ffb2b9",
+          "tertiary-container": "#00422c",
+          "outline-variant": "#554243",
+          "on-secondary-container": "#d5b478",
+          "inverse-surface": "#e7e1e2",
+          "on-error": "#690005",
+          "inverse-primary": "#9c404e",
+          "primary": "#ffb2b9",
+          "tertiary-fixed": "#b4f0d0",
+          "on-surface-variant": "#dbc0c2",
+          "on-secondary-fixed": "#261900",
+          "tertiary-fixed-dim": "#99d3b5",
+          "on-tertiary-fixed-variant": "#155039",
+          "primary-fixed": "#ffdadc",
+          "on-tertiary-fixed": "#002114",
+          "surface-bright": "#3b3839",
+          "on-error-container": "#ffdad6",
+          "primary-container": "#6b1a2a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "gutter-desktop": "2.5rem",
+          "space-lg": "1.75rem",
+          "space-sm": "0.5rem",
+          "margin": "1.25rem",
+          "margin-desktop": "4rem",
+          "space-md": "1rem",
+          "space-xs": "0.25rem",
+          "space-xl": "3rem",
+          "gutter": "1.5rem"
+        },
+        "fontFamily": {
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "label-caps": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "body-sm": [
+            "Inter"
+          ],
+          "body-md": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "title-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "headline-sm": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "56px",
+            {
+              "lineHeight": "64px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "38px",
+            {
+              "lineHeight": "46px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-caps": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.14em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "300"
+            }
+          ],
+          "headline-lg": [
+            "40px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "300"
+            }
+          ],
+          "headline-md": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "title-md": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-surface"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl border-b border-outline-variant shadow-[0_12px_36px_-8px_rgba(14,12,13,0.8),0_0_20px_0_rgba(107,26,42,0.08)]"><div class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group" data-path="today-outfit" href="#"><img alt="OFYC Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V9V-2XKW64g3Sce0Hsu7JJyFqg7LANqKP230XD0bCJVSE7Yn6hFFTxIso6jQbcZ3kzIO0QBsQMaRZT7IfE95VgTzNVr7ufsuEVIwshiiR63kDn4PizWY4o_ZOFCsYceU-IGmDv9asZRN9giyMSe9hA6BwQhG48L6VsrB65jjz3wuz8spCK8DOTFAVVjJXJCuDgRXcNcjl9C2y_2HBCC3CUWuNmtj0rQCGW8tXzLoPFnKnVJ_WXrWZnVQ"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">OFYC</span><span class="font-label-caps text-label-caps uppercase text-outline tracking-widest text-[9px]">Atelier</span></div></a></div><nav class="hidden md:flex items-center gap-space-xl" data-active-classes="text-on-surface border-b-2 border-primary pb-1"><a class="font-label-md text-label-md tracking-wide text-on-surface-variant hover:text-on-surface transition-colors pb-1" data-path="today-outfit" href="#">오늘의 코디</a><a class="font-label-md text-label-md tracking-wide text-on-surface border-b-2 border-primary pb-1 transition-colors" data-path="my-closet" href="#">내 옷장</a><a class="font-label-md text-label-md tracking-wide text-on-surface-variant hover:text-on-surface transition-colors pb-1" data-path="saved-outfits" href="#">저장한 코디</a></nav><div class="flex items-center gap-space-md"><button aria-label="Search wardrobe" class="w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">search</span></button><button aria-label="Closet notifications" class="relative w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-surface"></span></button><div class="h-4 w-[1px] bg-outline-variant mx-1"></div><button aria-label="User Profile" class="group flex items-center gap-space-sm pl-1 focus:outline-none" type="button"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ring-1 ring-outline-variant group-hover:ring-primary transition-all"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></button></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-14rem)]"><div class="flex flex-col w-full">
+<!-- Top Atmospheric Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="pointer-events-none absolute -top-40 right-1/4 w-[520px] h-[320px] rounded-full bg-primary-container/20 blur-[130px]"></div>
+<div class="pointer-events-none absolute top-12 left-10 w-[360px] h-[240px] rounded-full bg-secondary-container/15 blur-[110px]"></div>
+<!-- Wardrobe Editorial Header -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12 pt-10 pb-8 w-full">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-outline-variant/30">
+<div class="space-y-3 max-w-2xl">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps tracking-[0.22em] text-outline uppercase">Wardrobe Archive</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-caps text-label-caps tracking-[0.22em] text-outline uppercase">Personal Collection</span>
+</div>
+<div class="flex items-baseline gap-4 flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-normal">
+              내 옷장
+            </h1>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high text-secondary border border-secondary/20 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-caps text-[10px] tracking-wider uppercase font-semibold">총 48개 아이템</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed">
+            등록하신 옷장 속 아이템을 관리하고, 오늘의 무드와 실시간 날씨에 맞는 최적의 코디네이션을 맞춤 큐레이션합니다.
+          </p>
+</div>
+<!-- Action CTAs -->
+<div class="flex items-center gap-3 self-start lg:self-end shrink-0">
+<!-- Sort Dropdown -->
+<div class="relative inline-block text-left" id="sort-menu-container">
+<button class="h-11 px-4 rounded bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center gap-2 border border-outline-variant/40 transition-colors shadow-sm focus:outline-none" id="sort-button" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">swap_vert</span>
+<span class="font-label-md text-label-md text-on-surface" id="selected-sort-label">정렬: 최신 등록순</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-2 w-44 rounded bg-surface-container-high border border-outline-variant/60 shadow-xl py-1.5 z-30 backdrop-blur-md" id="sort-dropdown">
+<button class="w-full text-left px-4 py-2 text-label-md text-on-surface hover:bg-surface-container hover:text-primary transition-colors flex items-center justify-between" onclick="selectSort('최신 등록순')" type="button">
+<span>최신 등록순</span>
+<span class="material-symbols-outlined text-[14px] text-primary">check</span>
+</button>
+<button class="w-full text-left px-4 py-2 text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" onclick="selectSort('착용 빈도순')" type="button">착용 빈도순</button>
+<button class="w-full text-left px-4 py-2 text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" onclick="selectSort('계절순')" type="button">계절순</button>
+<button class="w-full text-left px-4 py-2 text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" onclick="selectSort('두께감순')" type="button">두께감순</button>
+</div>
+</div>
+<!-- Register Item Button -->
+<button class="h-11 px-5 rounded bg-primary-container hover:bg-primary-container/85 text-on-surface flex items-center gap-2 shadow-[0_8px_20px_-4px_rgba(107,26,42,0.45)] border border-primary/30 transition-all transform active:scale-[0.98]" id="btn-add-item" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">add</span>
+<span class="font-label-md text-label-md tracking-wide font-medium text-on-surface">+ 옷 등록</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Comprehensive Filter Bar -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12 pb-8 w-full">
+<div class="bg-surface-container/60 backdrop-blur-xl border border-outline-variant/30 rounded-lg p-5 lg:p-6 space-y-5 shadow-lg">
+<!-- Category Filter Tabs -->
+<div class="flex items-center justify-between gap-4 flex-wrap">
+<div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none w-full sm:w-auto" id="category-chips">
+<button class="category-chip active px-4 py-1.5 rounded-full bg-primary-container text-on-surface border border-primary/40 font-label-md text-label-md font-medium tracking-wide shadow-sm transition-all flex items-center gap-1.5" data-category="all" type="button">
+<span>전체</span>
+<span class="text-[11px] text-primary font-semibold">48</span>
+</button>
+<button class="category-chip px-4 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface border border-transparent font-label-md text-label-md tracking-wide transition-all flex items-center gap-1.5" data-category="top" type="button">
+<span>상의</span>
+<span class="text-[11px] text-outline">16</span>
+</button>
+<button class="category-chip px-4 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface border border-transparent font-label-md text-label-md tracking-wide transition-all flex items-center gap-1.5" data-category="bottom" type="button">
+<span>하의</span>
+<span class="text-[11px] text-outline">14</span>
+</button>
+<button class="category-chip px-4 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface border border-transparent font-label-md text-label-md tracking-wide transition-all flex items-center gap-1.5" data-category="outer" type="button">
+<span>아우터</span>
+<span class="text-[11px] text-outline">10</span>
+</button>
+<button class="category-chip px-4 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface border border-transparent font-label-md text-label-md tracking-wide transition-all flex items-center gap-1.5" data-category="shoes" type="button">
+<span>신발</span>
+<span class="text-[11px] text-outline">8</span>
+</button>
+</div>
+<!-- Quick Search & Reset -->
+<div class="flex items-center gap-3 shrink-0 ml-auto">
+<div class="relative">
+<input class="h-9 w-44 md:w-56 pl-8 pr-3 text-body-sm font-body-sm bg-surface-container-lowest text-on-surface placeholder:text-outline/60 border border-outline-variant/40 rounded focus:border-primary/60 focus:outline-none transition-colors" id="wardrobe-search" placeholder="아이템명, 원단 검색..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-[16px] text-outline">search</span>
+</div>
+<button class="h-9 px-3 rounded text-outline hover:text-on-surface font-label-caps text-[10px] uppercase tracking-wider flex items-center gap-1 hover:bg-surface-container-high transition-colors" id="btn-reset-filter" title="필터 초기화" type="button">
+<span class="material-symbols-outlined text-[15px]">refresh</span>
+<span class="hidden sm:inline">초기화</span>
+</button>
+</div>
+</div>
+<div class="h-[1px] bg-outline-variant/25 w-full"></div>
+<!-- Color Palette Swatch Row -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div class="flex items-center gap-3 flex-wrap">
+<span class="font-label-caps text-label-caps uppercase text-outline tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-secondary">palette</span>
+              컬러 팔레트
+            </span>
+<div class="flex items-center gap-2.5 flex-wrap" id="color-swatches">
+<!-- All colors -->
+<button class="color-swatch-btn active relative flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-highest border border-secondary/40 text-on-surface text-[11px] font-label-md transition-all shadow-sm" data-color="all" type="button">
+<span class="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-outline via-secondary to-primary-container"></span>
+<span>전체</span>
+</button>
+<!-- Black -->
+<button class="color-swatch-btn group relative w-7 h-7 rounded-full bg-[#111111] border border-outline-variant/50 hover:scale-110 transition-transform shadow-inner" data-color="black" title="블랙" type="button">
+<span class="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"></span>
+</button>
+<!-- White/Ivory -->
+<button class="color-swatch-btn group relative w-7 h-7 rounded-full bg-[#F5F5ED] border border-outline-variant/50 hover:scale-110 transition-transform shadow-inner" data-color="white" title="화이트/아이보리" type="button">
+<span class="absolute inset-0 rounded-full ring-1 ring-inset ring-black/10"></span>
+</button>
+<!-- Navy -->
+<button class="color-swatch-btn group relative w-7 h-7 rounded-full bg-[#1B263B] border border-outline-variant/50 hover:scale-110 transition-transform shadow-inner" data-color="navy" title="네이비" type="button">
+<span class="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"></span>
+</button>
+<!-- Camel/Beige -->
+<button class="color-swatch-btn group relative w-7 h-7 rounded-full bg-[#C29B7F] border border-outline-variant/50 hover:scale-110 transition-transform shadow-inner" data-color="camel" title="카멜/베이지" type="button">
+<span class="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"></span>
+</button>
+<!-- Charcoal/Grey -->
+<button class="color-swatch-btn group relative w-7 h-7 rounded-full bg-[#4A4E51] border border-outline-variant/50 hover:scale-110 transition-transform shadow-inner" data-color="grey" title="그레이/차콜" type="button">
+<span class="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"></span>
+</button>
+<!-- Brown -->
+<button class="color-swatch-btn group relative w-7 h-7 rounded-full bg-[#583B2B] border border-outline-variant/50 hover:scale-110 transition-transform shadow-inner" data-color="brown" title="브라운" type="button">
+<span class="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"></span>
+</button>
+<!-- Burgundy/Wine -->
+<button class="color-swatch-btn group relative w-7 h-7 rounded-full bg-[#6B1A2A] border border-outline-variant/50 hover:scale-110 transition-transform shadow-inner" data-color="burgundy" title="버건디/와인" type="button">
+<span class="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"></span>
+</button>
+<!-- Olive/Khaki -->
+<button class="color-swatch-btn group relative w-7 h-7 rounded-full bg-[#556B2F] border border-outline-variant/50 hover:scale-110 transition-transform shadow-inner" data-color="olive" title="올리브/카키" type="button">
+<span class="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"></span>
+</button>
+</div>
+</div>
+<!-- Secondary Thickness Quick Filters -->
+<div class="flex items-center gap-2 self-start lg:self-center shrink-0">
+<span class="font-label-caps text-label-caps uppercase text-outline tracking-wider">두께감</span>
+<div class="inline-flex p-0.5 rounded bg-surface-container-lowest border border-outline-variant/30" id="thickness-group">
+<button class="thickness-btn active px-2.5 py-1 text-[11px] font-label-md rounded bg-surface-container-high text-on-surface transition-colors" data-thickness="all" type="button">전체</button>
+<button class="thickness-btn px-2.5 py-1 text-[11px] font-label-md rounded text-outline hover:text-on-surface transition-colors" data-thickness="light" type="button">얇음 (&gt;19°)</button>
+<button class="thickness-btn px-2.5 py-1 text-[11px] font-label-md rounded text-outline hover:text-on-surface transition-colors" data-thickness="medium" type="button">보통 (12-18°)</button>
+<button class="thickness-btn px-2.5 py-1 text-[11px] font-label-md rounded text-outline hover:text-on-surface transition-colors" data-thickness="heavy" type="button">두꺼움 (&lt;10°)</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Clothing Cards Grid (4 Columns Desktop) -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12 pb-16 w-full">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="wardrobe-items-grid">
+<!-- CARD 1: Outer - Balmacaan Coat -->
+<article class="group relative bg-surface-container rounded-lg border border-outline-variant/30 overflow-hidden flex flex-col hover:border-primary/50 transition-all duration-300 hover:shadow-[0_16px_36px_-8px_rgba(14,12,13,0.9),0_0_24px_0_rgba(107,26,42,0.18)] hover:-translate-y-1">
+<!-- Swatch Image Frame -->
+<div class="relative aspect-[4/5] w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A luxurious bespoke dark charcoal cashmere blend balmacaan coat displayed on an invisible mannequin with deep rich texture, studio cinematic lighting, dark moody editorial high fashion aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL64ZYlSrfOQXDUaHOqCTCvCObfDHlt_YHULsHNcZ3A3GcNtKgigWh94h-58cIVGjIrRdS7PWEMptuozCiRemspch1n4UvmYykdLZEXqwqOYj2ZsHwUpWDatgaH_e4Zq7QPBc5ePwVtqFM1d6kaqjul7S-f6WM0LCUG3vWWhIUJUyLOXYFfjOS8huNz511NR7EsX0WOKLit7HCU2T5G5WsmQDOcc6cFRntvhcl_0bnImb9K4FJxz1G"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-black/20 opacity-90"></div>
+<!-- Material Tag Badge -->
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/40 text-[10px] font-label-caps text-secondary uppercase tracking-wider font-semibold">
+                캐시미어 100%
+              </span>
+</div>
+<!-- Card Quick Action Hover Buttons -->
+<div class="absolute top-3 right-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button aria-label="수정" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-on-surface flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+</button>
+<button aria-label="삭제" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-error flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+<!-- Temperature Suitability / Fabric Mood Pin -->
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-container/80 border border-primary/30 backdrop-blur-md text-[10px] font-label-md text-on-surface font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                두꺼움 · 10°C 이하
+              </span>
+<span class="font-label-caps text-[10px] text-outline font-semibold tracking-wider">FW24</span>
+</div>
+</div>
+<!-- Card Content Details -->
+<div class="p-4 flex flex-col flex-1 justify-between gap-3 bg-surface-container">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps tracking-wider text-outline uppercase">아우터 · 가을/겨울</span>
+<!-- Color Dot -->
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#1F2224] border border-outline-variant/60 shadow-sm"></span>
+<span class="font-body-sm text-[11px] text-outline">차콜</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-[17px] leading-snug text-on-surface group-hover:text-primary transition-colors font-normal">
+                캐시미어 블랜드 발마칸 코트
+              </h2>
+</div>
+<div class="pt-2 border-t border-outline-variant/20 flex items-center justify-between text-body-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">history</span>
+                최근 착용: 2일 전
+              </span>
+<span class="text-secondary font-medium">18회 추천됨</span>
+</div>
+</div>
+</article>
+<!-- CARD 2: Top - Fine Merino Turtleneck -->
+<article class="group relative bg-surface-container rounded-lg border border-outline-variant/30 overflow-hidden flex flex-col hover:border-primary/50 transition-all duration-300 hover:shadow-[0_16px_36px_-8px_rgba(14,12,13,0.9),0_0_24px_0_rgba(107,26,42,0.18)] hover:-translate-y-1">
+<div class="relative aspect-[4/5] w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Refined ecru ivory ribbed turtleneck knit sweater in fine merino wool folded elegantly on a dark textured background with delicate soft studio shadows and editorial fashion magazine lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBinNZnfEPIpOHeda-NJeTU69OsJVsZe9OgxcQUfFXlHr1SQyIZIWHq-45LlO5ASMnz-6QZw5dZe6Hod3lXraNCHQnapEGg3L-UehG1Zyorx3ehTpsVQZ5PPwAjKa1laRQXgMFse0sdIVSVsZiihQbigO4EhuKSdq9dMOs-pcdq88igaMGGSqtgyoWKnQQnMNd6nLa_-RgQ5mcQYhzCzZ62AKtFD2GQT1-IuBRJrqTvi9FSd7w7T83o"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-black/20 opacity-90"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/40 text-[10px] font-label-caps text-secondary uppercase tracking-wider font-semibold">
+                메리노 울 100%
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button aria-label="수정" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-on-surface flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+</button>
+<button aria-label="삭제" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-error flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high/90 border border-outline-variant/40 backdrop-blur-md text-[10px] font-label-md text-on-surface font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                보통 · 12~18°C
+              </span>
+<span class="font-label-caps text-[10px] text-outline font-semibold tracking-wider">CORE</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3 bg-surface-container">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps tracking-wider text-outline uppercase">상의 · 가을/겨울</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#EFECE6] border border-outline-variant/60 shadow-sm"></span>
+<span class="font-body-sm text-[11px] text-outline">에크루</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-[17px] leading-snug text-on-surface group-hover:text-primary transition-colors font-normal">
+                파인 메리노울 터틀넥
+              </h2>
+</div>
+<div class="pt-2 border-t border-outline-variant/20 flex items-center justify-between text-body-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">history</span>
+                최근 착용: 어제
+              </span>
+<span class="text-on-surface-variant">착용 14회</span>
+</div>
+</div>
+</article>
+<!-- CARD 3: Outer - Tailored Wool Blazer -->
+<article class="group relative bg-surface-container rounded-lg border border-outline-variant/30 overflow-hidden flex flex-col hover:border-primary/50 transition-all duration-300 hover:shadow-[0_16px_36px_-8px_rgba(14,12,13,0.9),0_0_24px_0_rgba(107,26,42,0.18)] hover:-translate-y-1">
+<div class="relative aspect-[4/5] w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Deep midnight navy double breasted structured tailored blazer with subtle horn buttons hanging inside a minimalist luxury dark wooden closet with low key moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPKY70ALjgArm5ABxkxtlSu6Gin_9Tm4PdDAhnXSifI2e-N10Thd7vuBwpCwxleGgFsVEF7Nwc0_UF2Bc7RL2zv_YOFBfo5kn4MMPuLdSvqnULi8ve5wymru9KP0l5wVMvaeyuOkAS2MqGt8DCNyrEVBtL6yGWpHued4bmvpf92EFhUZ-5s9pwBKtBhfPY4HAmwMs1rt4y1Fma4EawkT9WO-8oPupS0mjmrLQjf7FdPKd4L2zaYLHe"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-black/20 opacity-90"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/40 text-[10px] font-label-caps text-secondary uppercase tracking-wider font-semibold">
+                이탈리안 버진울
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button aria-label="수정" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-on-surface flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+</button>
+<button aria-label="삭제" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-error flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high/90 border border-outline-variant/40 backdrop-blur-md text-[10px] font-label-md text-on-surface font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                보통 · 12~18°C
+              </span>
+<span class="font-label-caps text-[10px] text-outline font-semibold tracking-wider">TAILORED</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3 bg-surface-container">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps tracking-wider text-outline uppercase">아우터 · 사계절</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#182333] border border-outline-variant/60 shadow-sm"></span>
+<span class="font-body-sm text-[11px] text-outline">딥 네이비</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-[17px] leading-snug text-on-surface group-hover:text-primary transition-colors font-normal">
+                테일러드 울 블레이저
+              </h2>
+</div>
+<div class="pt-2 border-t border-outline-variant/20 flex items-center justify-between text-body-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">history</span>
+                최근 착용: 5일 전
+              </span>
+<span class="text-on-surface-variant">착용 9회</span>
+</div>
+</div>
+</article>
+<!-- CARD 4: Bottom - Pleated Wide Slacks -->
+<article class="group relative bg-surface-container rounded-lg border border-outline-variant/30 overflow-hidden flex flex-col hover:border-primary/50 transition-all duration-300 hover:shadow-[0_16px_36px_-8px_rgba(14,12,13,0.9),0_0_24px_0_rgba(107,26,42,0.18)] hover:-translate-y-1">
+<div class="relative aspect-[4/5] w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="High-waisted tailored pleated wide-leg trousers in rich textured dark taupe wool draping with elegant sharp crease in high fashion architectural studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaegf08RvwjrJ7CR5_BjLkIK46cCIClG6uKs194Ymzc_WjsEb7HlhHgGeOIoi9r0R1FWMiGB7TylwB71iPqmwXIxYXHsLZN9Nh8KDDWrVnQaLcQnec-7w_cLGExAKoSN1h5u8NLn26Hnj_0NUdjHigT5R2Bp0BZuGsJeHpd_9g9OqeWV-924zw4wgnmZUnE9CUSKSQDdQEAKiF_VoaZ2GmS5F5EmQlmx2ycfS0Msgpy5jBdjfykRPH"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-black/20 opacity-90"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/40 text-[10px] font-label-caps text-secondary uppercase tracking-wider font-semibold">
+                울 개버딘
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button aria-label="수정" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-on-surface flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+</button>
+<button aria-label="삭제" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-error flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high/90 border border-outline-variant/40 backdrop-blur-md text-[10px] font-label-md text-on-surface font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                보통 · 12~18°C
+              </span>
+<span class="font-label-caps text-[10px] text-outline font-semibold tracking-wider">ESSENTIAL</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3 bg-surface-container">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps tracking-wider text-outline uppercase">하의 · 사계절</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#463E3A] border border-outline-variant/60 shadow-sm"></span>
+<span class="font-body-sm text-[11px] text-outline">모카 토프</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-[17px] leading-snug text-on-surface group-hover:text-primary transition-colors font-normal">
+                플리츠 와이드 슬랙스
+              </h2>
+</div>
+<div class="pt-2 border-t border-outline-variant/20 flex items-center justify-between text-body-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">history</span>
+                최근 착용: 4일 전
+              </span>
+<span class="text-on-surface-variant">착용 16회</span>
+</div>
+</div>
+</article>
+<!-- CARD 5: Bottom - Straight Selvedge Denim -->
+<article class="group relative bg-surface-container rounded-lg border border-outline-variant/30 overflow-hidden flex flex-col hover:border-primary/50 transition-all duration-300 hover:shadow-[0_16px_36px_-8px_rgba(14,12,13,0.9),0_0_24px_0_rgba(107,26,42,0.18)] hover:-translate-y-1">
+<div class="relative aspect-[4/5] w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Classic Japanese raw indigo selvedge straight denim with red-line selvedge ID cuff showing in a warm dark atelier ambiance with precise stitch details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoKyoJwefocY5iH7KsmgYN2r5YapGN5JtDT96uRsb3xhiy1ptEGwB-vrodyWLAYtAcKssIAuHL2kg3iPoYQ_7LsX8qqPGJadCMv-RdI_JlNEd3WFUN_o4X456J4Kro-E7PXi-imt2BMiIdHqILRPP4D61co6nrK9mbQqgM0GwVdt45JwfhMBmMG4NJHr8wnqA_yPhslsJpbj5LyO0wfN2oMZsm_WeQxmbsHVfnI6_Tw_7wSXySJPx8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-black/20 opacity-90"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/40 text-[10px] font-label-caps text-secondary uppercase tracking-wider font-semibold">
+                14oz 셀비지
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button aria-label="수정" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-on-surface flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+</button>
+<button aria-label="삭제" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-error flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high/90 border border-outline-variant/40 backdrop-blur-md text-[10px] font-label-md text-on-surface font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                보통 · 12~18°C
+              </span>
+<span class="font-label-caps text-[10px] text-outline font-semibold tracking-wider">DENIM</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3 bg-surface-container">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps tracking-wider text-outline uppercase">하의 · 사계절</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#131E2E] border border-outline-variant/60 shadow-sm"></span>
+<span class="font-body-sm text-[11px] text-outline">로 인디고</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-[17px] leading-snug text-on-surface group-hover:text-primary transition-colors font-normal">
+                스트레이트 핏 셀비지 진
+              </h2>
+</div>
+<div class="pt-2 border-t border-outline-variant/20 flex items-center justify-between text-body-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">history</span>
+                최근 착용: 1주일 전
+              </span>
+<span class="text-on-surface-variant">착용 22회</span>
+</div>
+</div>
+</article>
+<!-- CARD 6: Outer - Suede Bomber Jacket -->
+<article class="group relative bg-surface-container rounded-lg border border-outline-variant/30 overflow-hidden flex flex-col hover:border-primary/50 transition-all duration-300 hover:shadow-[0_16px_36px_-8px_rgba(14,12,13,0.9),0_0_24px_0_rgba(107,26,42,0.18)] hover:-translate-y-1">
+<div class="relative aspect-[4/5] w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Rich cognac tobacco brown calfskin suede bomber jacket with antique brass zipper and ribbed trim showcased in dark mood luxury studio light with warm amber reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6A-T0RksAU1_eMnKmyzU-JGBCF_8WFmhHOS-sB5_B2LiLt9LX_nNR6eMYND9ANCpd81Qh2URvMf3YAAoQECzCzaCzv4yur1h4VbjYJTntZUIT-i19YqjlWVxhkecCNLc6EBKqduqeGx5O3O18VvulztTS3YtgK7xM_Lfy92FDUIDOMFC73s0GE55lp4hwRcvfOgIDyX3_zOei5YYd2gcHA9NjpOSyyJbBrHv4QhHRoqEtKKgiqGU3"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-black/20 opacity-90"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/40 text-[10px] font-label-caps text-secondary uppercase tracking-wider font-semibold">
+                카프 스웨이드
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button aria-label="수정" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-on-surface flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+</button>
+<button aria-label="삭제" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-error flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-container/80 border border-primary/30 backdrop-blur-md text-[10px] font-label-md text-on-surface font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                두꺼움 · 10°C 이하
+              </span>
+<span class="font-label-caps text-[10px] text-outline font-semibold tracking-wider">HERITAGE</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3 bg-surface-container">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps tracking-wider text-outline uppercase">아우터 · 가을/겨울</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#7B4628] border border-outline-variant/60 shadow-sm"></span>
+<span class="font-body-sm text-[11px] text-outline">코냑 카멜</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-[17px] leading-snug text-on-surface group-hover:text-primary transition-colors font-normal">
+                스웨이드 봄버 재킷
+              </h2>
+</div>
+<div class="pt-2 border-t border-outline-variant/20 flex items-center justify-between text-body-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">history</span>
+                최근 착용: 6일 전
+              </span>
+<span class="text-on-surface-variant">착용 7회</span>
+</div>
+</div>
+</article>
+<!-- CARD 7: Shoes - Calfskin Penny Loafers -->
+<article class="group relative bg-surface-container rounded-lg border border-outline-variant/30 overflow-hidden flex flex-col hover:border-primary/50 transition-all duration-300 hover:shadow-[0_16px_36px_-8px_rgba(14,12,13,0.9),0_0_24px_0_rgba(107,26,42,0.18)] hover:-translate-y-1">
+<div class="relative aspect-[4/5] w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Polished luxury dark chocolate burgundy calfskin classic penny loafers on dark stone pedestal with refined hand-welted leather sole in dramatic low-key editorial product photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW3bqnKQoPEkeVY5019lpIN8yfHBFO6U4RLNj0okOYz78--eyGXRtjKr5ezlpC1zDK_dpiaTvDD-mzxALBfxPdVOP9sg_OJHEKcWIcPJKwB42HryZGH_g9escl1Mkte0W9j30u40LZkXxh_8_rgjprQ06t1hm-Rg-RCLInihWQVIaNSFdINVtT0DDrsTSNxfngYmov2bSlXMi449acZ9E5ZCu4-dQfDOjo0a4ik08RGIQS6F1M8Jcd"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-black/20 opacity-90"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/40 text-[10px] font-label-caps text-secondary uppercase tracking-wider font-semibold">
+                이탈리안 카프스킨
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button aria-label="수정" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-on-surface flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+</button>
+<button aria-label="삭제" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-error flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high/90 border border-outline-variant/40 backdrop-blur-md text-[10px] font-label-md text-on-surface font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                사계절 착용
+              </span>
+<span class="font-label-caps text-[10px] text-outline font-semibold tracking-wider">FOOTWEAR</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3 bg-surface-container">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps tracking-wider text-outline uppercase">신발 · 사계절</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#3B191B] border border-outline-variant/60 shadow-sm"></span>
+<span class="font-body-sm text-[11px] text-outline">버건디 브라운</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-[17px] leading-snug text-on-surface group-hover:text-primary transition-colors font-normal">
+                카프스킨 페니 로퍼
+              </h2>
+</div>
+<div class="pt-2 border-t border-outline-variant/20 flex items-center justify-between text-body-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">history</span>
+                최근 착용: 3일 전
+              </span>
+<span class="text-on-surface-variant">착용 25회</span>
+</div>
+</div>
+</article>
+<!-- CARD 8: Top - Heavyweight Supima Longsleeve -->
+<article class="group relative bg-surface-container rounded-lg border border-outline-variant/30 overflow-hidden flex flex-col hover:border-primary/50 transition-all duration-300 hover:shadow-[0_16px_36px_-8px_rgba(14,12,13,0.9),0_0_24px_0_rgba(107,26,42,0.18)] hover:-translate-y-1">
+<div class="relative aspect-[4/5] w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Dense matte black heavyweight supima cotton crewneck long sleeve t-shirt folded perfectly against an ash dark surface with subtle minimalist couture vibe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGWFlzF6nNxnBDEPSMNrjUwVtVy4G3BFMAHLbsm8HnFFmKfEWeAkgNliwR1RU9vduE9ABcKr3TeSFa7Tyj3mtLzIfJwbR-7YrGq7UeYTrLNQGv2dxrcok1MyuztXzPu3fYwqkqgjhaavkgSPg3CrQK7KRP5xle2rscJs52N5neyuTRXbYw3x-lIPvvsY1WvCuellaXkOiIcLbBLZbKkaHvKoMCsbTugfAKelVl6xWcggU1J_XMwie_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-black/20 opacity-90"></div>
+<div class="absolute top-3 left-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container-lowest/80 backdrop-blur-md border border-outline-variant/40 text-[10px] font-label-caps text-secondary uppercase tracking-wider font-semibold">
+                수피마 코튼 100%
+              </span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+<button aria-label="수정" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-on-surface flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+</button>
+<button aria-label="삭제" class="w-7 h-7 rounded bg-surface-container-high/90 backdrop-blur-md text-on-surface-variant hover:text-error flex items-center justify-center border border-outline-variant/50 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">delete</span>
+</button>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high/90 border border-outline-variant/40 backdrop-blur-md text-[10px] font-label-md text-on-surface font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                보통 · 14~20°C
+              </span>
+<span class="font-label-caps text-[10px] text-outline font-semibold tracking-wider">BASIC</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between gap-3 bg-surface-container">
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps tracking-wider text-outline uppercase">상의 · 사계절</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#121111] border border-outline-variant/60 shadow-sm"></span>
+<span class="font-body-sm text-[11px] text-outline">옵시디언 블랙</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-[17px] leading-snug text-on-surface group-hover:text-primary transition-colors font-normal">
+                헤비웨이트 롱슬리브 티셔츠
+              </h2>
+</div>
+<div class="pt-2 border-t border-outline-variant/20 flex items-center justify-between text-body-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">history</span>
+                최근 착용: 2일 전
+              </span>
+<span class="text-on-surface-variant">착용 31회</span>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination or Load More -->
+<div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-outline-variant/30">
+<span class="font-body-sm text-body-sm text-outline">
+          총 48개 중 8개 표시됨 · 페이지 1 / 6
+        </span>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 rounded bg-surface-container hover:bg-surface-container-high text-outline disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center border border-outline-variant/30 transition-colors" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-9 h-9 rounded bg-primary-container text-on-surface font-label-md text-label-md font-medium border border-primary/40 flex items-center justify-center" type="button">1</button>
+<button class="w-9 h-9 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md border border-outline-variant/30 flex items-center justify-center transition-colors" type="button">2</button>
+<button class="w-9 h-9 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md border border-outline-variant/30 flex items-center justify-center transition-colors" type="button">3</button>
+<span class="px-1 text-outline">…</span>
+<button class="w-9 h-9 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md border border-outline-variant/30 flex items-center justify-center transition-colors" type="button">6</button>
+<button class="w-9 h-9 rounded bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center border border-outline-variant/30 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Bottom Quick Stats & AI Wardrobe Intelligence Banner -->
+<section class="max-w-7xl mx-auto px-6 lg:px-12 pb-20 w-full">
+<div class="relative rounded-xl bg-surface-container-low border border-outline-variant/40 p-6 lg:p-8 overflow-hidden shadow-2xl">
+<div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-primary-container/20 blur-[100px] pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+<!-- Left: Wardrobe Composition Chart Preview -->
+<div class="lg:col-span-7 space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">insights</span>
+<span class="font-label-caps text-label-caps uppercase text-secondary tracking-widest font-semibold">Atelier Wardrobe Analytics</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-normal">
+              클로젯 밸런스 및 활용도 분석
+            </h3>
+<!-- Segmented Progress Bar of Categories -->
+<div class="space-y-2 pt-2">
+<div class="h-2.5 w-full bg-surface-container-highest rounded-full overflow-hidden flex shadow-inner">
+<div class="bg-primary h-full transition-all duration-700" style="width: 33%" title="상의 33%"></div>
+<div class="bg-secondary h-full transition-all duration-700" style="width: 29%" title="하의 29%"></div>
+<div class="bg-primary-container h-full transition-all duration-700" style="width: 21%" title="아우터 21%"></div>
+<div class="bg-tertiary h-full transition-all duration-700" style="width: 17%" title="신발 17%"></div>
+</div>
+<div class="flex items-center justify-between flex-wrap gap-2 pt-1 text-[11px] font-label-md text-outline">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary"></span>상의 33% (16)</span>
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-secondary"></span>하의 29% (14)</span>
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary-container"></span>아우터 21% (10)</span>
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-tertiary"></span>신발 17% (8)</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light leading-relaxed">
+              상의와 하의의 비율이 안정적이며, FW 시즌에 적합한 뉴트럴 톤(차콜, 네이비, 카멜) 아우터가 옷장의 60% 이상과 조화롭게 매칭됩니다.
+            </p>
+</div>
+<!-- Right: Key AI Styling Insight Pill -->
+<div class="lg:col-span-5 bg-surface-container/80 backdrop-blur-md rounded-lg p-5 border border-outline-variant/30 space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-[10px] uppercase text-outline tracking-wider font-semibold">Most Recommended Item</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/40 text-secondary-fixed text-[10px] font-medium border border-secondary/30">
+<span class="material-symbols-outlined text-[13px]">auto_awesome</span>
+                AI 픽 1위
+              </span>
+</div>
+<div class="flex items-center gap-3.5 pt-1">
+<div class="w-12 h-14 rounded bg-surface-container-highest overflow-hidden shrink-0 border border-outline-variant/40">
+<img class="w-full h-full object-cover" data-alt="Miniature texture preview of a dark charcoal cashmere balmacaan coat showing fine weave" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzsMAxBNCUwqdr30Bc1Ya3KEE56FiUegryxXDfX52U2S1o1NtUXIBRyZkpLpCF5Znxw3DORqiJrw6tlx0x4CGdXQeoy1deISEy1_5xL8-5GHUsZnlBMwu4aNuG4vLqKshy-N7tG8-BPdh1RB8L4NdByT7dxtM8cfpgRXHl1N6AniaEzKYFZX7BYmw7c0xraycly2D69aHa8YPSOBVXfVIglnyFwU2OYeScGdQLWb5KaGpsW7Yqc6oe"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-[15px] text-on-surface font-medium leading-snug">캐시미어 발마칸 코트</h4>
+<p class="font-body-sm text-[12px] text-secondary mt-0.5">총 18회 코디에 최적 조합으로 매칭됨</p>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between text-body-sm text-outline border-t border-outline-variant/20 text-[11px]">
+<span>평균 매칭 조화도: <strong class="text-on-surface font-semibold">96점</strong></span>
+<a class="text-primary hover:text-on-surface flex items-center gap-0.5 transition-colors font-medium" href="#">
+                조합 보러가기 <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Interactive Logic for Filter Chips, Swatches, and Dropdown -->
+<script>
+    // Sort Dropdown Toggle
+    const sortBtn = document.getElementById('sort-button');
+    const sortDropdown = document.getElementById('sort-dropdown');
+    const sortLabel = document.getElementById('selected-sort-label');
+
+    if (sortBtn && sortDropdown) {
+      sortBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sortDropdown.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!sortDropdown.contains(e.target) && !sortBtn.contains(e.target)) {
+          sortDropdown.classList.add('hidden');
+        }
+      });
+    }
+
+    function selectSort(label) {
+      if (sortLabel) sortLabel.textContent = '정렬: ' + label;
+      if (sortDropdown) sortDropdown.classList.add('hidden');
+    }
+
+    // Category Tabs Logic
+    const categoryChips = document.querySelectorAll('.category-chip');
+    categoryChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        categoryChips.forEach(c => {
+          c.classList.remove('bg-primary-container', 'text-on-surface', 'border-primary/40');
+          c.classList.add('bg-surface-container-high', 'text-on-surface-variant', 'border-transparent');
+          const badge = c.querySelector('span:last-child');
+          if (badge) {
+            badge.classList.remove('text-primary');
+            badge.classList.add('text-outline');
+          }
+        });
+
+        chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant', 'border-transparent');
+        chip.classList.add('bg-primary-container', 'text-on-surface', 'border-primary/40');
+        const activeBadge = chip.querySelector('span:last-child');
+        if (activeBadge) {
+          activeBadge.classList.remove('text-outline');
+          activeBadge.classList.add('text-primary');
+        }
+      });
+    });
+
+    // Color Swatches Toggle
+    const swatches = document.querySelectorAll('.color-swatch-btn');
+    swatches.forEach(swatch => {
+      swatch.addEventListener('click', () => {
+        swatches.forEach(s => {
+          s.classList.remove('ring-2', 'ring-secondary', 'scale-110');
+          if (s.dataset.color === 'all') {
+            s.classList.remove('border-secondary/40', 'bg-surface-container-highest');
+            s.classList.add('bg-surface-container-high', 'border-transparent');
+          }
+        });
+
+        if (swatch.dataset.color === 'all') {
+          swatch.classList.add('border-secondary/40', 'bg-surface-container-highest');
+        } else {
+          swatch.classList.add('ring-2', 'ring-secondary', 'scale-110');
+        }
+      });
+    });
+
+    // Thickness Quick Filter
+    const thicknessBtns = document.querySelectorAll('.thickness-btn');
+    thicknessBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        thicknessBtns.forEach(b => {
+          b.classList.remove('bg-surface-container-high', 'text-on-surface');
+          b.classList.add('text-outline');
+        });
+        btn.classList.add('bg-surface-container-high', 'text-on-surface');
+        btn.classList.remove('text-outline');
+      });
+    });
+
+    // Reset Filter Button
+    const resetBtn = document.getElementById('btn-reset-filter');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        // Reset Search Input
+        const searchInput = document.getElementById('wardrobe-search');
+        if (searchInput) searchInput.value = '';
+
+        // Reset Category
+        if (categoryChips[0]) categoryChips[0].click();
+
+        // Reset Swatches
+        if (swatches[0]) swatches[0].click();
+
+        // Reset Thickness
+        if (thicknessBtns[0]) thicknessBtns[0].click();
+
+        // Reset Sort
+        selectSort('최신 등록순');
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant py-space-xl"><div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex flex-col items-center md:items-start gap-space-xs"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">OFYC</span><span class="font-label-caps text-label-caps text-outline uppercase">Outfit From Your Closet</span></div><p class="font-body-sm text-body-sm text-outline">Intelligent wardrobe curation &amp; private atelier styling.</p></div><div class="flex items-center gap-space-lg font-label-caps text-label-caps uppercase text-outline"><a class="hover:text-on-surface transition-colors" data-path="about-atelier" href="#">About Atelier</a><a class="hover:text-on-surface transition-colors" data-path="curation-guide" href="#">Curation Guide</a><a class="hover:text-on-surface transition-colors" data-path="privacy-terms" href="#">Privacy &amp; Terms</a></div><div class="font-body-sm text-body-sm text-outline-variant tracking-wider text-center md:text-right">© 2025 OFYC Atelier. All rights reserved.</div></div></footer></body></html>

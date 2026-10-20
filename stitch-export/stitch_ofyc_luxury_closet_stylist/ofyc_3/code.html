@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>OFYC — Outfit From Your Closet</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "secondary-fixed-dim": "#e4c285",
+          "secondary": "#e4c285",
+          "on-secondary-fixed-variant": "#5a4312",
+          "on-background": "#e7e1e2",
+          "surface-container-low": "#1d1b1c",
+          "surface-variant": "#373435",
+          "surface": "#151314",
+          "on-primary-fixed": "#400010",
+          "background": "#151314",
+          "primary-fixed-dim": "#ffb2b9",
+          "secondary-container": "#5d4514",
+          "tertiary": "#99d3b5",
+          "surface-container-high": "#2c292a",
+          "surface-dim": "#151314",
+          "outline": "#a38b8c",
+          "on-secondary": "#412d00",
+          "on-tertiary": "#003825",
+          "surface-container-lowest": "#100e0f",
+          "error": "#ffb4ab",
+          "inverse-on-surface": "#323031",
+          "on-primary": "#601122",
+          "on-primary-fixed-variant": "#7e2837",
+          "surface-container-highest": "#373435",
+          "on-primary-container": "#f0818f",
+          "surface-container": "#211f20",
+          "error-container": "#93000a",
+          "secondary-fixed": "#ffdea4",
+          "on-tertiary-container": "#76af92",
+          "on-surface": "#e7e1e2",
+          "surface-tint": "#ffb2b9",
+          "tertiary-container": "#00422c",
+          "outline-variant": "#554243",
+          "on-secondary-container": "#d5b478",
+          "inverse-surface": "#e7e1e2",
+          "on-error": "#690005",
+          "inverse-primary": "#9c404e",
+          "primary": "#ffb2b9",
+          "tertiary-fixed": "#b4f0d0",
+          "on-surface-variant": "#dbc0c2",
+          "on-secondary-fixed": "#261900",
+          "tertiary-fixed-dim": "#99d3b5",
+          "on-tertiary-fixed-variant": "#155039",
+          "primary-fixed": "#ffdadc",
+          "on-tertiary-fixed": "#002114",
+          "surface-bright": "#3b3839",
+          "on-error-container": "#ffdad6",
+          "primary-container": "#6b1a2a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "gutter-desktop": "2.5rem",
+          "space-lg": "1.75rem",
+          "space-sm": "0.5rem",
+          "margin": "1.25rem",
+          "margin-desktop": "4rem",
+          "space-md": "1rem",
+          "space-xs": "0.25rem",
+          "space-xl": "3rem",
+          "gutter": "1.5rem"
+        },
+        "fontFamily": {
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "label-caps": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "body-sm": [
+            "Inter"
+          ],
+          "body-md": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "title-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "headline-sm": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "56px",
+            {
+              "lineHeight": "64px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "38px",
+            {
+              "lineHeight": "46px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-caps": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.14em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "300"
+            }
+          ],
+          "headline-lg": [
+            "40px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "300"
+            }
+          ],
+          "headline-md": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "title-md": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-surface"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl border-b border-outline-variant shadow-[0_12px_36px_-8px_rgba(14,12,13,0.8),0_0_20px_0_rgba(107,26,42,0.08)]"><div class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group" data-path="today-outfit" href="#"><img alt="OFYC Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V9V-2XKW64g3Sce0Hsu7JJyFqg7LANqKP230XD0bCJVSE7Yn6hFFTxIso6jQbcZ3kzIO0QBsQMaRZT7IfE95VgTzNVr7ufsuEVIwshiiR63kDn4PizWY4o_ZOFCsYceU-IGmDv9asZRN9giyMSe9hA6BwQhG48L6VsrB65jjz3wuz8spCK8DOTFAVVjJXJCuDgRXcNcjl9C2y_2HBCC3CUWuNmtj0rQCGW8tXzLoPFnKnVJ_WXrWZnVQ"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">OFYC</span><span class="font-label-caps text-label-caps uppercase text-outline tracking-widest text-[9px]">Atelier</span></div></a></div><nav class="hidden md:flex items-center gap-space-xl" data-active-classes="text-on-surface border-b-2 border-primary pb-1"><a class="font-label-md text-label-md tracking-wide text-on-surface-variant hover:text-on-surface transition-colors pb-1" data-path="today-outfit" href="#">오늘의 코디</a><a class="font-label-md text-label-md tracking-wide text-on-surface border-b-2 border-primary pb-1 transition-colors" data-path="my-closet" href="#">내 옷장</a><a class="font-label-md text-label-md tracking-wide text-on-surface-variant hover:text-on-surface transition-colors pb-1" data-path="saved-outfits" href="#">저장한 코디</a></nav><div class="flex items-center gap-space-md"><button aria-label="Search wardrobe" class="w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">search</span></button><button aria-label="Closet notifications" class="relative w-9 h-9 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-surface"></span></button><div class="h-4 w-[1px] bg-outline-variant mx-1"></div><button aria-label="User Profile" class="group flex items-center gap-space-sm pl-1 focus:outline-none" type="button"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ring-1 ring-outline-variant group-hover:ring-primary transition-all"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></button></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-14rem)]"><div class="flex flex-col w-full">
+<div class="max-w-7xl mx-auto w-full px-6 lg:px-12 py-10 space-y-10">
+<!-- Editorial Header / Breadcrumb Context -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 bg-surface-container-low/40 p-8 rounded-lg">
+<div class="space-y-3 max-w-2xl">
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps uppercase text-secondary tracking-widest text-[10px]">Wardrobe Archive</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-caps text-label-caps uppercase text-outline tracking-wider text-[10px]">New Item Registration</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">새 옷 등록하기</h1>
+<p class="font-body-md text-body-md text-outline">
+          보관 중인 옷의 소재, 컬러, 두께감을 기록하면 날씨와 무드에 맞는 스마트 코디가 완성됩니다.
+          <span class="block text-outline-variant mt-0.5 text-xs">기존 등록 아이템 수정 시에도 동일한 아틀리에 폼이 적용됩니다.</span>
+</p>
+</div>
+<div class="flex items-center gap-3 self-start md:self-end">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high text-secondary text-xs font-label-md">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span>신규 등록 모드 (편집 시 자동 연동)</span>
+</div>
+<button class="px-3.5 py-1.5 bg-surface-container text-on-surface-variant hover:text-on-surface text-xs font-label-md rounded flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">help_outline</span>
+<span>기록 가이드</span>
+</button>
+</div>
+</div>
+<!-- Atelier Master Layout (Two Column) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- LEFT COLUMN: Live Garment Preview & Material / Image Dropzone -->
+<div class="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-24">
+<!-- Live Lookbook Rendering Card -->
+<div class="bg-surface-container-low rounded-lg p-6 space-y-6 shadow-xl relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-outline tracking-wider text-[10px]">Atelier Live Preview</span>
+<span class="px-2 py-0.5 rounded bg-primary-container/40 text-primary text-[11px] font-label-md font-medium tracking-tight">내 옷장 노출 카드 미리보기</span>
+</div>
+<!-- Garment Visual Card -->
+<div class="bg-surface-container rounded-lg overflow-hidden group">
+<div class="relative w-full aspect-[4/5] bg-surface-container-lowest flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist luxury studio shot of an elegant pure cashmere coat hanging in a dark moody boutique showroom with dramatic warm side illumination and soft shadows." id="previewImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1twZKGcBYnnNp8y3hPm4_QJl6HPGa-e4q-3WtGR0ymthsSiXVKioc820KeuP_zm-1MPhueDWIKDyv58WQv9X8UjkXqzrQRoQwBcqfOKE0fDFAb7NHUpC8wExQYoz6-ZPqLqYse2_FIMKtza7girGFzvsnrZrooP-lq7QOdhGoye7MotPJHEv3dmKgiOQUt4FTEHVKI9O2nKGQE9V6GNg4EpA4GR6anFNyLh-SuMjHOBqtsHw0-xYK"/>
+<!-- Ambient Gradient scrim -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent"></div>
+<!-- Top floating tags -->
+<div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+<span class="px-2.5 py-1 rounded bg-surface/90 backdrop-blur-md text-[11px] font-label-caps tracking-widest uppercase text-on-surface" id="previewCategoryBadge">아우터</span>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md shadow-sm">
+<span class="w-3 h-3 rounded-full shadow-inner" id="previewColorDot" style="background-color: #6B1A2A;"></span>
+<span class="font-label-caps text-[10px] text-outline uppercase tracking-wider" id="previewColorHex">#6B1A2A</span>
+</div>
+</div>
+<!-- Bottom Content Over Scrim -->
+<div class="absolute bottom-4 left-4 right-4 space-y-2 pointer-events-none">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-secondary-container/60 text-secondary text-[11px] font-label-md" id="previewThicknessBadge">
+<span class="material-symbols-outlined text-[13px]">ac_unit</span>
+<span>두꺼움 · 10°C 이하</span>
+</span>
+<span class="px-2 py-0.5 rounded bg-surface-variant/80 text-outline text-[11px] font-label-md">F/W Season</span>
+</div>
+<h3 class="font-headline-md text-headline-sm text-on-surface drop-shadow-sm truncate" id="previewTitle">캐시미어 블렌드 발마칸 코트</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant tracking-wide" id="previewFabric">100% Mongolian Cashmere · Charcoal Plum</p>
+</div>
+</div>
+<!-- Card Meta Summary -->
+<div class="p-4 bg-surface-container-low flex items-center justify-between text-xs text-outline">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>스타일링 조화도 지표: <strong class="text-on-surface font-medium">96% Optimal</strong></span>
+</div>
+<span class="font-label-caps text-[10px] text-outline-variant">OFYC CURATED</span>
+</div>
+</div>
+<!-- Image Upload & Dropzone Area -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps uppercase text-outline tracking-wider text-[11px] flex items-center justify-between">
+<span>의류 사진 등록</span>
+<span class="text-outline-variant text-[10px]">권장 4:5 비율 · 최대 10MB</span>
+</label>
+<div class="relative w-full rounded-lg bg-surface-container-lowest hover:bg-surface-container p-6 transition-all text-center flex flex-col items-center justify-center gap-3 cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-surface-container-high group-hover:bg-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-outline group-hover:text-primary text-[24px]">add_photo_alternate</span>
+</div>
+<div class="space-y-1">
+<p class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors font-medium">사진을 드래그하거나 클릭하여 업로드</p>
+<p class="font-body-sm text-[11px] text-outline">배경이 정돈된 착용샷이나 누끼 사진을 올리면 최적의 실루엣이 연출됩니다.</p>
+</div>
+<input accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" type="file"/>
+</div>
+</div>
+<!-- Luxury Material & Care Tag Note -->
+<div class="p-4 rounded-lg bg-surface-container-lowest space-y-2">
+<div class="flex items-center gap-2 text-secondary text-xs font-label-md">
+<span class="material-symbols-outlined text-[16px]">dry_cleaning</span>
+<span class="uppercase tracking-wider">Couture Care Recommendation</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline leading-relaxed">
+              프리미엄 원단(캐시미어, 파인 메리노, 실크)은 소재 특성에 따라 세탁 주기와 습도 관리가 자동 계산되어 알림이 발송됩니다.
+            </p>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Registration Form -->
+<div class="lg:col-span-7 bg-surface-container-low rounded-lg p-6 lg:p-10 shadow-2xl space-y-10">
+<!-- Section: Item Name & Quick suggestions -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider text-[12px] flex items-center gap-2" for="itemNameInput">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>1. 아이템 이름 (Clothing Name)</span>
+</label>
+<span class="text-xs font-label-caps text-outline" id="charCount">21 / 50</span>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest text-on-surface px-4 py-3.5 rounded text-body-md font-body-md placeholder:text-outline-variant focus:outline-none focus:bg-surface-container transition-all" id="itemNameInput" maxlength="50" placeholder="예: 파인 메리노 울 터틀넥, 로우 데님 트라우저 등" type="text" value="캐시미어 블렌드 발마칸 코트"/>
+</div>
+<!-- Quick Suggestion Tags -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<span class="text-[11px] font-label-caps uppercase text-outline-variant mr-1">추천 태그:</span>
+<button class="suggestion-tag px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-xs text-outline hover:text-on-surface transition-colors" data-tag="오버사이즈 캐시미어 코트" type="button">+ 캐시미어 코트</button>
+<button class="suggestion-tag px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-xs text-outline hover:text-on-surface transition-colors" data-tag="메리노 울 니트 스웨터" type="button">+ 울 니트</button>
+<button class="suggestion-tag px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-xs text-outline hover:text-on-surface transition-colors" data-tag="릴렉스드 와이드 슬랙스" type="button">+ 와이드 슬랙스</button>
+<button class="suggestion-tag px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-xs text-outline hover:text-on-surface transition-colors" data-tag="클래식 더비 슈즈" type="button">+ 더비 슈즈</button>
+</div>
+</div>
+<!-- Section: Category Selector -->
+<div class="space-y-3">
+<label class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider text-[12px] flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>2. 종류 및 카테고리 (Category)</span>
+</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="categoryContainer">
+<!-- Option: 상의 -->
+<button class="category-btn p-3.5 rounded bg-surface-container-lowest hover:bg-surface-container flex flex-col items-center justify-center gap-2 transition-all text-outline hover:text-on-surface" data-category="상의" type="button">
+<span class="material-symbols-outlined text-[24px]">apparel</span>
+<span class="font-label-md text-label-md">상의 (Top)</span>
+</button>
+<!-- Option: 하의 -->
+<button class="category-btn p-3.5 rounded bg-surface-container-lowest hover:bg-surface-container flex flex-col items-center justify-center gap-2 transition-all text-outline hover:text-on-surface" data-category="하의" type="button">
+<span class="material-symbols-outlined text-[24px]">straighten</span>
+<span class="font-label-md text-label-md">하의 (Bottom)</span>
+</button>
+<!-- Option: 아우터 (Active) -->
+<button class="category-btn p-3.5 rounded bg-primary-container text-on-surface flex flex-col items-center justify-center gap-2 transition-all shadow-md active-category" data-category="아우터" type="button">
+<span class="material-symbols-outlined text-[24px] text-primary">dry_cleaning</span>
+<span class="font-label-md text-label-md font-medium">아우터 (Outer)</span>
+</button>
+<!-- Option: 신발 -->
+<button class="category-btn p-3.5 rounded bg-surface-container-lowest hover:bg-surface-container flex flex-col items-center justify-center gap-2 transition-all text-outline hover:text-on-surface" data-category="신발" type="button">
+<span class="material-symbols-outlined text-[24px]">steps</span>
+<span class="font-label-md text-label-md">신발 (Footwear)</span>
+</button>
+</div>
+</div>
+<!-- Section: Color Selection & Luxury Swatches -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<label class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider text-[12px] flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>3. 색상 및 톤 (Color &amp; Tone)</span>
+</label>
+<span class="text-xs text-outline">대표 색상 1종 선택</span>
+</div>
+<!-- Color Control Unit -->
+<div class="p-5 rounded-lg bg-surface-container-lowest space-y-5">
+<!-- Active Swatch and Hex Value Bar -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg shadow-lg flex items-center justify-center transition-transform hover:scale-105" id="currentColorDisplay" style="background-color: #6B1A2A;">
+<span class="material-symbols-outlined text-on-primary text-[20px]">palette</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps uppercase text-secondary tracking-widest text-[10px]" id="colorNameLabel">Burgundy Noir</div>
+<div class="font-headline-sm text-headline-sm text-on-surface tracking-tight" id="colorTextLabel">버건디 누아르</div>
+</div>
+</div>
+<!-- Editable HEX Field -->
+<div class="flex items-center gap-2 bg-surface-container px-3 py-2 rounded">
+<span class="text-outline text-xs font-label-caps">HEX</span>
+<input class="w-20 bg-transparent text-xs font-mono text-on-surface uppercase focus:outline-none" id="hexCodeInput" maxlength="7" type="text" value="#6B1A2A"/>
+<button class="text-outline hover:text-on-surface transition-colors" id="copyHexBtn" title="색상 복사" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Preset Luxury Curated Palette -->
+<div class="space-y-2 pt-2">
+<span class="text-[11px] font-label-caps uppercase text-outline-variant">Quiet Luxury Atelier Palette</span>
+<div class="grid grid-cols-4 sm:grid-cols-8 gap-2.5" id="presetPalette">
+<!-- Swatch 1: Classic Black -->
+<button class="swatch-btn group relative flex flex-col items-center gap-1.5 p-1 rounded hover:bg-surface-container transition-all" data-color="#121112" data-kr="클래식 블랙" data-name="Classic Black" type="button">
+<span class="w-8 h-8 rounded-full shadow-md transition-transform group-hover:scale-110" style="background-color: #121112;"></span>
+<span class="text-[10px] text-outline font-label-caps truncate max-w-full">Black</span>
+</button>
+<!-- Swatch 2: Ecru Ivory -->
+<button class="swatch-btn group relative flex flex-col items-center gap-1.5 p-1 rounded hover:bg-surface-container transition-all" data-color="#F2EDE4" data-kr="에크루 아이보리" data-name="Ecru Ivory" type="button">
+<span class="w-8 h-8 rounded-full shadow-md transition-transform group-hover:scale-110" style="background-color: #F2EDE4;"></span>
+<span class="text-[10px] text-outline font-label-caps truncate max-w-full">Ivory</span>
+</button>
+<!-- Swatch 3: Cashmere Camel -->
+<button class="swatch-btn group relative flex flex-col items-center gap-1.5 p-1 rounded hover:bg-surface-container transition-all" data-color="#A67C52" data-kr="캐시미어 카멜" data-name="Cashmere Camel" type="button">
+<span class="w-8 h-8 rounded-full shadow-md transition-transform group-hover:scale-110" style="background-color: #A67C52;"></span>
+<span class="text-[10px] text-outline font-label-caps truncate max-w-full">Camel</span>
+</button>
+<!-- Swatch 4: Deep Navy -->
+<button class="swatch-btn group relative flex flex-col items-center gap-1.5 p-1 rounded hover:bg-surface-container transition-all" data-color="#1E2530" data-kr="딥 네이비" data-name="Deep Navy" type="button">
+<span class="w-8 h-8 rounded-full shadow-md transition-transform group-hover:scale-110" style="background-color: #1E2530;"></span>
+<span class="text-[10px] text-outline font-label-caps truncate max-w-full">Navy</span>
+</button>
+<!-- Swatch 5: Charcoal Gray -->
+<button class="swatch-btn group relative flex flex-col items-center gap-1.5 p-1 rounded hover:bg-surface-container transition-all" data-color="#36373A" data-kr="차콜 그레이" data-name="Charcoal Gray" type="button">
+<span class="w-8 h-8 rounded-full shadow-md transition-transform group-hover:scale-110" style="background-color: #36373A;"></span>
+<span class="text-[10px] text-outline font-label-caps truncate max-w-full">Charcoal</span>
+</button>
+<!-- Swatch 6: Burgundy Noir (Selected) -->
+<button class="swatch-btn group relative flex flex-col items-center gap-1.5 p-1 rounded bg-surface-container transition-all" data-color="#6B1A2A" data-kr="버건디 누아르" data-name="Burgundy Noir" type="button">
+<span class="w-8 h-8 rounded-full shadow-md scale-110 ring-2 ring-secondary" style="background-color: #6B1A2A;"></span>
+<span class="text-[10px] text-secondary font-medium font-label-caps truncate max-w-full">Burgundy</span>
+</button>
+<!-- Swatch 7: Mocha Taupe -->
+<button class="swatch-btn group relative flex flex-col items-center gap-1.5 p-1 rounded hover:bg-surface-container transition-all" data-color="#6B5B52" data-kr="모카 토프" data-name="Mocha Taupe" type="button">
+<span class="w-8 h-8 rounded-full shadow-md transition-transform group-hover:scale-110" style="background-color: #6B5B52;"></span>
+<span class="text-[10px] text-outline font-label-caps truncate max-w-full">Mocha</span>
+</button>
+<!-- Swatch 8: Olive Slate -->
+<button class="swatch-btn group relative flex flex-col items-center gap-1.5 p-1 rounded hover:bg-surface-container transition-all" data-color="#4A4E41" data-kr="올리브 슬레이트" data-name="Olive Slate" type="button">
+<span class="w-8 h-8 rounded-full shadow-md transition-transform group-hover:scale-110" style="background-color: #4A4E41;"></span>
+<span class="text-[10px] text-outline font-label-caps truncate max-w-full">Olive</span>
+</button>
+</div>
+</div>
+<!-- Custom native picker trigger -->
+<div class="flex items-center justify-between pt-1 border-t-0 text-xs">
+<span class="text-outline">직접 색상 추출 / 커스텀 팔레트:</span>
+<label class="cursor-pointer inline-flex items-center gap-1.5 text-secondary hover:text-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[16px]">colorize</span>
+<span>스펙트럼 선택기 열기</span>
+<input class="sr-only" id="nativeColorPicker" type="color" value="#6B1A2A"/>
+</label>
+</div>
+</div>
+</div>
+<!-- Section: Thickness & Temperature hints -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider text-[12px] flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>4. 두께감 및 권장 기온 (Thickness &amp; Climate)</span>
+</label>
+<span class="text-xs text-outline">날씨 연동 추천의 기준이 됩니다</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3" id="thicknessContainer">
+<!-- Option 1: 얇음 -->
+<button class="thickness-btn text-left p-4 rounded bg-surface-container-lowest hover:bg-surface-container transition-all text-outline" data-temp="19°C 이상 · 봄/여름" data-thickness="얇음" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-md text-label-md text-on-surface font-medium">얇음</span>
+<span class="material-symbols-outlined text-[18px]">wb_sunny</span>
+</div>
+<p class="text-xs text-outline">Spring / Summer</p>
+<p class="text-[11px] text-outline-variant mt-1 font-mono">19°C 이상 최적</p>
+</button>
+<!-- Option 2: 보통 -->
+<button class="thickness-btn text-left p-4 rounded bg-surface-container-lowest hover:bg-surface-container transition-all text-outline" data-temp="12~18°C · 간절기/사계절" data-thickness="보통" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-md text-label-md text-on-surface font-medium">보통</span>
+<span class="material-symbols-outlined text-[18px]">thermostat</span>
+</div>
+<p class="text-xs text-outline">Four Seasons</p>
+<p class="text-[11px] text-outline-variant mt-1 font-mono">12°C ~ 18°C 간절기</p>
+</button>
+<!-- Option 3: 두꺼움 (Active) -->
+<button class="thickness-btn text-left p-4 rounded bg-secondary-container/40 text-on-surface shadow-md active-thickness" data-temp="10°C 이하 · 늦가을/겨울" data-thickness="두꺼움" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-md text-label-md text-secondary font-medium">두꺼움</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">ac_unit</span>
+</div>
+<p class="text-xs text-secondary-fixed">Late Autumn / Winter</p>
+<p class="text-[11px] text-secondary mt-1 font-mono font-medium">10°C 이하 한파 대응</p>
+</button>
+</div>
+</div>
+<!-- Section: Seasonal Chips & Detailed Notes -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<label class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider text-[12px] flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>5. 시즌 속성 및 아틀리에 메모 (Notes &amp; Fabric)</span>
+</label>
+</div>
+<!-- Seasonal Chips -->
+<div class="flex flex-wrap items-center gap-2" id="seasonChips">
+<button class="season-chip px-3 py-1.5 rounded bg-surface-container-lowest text-xs text-outline hover:text-on-surface transition-colors" type="button">봄 (Spring)</button>
+<button class="season-chip px-3 py-1.5 rounded bg-surface-container-lowest text-xs text-outline hover:text-on-surface transition-colors" type="button">여름 (Summer)</button>
+<button class="season-chip px-3 py-1.5 rounded bg-surface-container-high text-on-surface text-xs font-medium" type="button">가을 (Autumn)</button>
+<button class="season-chip px-3 py-1.5 rounded bg-primary-container text-on-surface text-xs font-medium" type="button">겨울 (Winter)</button>
+</div>
+<!-- Notes Textarea -->
+<div class="space-y-2">
+<textarea class="w-full bg-surface-container-lowest text-on-surface p-4 rounded text-body-md font-body-md placeholder:text-outline-variant focus:outline-none focus:bg-surface-container transition-all leading-relaxed resize-none" placeholder="소재 세부정보 (예: 100% 몽골리안 캐시미어), 세탁 및 보관 팁, 자주 매칭하는 이너웨어나 슈즈를 자유롭게 기록하세요." rows="4">몽골리안 최고급 캐시미어 100% 원단. 드라이클리닝 전용이며 시즌 착용 후 통풍이 잘되는 전용 수트 커버에 보관. 에크루 컬러 터틀넥 및 다크 차콜 슬랙스와 조화도가 우수함.</textarea>
+</div>
+</div>
+<!-- Action Button Bar -->
+<div class="pt-6 bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="text-xs text-outline flex items-center gap-1.5 order-2 sm:order-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">info</span>
+<span>동일한 양식으로 언제든 옷장 탭에서 아이템 수정 가능</span>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto order-1 sm:order-2">
+<button class="flex-1 sm:flex-initial px-6 py-3.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors text-center" type="button">
+              취소
+            </button>
+<button class="flex-1 sm:flex-initial px-8 py-3.5 rounded bg-primary-container hover:bg-on-primary-fixed-variant text-on-surface font-label-md text-label-md font-medium tracking-wide shadow-lg flex items-center justify-center gap-2 transition-all group" id="saveButton" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary group-hover:scale-110 transition-transform">check</span>
+<span>아이템 저장하기</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Wardrobe Insight Micro Bar -->
+<div class="p-6 rounded-lg bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">OFYC 아틀리에 인공지능 스타일링 엔진</h4>
+<p class="font-body-sm text-body-sm text-outline">등록된 아이템은 실시간 날씨 데이터 및 퍼스널 컬러 팔레트와 즉시 결합되어 데일리 코디를 제안합니다.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs font-label-caps text-secondary uppercase tracking-wider">
+<span>Wardrobe Curation Active</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+</div>
+<!-- Interactive State Engine -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Name input sync
+      const nameInput = document.getElementById('itemNameInput');
+      const previewTitle = document.getElementById('previewTitle');
+      const charCount = document.getElementById('charCount');
+
+      if (nameInput && previewTitle && charCount) {
+        nameInput.addEventListener('input', (e) => {
+          const val = e.target.value.trim();
+          previewTitle.textContent = val.length > 0 ? val : '아이템 이름 미입력';
+          charCount.textContent = `${e.target.value.length} / 50`;
+        });
+      }
+
+      // Quick Suggestion Tags
+      document.querySelectorAll('.suggestion-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+          const newName = tag.getAttribute('data-tag');
+          if (nameInput) {
+            nameInput.value = newName;
+            nameInput.dispatchEvent(new Event('input'));
+          }
+        });
+      });
+
+      // 2. Category selection sync
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      const previewCategoryBadge = document.getElementById('previewCategoryBadge');
+
+      categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          categoryButtons.forEach(b => {
+            b.classList.remove('bg-primary-container', 'text-on-surface', 'active-category');
+            b.classList.add('bg-surface-container-lowest', 'text-outline');
+            const icon = b.querySelector('.material-symbols-outlined');
+            if (icon) icon.classList.remove('text-primary');
+          });
+
+          btn.classList.remove('bg-surface-container-lowest', 'text-outline');
+          btn.classList.add('bg-primary-container', 'text-on-surface', 'active-category');
+          const activeIcon = btn.querySelector('.material-symbols-outlined');
+          if (activeIcon) activeIcon.classList.add('text-primary');
+
+          const category = btn.getAttribute('data-category');
+          if (previewCategoryBadge) {
+            previewCategoryBadge.textContent = category;
+          }
+        });
+      });
+
+      // 3. Color Swatch & Custom Picker sync
+      const swatchButtons = document.querySelectorAll('.swatch-btn');
+      const currentColorDisplay = document.getElementById('currentColorDisplay');
+      const colorNameLabel = document.getElementById('colorNameLabel');
+      const colorTextLabel = document.getElementById('colorTextLabel');
+      const hexCodeInput = document.getElementById('hexCodeInput');
+      const previewColorDot = document.getElementById('previewColorDot');
+      const previewColorHex = document.getElementById('previewColorHex');
+      const nativeColorPicker = document.getElementById('nativeColorPicker');
+      const copyHexBtn = document.getElementById('copyHexBtn');
+
+      function updateActiveColor(hex, engName, krName) {
+        if (currentColorDisplay) currentColorDisplay.style.backgroundColor = hex;
+        if (previewColorDot) previewColorDot.style.backgroundColor = hex;
+        if (previewColorHex) previewColorHex.textContent = hex.toUpperCase();
+        if (hexCodeInput) hexCodeInput.value = hex.toUpperCase();
+        if (colorNameLabel && engName) colorNameLabel.textContent = engName;
+        if (colorTextLabel && krName) colorTextLabel.textContent = krName;
+        if (nativeColorPicker) nativeColorPicker.value = hex;
+      }
+
+      swatchButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          swatchButtons.forEach(b => {
+            b.classList.remove('bg-surface-container');
+            const circle = b.querySelector('span:first-child');
+            if (circle) circle.classList.remove('scale-110', 'ring-2', 'ring-secondary');
+          });
+
+          btn.classList.add('bg-surface-container');
+          const activeCircle = btn.querySelector('span:first-child');
+          if (activeCircle) activeCircle.classList.add('scale-110', 'ring-2', 'ring-secondary');
+
+          const hex = btn.getAttribute('data-color');
+          const eng = btn.getAttribute('data-name');
+          const kr = btn.getAttribute('data-kr');
+          updateActiveColor(hex, eng, kr);
+        });
+      });
+
+      if (nativeColorPicker) {
+        nativeColorPicker.addEventListener('input', (e) => {
+          const hex = e.target.value;
+          updateActiveColor(hex, 'Custom Atelier Tone', '사용자 지정 톤');
+        });
+      }
+
+      if (hexCodeInput) {
+        hexCodeInput.addEventListener('change', (e) => {
+          let val = e.target.value.trim();
+          if (!val.startsWith('#')) val = '#' + val;
+          if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+            updateActiveColor(val, 'Custom Selected Tone', '선택 컬러');
+          }
+        });
+      }
+
+      if (copyHexBtn && hexCodeInput) {
+        copyHexBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(hexCodeInput.value).then(() => {
+            const icon = copyHexBtn.querySelector('span');
+            if (icon) {
+              icon.textContent = 'done';
+              setTimeout(() => { icon.textContent = 'content_copy'; }, 1500);
+            }
+          });
+        });
+      }
+
+      // 4. Thickness selection sync
+      const thicknessButtons = document.querySelectorAll('.thickness-btn');
+      const previewThicknessBadge = document.getElementById('previewThicknessBadge');
+
+      thicknessButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          thicknessButtons.forEach(b => {
+            b.classList.remove('bg-secondary-container/40', 'text-on-surface', 'shadow-md', 'active-thickness');
+            b.classList.add('bg-surface-container-lowest', 'text-outline');
+            const heading = b.querySelector('.font-label-md');
+            if (heading) {
+              heading.classList.remove('text-secondary');
+              heading.classList.add('text-on-surface');
+            }
+            const icon = b.querySelector('.material-symbols-outlined');
+            if (icon) icon.classList.remove('text-secondary');
+          });
+
+          btn.classList.remove('bg-surface-container-lowest', 'text-outline');
+          btn.classList.add('bg-secondary-container/40', 'text-on-surface', 'shadow-md', 'active-thickness');
+          
+          const heading = btn.querySelector('.font-label-md');
+          if (heading) heading.classList.add('text-secondary');
+          const icon = btn.querySelector('.material-symbols-outlined');
+          if (icon) icon.classList.add('text-secondary');
+
+          const thicknessName = btn.getAttribute('data-thickness');
+          const tempDesc = btn.getAttribute('data-temp');
+          if (previewThicknessBadge) {
+            previewThicknessBadge.innerHTML = `
+              <span class="material-symbols-outlined text-[13px]">${icon ? icon.textContent : 'thermostat'}</span>
+              <span>${thicknessName} · ${tempDesc.split('·')[0].trim()}</span>
+            `;
+          }
+        });
+      });
+
+      // 5. Season chips toggle
+      document.querySelectorAll('.season-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          chip.classList.toggle('bg-primary-container');
+          chip.classList.toggle('text-on-surface');
+          chip.classList.toggle('bg-surface-container-lowest');
+          chip.classList.toggle('text-outline');
+        });
+      });
+
+      // 6. Save Button Toast Micro-feedback
+      const saveBtn = document.getElementById('saveButton');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          const originalHTML = saveBtn.innerHTML;
+          saveBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span>
+            <span>아틀리에 저장 중...</span>
+          `;
+          saveBtn.disabled = true;
+
+          setTimeout(() => {
+            saveBtn.innerHTML = `
+              <span class="material-symbols-outlined text-[18px] text-tertiary">check_circle</span>
+              <span>등록 완료</span>
+            `;
+            setTimeout(() => {
+              saveBtn.innerHTML = originalHTML;
+              saveBtn.disabled = false;
+            }, 1800);
+          }, 700);
+        });
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant py-space-xl"><div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex flex-col items-center md:items-start gap-space-xs"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">OFYC</span><span class="font-label-caps text-label-caps text-outline uppercase">Outfit From Your Closet</span></div><p class="font-body-sm text-body-sm text-outline">Intelligent wardrobe curation &amp; private atelier styling.</p></div><div class="flex items-center gap-space-lg font-label-caps text-label-caps uppercase text-outline"><a class="hover:text-on-surface transition-colors" data-path="about-atelier" href="#">About Atelier</a><a class="hover:text-on-surface transition-colors" data-path="curation-guide" href="#">Curation Guide</a><a class="hover:text-on-surface transition-colors" data-path="privacy-terms" href="#">Privacy &amp; Terms</a></div><div class="font-body-sm text-body-sm text-outline-variant tracking-wider text-center md:text-right">© 2025 OFYC Atelier. All rights reserved.</div></div></footer></body></html>

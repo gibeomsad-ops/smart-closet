@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><title>OFYC — Atelier Experience</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "secondary-fixed-dim": "#e4c285",
+          "secondary": "#e4c285",
+          "on-secondary-fixed-variant": "#5a4312",
+          "on-background": "#e7e1e2",
+          "surface-container-low": "#1d1b1c",
+          "surface-variant": "#373435",
+          "surface": "#151314",
+          "on-primary-fixed": "#400010",
+          "background": "#151314",
+          "primary-fixed-dim": "#ffb2b9",
+          "secondary-container": "#5d4514",
+          "tertiary": "#99d3b5",
+          "surface-container-high": "#2c292a",
+          "surface-dim": "#151314",
+          "outline": "#a38b8c",
+          "on-secondary": "#412d00",
+          "on-tertiary": "#003825",
+          "surface-container-lowest": "#100e0f",
+          "error": "#ffb4ab",
+          "inverse-on-surface": "#323031",
+          "on-primary": "#601122",
+          "on-primary-fixed-variant": "#7e2837",
+          "surface-container-highest": "#373435",
+          "on-primary-container": "#f0818f",
+          "surface-container": "#211f20",
+          "error-container": "#93000a",
+          "secondary-fixed": "#ffdea4",
+          "on-tertiary-container": "#76af92",
+          "on-surface": "#e7e1e2",
+          "surface-tint": "#ffb2b9",
+          "tertiary-container": "#00422c",
+          "outline-variant": "#554243",
+          "on-secondary-container": "#d5b478",
+          "inverse-surface": "#e7e1e2",
+          "on-error": "#690005",
+          "inverse-primary": "#9c404e",
+          "primary": "#ffb2b9",
+          "tertiary-fixed": "#b4f0d0",
+          "on-surface-variant": "#dbc0c2",
+          "on-secondary-fixed": "#261900",
+          "tertiary-fixed-dim": "#99d3b5",
+          "on-tertiary-fixed-variant": "#155039",
+          "primary-fixed": "#ffdadc",
+          "on-tertiary-fixed": "#002114",
+          "surface-bright": "#3b3839",
+          "on-error-container": "#ffdad6",
+          "primary-container": "#6b1a2a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "gutter-desktop": "2.5rem",
+          "space-lg": "1.75rem",
+          "space-sm": "0.5rem",
+          "margin": "1.25rem",
+          "margin-desktop": "4rem",
+          "space-md": "1rem",
+          "space-xs": "0.25rem",
+          "space-xl": "3rem",
+          "gutter": "1.5rem"
+        },
+        "fontFamily": {
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "label-caps": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "body-sm": [
+            "Inter"
+          ],
+          "body-md": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "title-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "headline-sm": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "56px",
+            {
+              "lineHeight": "64px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "38px",
+            {
+              "lineHeight": "46px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-caps": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.14em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "300"
+            }
+          ],
+          "headline-lg": [
+            "40px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "300"
+            }
+          ],
+          "headline-md": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "0em",
+              "fontWeight": "500"
+            }
+          ],
+          "title-md": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-surface min-h-screen"><main class="w-full min-h-screen bg-surface"><div class="flex flex-col w-full items-center justify-center min-h-[calc(100vh-2rem)] px-margin py-space-xl">
+<!-- Ambient Atmospheric Bloom Behind Entry Card -->
+<div class="relative w-full max-w-lg flex flex-col items-center">
+<div class="absolute -top-16 left-1/2 -translate-x-1/2 w-80 h-80 bg-primary-container/20 rounded-full blur-[110px] pointer-events-none -z-10"></div>
+<div class="absolute -bottom-12 right-6 w-64 h-64 bg-secondary-container/10 rounded-full blur-[90px] pointer-events-none -z-10"></div>
+<!-- Editorial Session Header Overline -->
+<div class="flex items-center gap-space-sm mb-space-md opacity-80">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-on-surface-variant">Saison 2025 · Curated Capsule</span>
+</div>
+<!-- Main Atelier Vault Card -->
+<div class="w-full bg-surface-container-low rounded-xl shadow-2xl p-space-lg sm:p-gutter-desktop relative overflow-hidden backdrop-blur-md">
+<!-- Top Subtle Grain/Wash Accent -->
+<div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-80"></div>
+<!-- Monogram & Atelier Branding -->
+<div class="flex flex-col items-center text-center">
+<!-- Luxury Emblem / Interlocking Hanger Atelier Icon -->
+<div class="relative mb-space-md group cursor-default">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center shadow-md">
+<svg class="w-9 h-9 text-primary-fixed-dim" fill="none" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<!-- Stylized Hanger Silhouette meets Monogram Emblem -->
+<path d="M18 7.5C16.6193 7.5 15.5 8.61929 15.5 10C15.5 11.1213 16.2373 12.0701 17.25 12.382V14.125L6.4678 20.3435C5.5658 20.864 5 21.8286 5 22.875V24C5 24.5523 5.44772 25 6 25H30C30.5523 25 31 24.5523 31 24V22.875C31 21.8286 30.4342 20.864 29.5322 20.3435L18.75 14.125V12.382C19.7627 12.0701 20.5 11.1213 20.5 10C20.5 8.61929 19.3807 7.5 18 7.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"></path>
+<path d="M12 25L10 28.5M24 25L26 28.5" stroke="#E4C285" stroke-linecap="round" stroke-width="1"></path>
+<circle cx="18" cy="10" fill="#E4C285" r="1.5"></circle>
+</svg>
+</div>
+<span class="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded-full bg-surface-container-highest text-[9px] font-label-caps tracking-widest text-secondary font-semibold">N°01</span>
+</div>
+<!-- Typography: Wordmark -->
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">OFYC</h1>
+<p class="font-label-caps text-label-caps uppercase tracking-[0.25em] text-secondary mt-1">
+          Outfit From Your Closet <span class="mx-1 text-outline-variant">·</span> Atelier
+        </p>
+<!-- Poetic Korean Welcome Header -->
+<div class="mt-space-lg mb-space-md">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-normal">
+            내 옷장으로 오늘의 코디를
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mt-space-xs leading-relaxed">
+            소장하고 계신 옷장의 프라이빗 코드를 입력하여 실시간 기상 맞춤 큐레이션과 퍼스널 아틀리에를 시작하세요.
+          </p>
+</div>
+</div>
+<!-- Atelier Code Entry Form -->
+<form class="mt-space-md flex flex-col gap-space-md" onsubmit="event.preventDefault(); handleAccessSubmit();">
+<div class="flex flex-col gap-space-xs text-left">
+<div class="flex items-center justify-between">
+<label class="font-label-caps text-label-caps text-on-surface-variant tracking-wider uppercase" for="wardrobe-code">
+              옷장 코드 <span class="text-secondary/70">· Wardrobe Access Code</span>
+</label>
+<button class="font-label-caps text-label-caps text-secondary hover:text-secondary-fixed transition-colors underline decoration-secondary/40 underline-offset-4" onclick="loadSampleCode()" type="button">
+              최근 접속 코드 불러오기
+            </button>
+</div>
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline-variant text-[20px] pointer-events-none">
+              key
+            </span>
+<input autocomplete="off" class="w-full pl-11 pr-11 py-3.5 bg-surface-container-lowest text-on-surface font-body-lg text-body-lg tracking-wider placeholder:text-outline-variant/60 placeholder:tracking-normal rounded-lg focus:outline-none focus:bg-surface-container transition-all" id="wardrobe-code" inputmode="text" maxlength="20" name="wardrobe-code" placeholder="예: OFYC-7824-LUX" spellcheck="false" type="text" value=""/>
+<button class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors p-1" id="clear-btn" onclick="clearInput()" title="코드 지우기" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant px-0.5 mt-1">
+<span class="font-body-sm text-body-sm text-outline-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+              E2E Private Wardrobe Session
+            </span>
+<span class="font-label-caps text-label-caps text-outline" id="code-status">
+              대기 중
+            </span>
+</div>
+</div>
+<!-- Action Stack -->
+<div class="flex flex-col gap-space-sm mt-space-sm">
+<!-- Primary CTA Button -->
+<button class="w-full py-3.5 px-space-md bg-primary-container text-on-surface font-title-md text-title-md tracking-wider rounded-lg flex items-center justify-center gap-space-xs hover:bg-primary-container/80 active:scale-[0.99] transition-all shadow-md group" id="enter-btn" type="submit">
+<span>입장하기</span>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+<!-- Secondary Ghost / Outline Action -->
+<button class="w-full py-3.5 px-space-md bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-title-md rounded-lg flex items-center justify-center gap-space-xs transition-colors" onclick="createNewWardrobe()" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">add_circle</span>
+<span class="text-on-surface">새 옷장 만들기</span>
+</button>
+</div>
+</form>
+<!-- Atelier Vault Note & Credentials Guarantee -->
+<div class="mt-space-lg pt-space-md bg-surface-container-lowest/40 -mx-space-lg sm:-mx-gutter-desktop px-space-lg sm:px-gutter-desktop pb-2 text-center flex flex-col items-center">
+<!-- Quiet Luxury Badge -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest text-secondary text-[11px] font-label-caps tracking-widest uppercase mb-space-xs">
+<span class="material-symbols-outlined text-[13px] text-secondary">verified_user</span>
+<span>Private Atelier Encrypted Access</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs leading-normal">
+          기존 회원은 발급된 프라이빗 코드로 별도 회원가입 없이 즉시 옷장 및 아카이브와 동기화됩니다.
+        </p>
+</div>
+</div>
+<!-- Atelier Peripheral Micro-Footer -->
+<div class="mt-space-md text-center flex flex-col items-center gap-1.5">
+<div class="flex items-center gap-space-sm text-outline-variant font-label-caps text-label-caps tracking-wider">
+<a class="hover:text-on-surface transition-colors" href="#concierge">컨시어지 문의</a>
+<span>·</span>
+<a class="hover:text-on-surface transition-colors" href="#code-recovery">코드 분실 재발급</a>
+<span>·</span>
+<a class="hover:text-on-surface transition-colors" href="#security">보안 정책</a>
+</div>
+<p class="font-body-sm text-body-sm text-outline-variant/70 tracking-wide mt-1">
+        © 2025 OFYC Atelier. All rights reserved.
+      </p>
+</div>
+</div>
+</div>
+<script>
+  const codeInput = document.getElementById('wardrobe-code');
+  const clearBtn = document.getElementById('clear-btn');
+  const statusEl = document.getElementById('code-status');
+
+  if (codeInput) {
+    codeInput.addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      if (val.length > 0) {
+        clearBtn.classList.remove('hidden');
+        statusEl.innerText = `${val.length}/20 자`;
+        statusEl.classList.remove('text-outline');
+        statusEl.classList.add('text-secondary');
+      } else {
+        clearBtn.classList.add('hidden');
+        statusEl.innerText = '대기 중';
+        statusEl.classList.add('text-outline');
+        statusEl.classList.remove('text-secondary');
+      }
+    });
+  }
+
+  function clearInput() {
+    codeInput.value = '';
+    clearBtn.classList.add('hidden');
+    statusEl.innerText = '대기 중';
+    statusEl.classList.add('text-outline');
+    statusEl.classList.remove('text-secondary');
+    codeInput.focus();
+  }
+
+  function loadSampleCode() {
+    const demoCode = 'OFYC-7824-LUX';
+    codeInput.value = demoCode;
+    clearBtn.classList.remove('hidden');
+    statusEl.innerText = '코드 로드 완료';
+    statusEl.classList.remove('text-outline');
+    statusEl.classList.add('text-tertiary');
+    codeInput.focus();
+  }
+
+  function handleAccessSubmit() {
+    const val = codeInput.value.trim();
+    if (!val) {
+      statusEl.innerText = '코드를 입력해 주세요';
+      statusEl.classList.remove('text-outline', 'text-secondary');
+      statusEl.classList.add('text-error');
+      codeInput.focus();
+      return;
+    }
+    statusEl.innerText = '아틀리에 인증 진행 중...';
+    statusEl.classList.remove('text-outline', 'text-error');
+    statusEl.classList.add('text-secondary');
+    
+    // Simulate subtle access feedback
+    setTimeout(() => {
+      statusEl.innerText = '옷장 로드 중...';
+      statusEl.classList.remove('text-secondary');
+      statusEl.classList.add('text-tertiary');
+    }, 450);
+  }
+
+  function createNewWardrobe() {
+    codeInput.value = 'OFYC-NEW-' + Math.floor(1000 + Math.random() * 9000);
+    clearBtn.classList.remove('hidden');
+    statusEl.innerText = '신규 옷장 코드 발급됨';
+    statusEl.classList.remove('text-outline');
+    statusEl.classList.add('text-secondary');
+  }
+</script></main></body></html>
