@@ -12,9 +12,12 @@ CREATE TABLE IF NOT EXISTS clothes (
   name TEXT NOT NULL,
   category TEXT NOT NULL CHECK (category IN ('top', 'bottom', 'outer', 'shoes')),
   color_hex CHAR(7) NOT NULL,
-  thickness TEXT NOT NULL CHECK (thickness IN ('thin', 'medium', 'thick')),
+  thickness TEXT CHECK (thickness IN ('thin', 'medium', 'thick')),  -- 신발은 NULL
   memo TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  CONSTRAINT clothes_thickness_by_category CHECK (
+    (category = 'shoes' AND thickness IS NULL) OR (category <> 'shoes' AND thickness IS NOT NULL)
+  )
 );
 
 CREATE TABLE IF NOT EXISTS outfits (

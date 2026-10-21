@@ -37,11 +37,12 @@ test('추천: 기온에 맞는 옷만, 점수순 상위 3개', () => {
   const clothes = [
     c(1, 'top', '#FFFFFF', 'medium'), c(2, 'top', '#FF0000', 'medium'), c(3, 'top', '#1F2A44', 'thin'),
     c(4, 'bottom', '#00FFFF', 'medium'), c(5, 'bottom', '#1F2A44', 'medium'),
-    c(6, 'outer', '#808080', 'medium'), c(7, 'shoes', '#111111', 'thick'),
+    c(6, 'outer', '#808080', 'medium'), c(7, 'shoes', '#111111', null),
   ];
   const { combos, warnings } = recommend(clothes, 12);
   assert.equal(combos.length, 3);
-  assert.ok(combos.every((x) => x.outer?.id === 6 && x.top.id !== 3 && x.shoes === null));
+  // 신발은 두께와 상관없이 포함된다.
+  assert.ok(combos.every((x) => x.outer?.id === 6 && x.top.id !== 3 && x.shoes?.id === 7));
   assert.ok(combos[0].score >= combos[1].score && combos[1].score >= combos[2].score);
   assert.equal(warnings.length, 0);
 

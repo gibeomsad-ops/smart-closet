@@ -426,13 +426,15 @@ async function loadClothes() {
 // 옷 사진(없으면 옷 색 패널 + 종류 아이콘)과 종류·두께 표시
 function garmentHero(c) {
   const t = THICK[c.thickness];
+  // 신발은 두께가 없다 → '사계절'로 표시
+  const badge = t ? `${t.label} · ${t.range.replace(' 코디', '')}` : '사계절';
   return `<div class="garment-hero ${hexToHsl(safeHex(c.color_hex)).l > 65 ? 'light' : ''}" style="background:${safeHex(c.color_hex)}">
       ${c.photo_url
         ? `<img class="garment-photo" src="${esc(c.photo_url)}" alt="${esc(c.name)} 사진" loading="lazy" decoding="async" />`
         : icon(CATEGORY[c.category].icon, 'icon')}
       <span class="tag">${CATEGORY[c.category].en}</span>
       <div class="hero-foot">
-        <span class="badge ${c.thickness === 'thick' ? 'thick' : ''}">${t.label} · ${t.range.replace(' 코디', '')}</span>
+        <span class="badge ${c.thickness === 'thick' ? 'thick' : ''}">${badge}</span>
         <span class="hex">${esc(c.color_hex.toUpperCase())}</span>
       </div>
     </div>`;
@@ -568,7 +570,7 @@ function openForm(item = null) {
   $('#cloth-memo').value = item?.memo ?? '';
   state.form = {
     category: item?.category ?? 'top',
-    thickness: item?.thickness ?? 'medium',
+    thickness: item?.thickness ?? 'medium', // 신발(두께 없음)을 다른 종류로 바꾸면 '보통'부터
     color: (item?.color_hex ?? '#1F2A44').toUpperCase(),
     // 사진: keep(기존 유지) | new(새로 고름) | remove(삭제)
     photo: { mode: 'keep', url: item?.photo_url ?? null, blob: null },
@@ -586,6 +588,9 @@ function syncForm() {
   const name = colorName(color);
   $$('#category-tiles .tile').forEach((t) => t.classList.toggle('active', t.dataset.value === category));
   $$('#thickness-tiles .tile').forEach((t) => t.classList.toggle('active', t.dataset.value === thickness));
+  const isShoes = category === 'shoes';
+  $('#thickness-step').hidden = isShoes;
+  $('#memo-step-no').textContent = isShoes ? '4' : '5';
   $$('#preset-swatches .preset').forEach((p) => p.classList.toggle('active', p.dataset.hex === color));
   $('#cloth-color').value = color.toLowerCase();
   $('#color-big').style.background = safeHex(color);
@@ -598,14 +603,16 @@ function syncForm() {
   const { photo } = state.form;
   const preview = {
     id: '', name: $('#cloth-name').value.trim(), memo: $('#cloth-memo').value.trim(),
-    category, thickness, color_hex: color, color_name: name,
+    category, thickness: isShoes ? null : thickness, color_hex: color, color_name: name,
     photo_url: photo.mode === 'remove' ? null : photo.url,
   };
   const hasPhoto = Boolean(preview.photo_url);
   $('#photo-drop').hidden = hasPhoto;
   $('#photo-actions').hidden = !hasPhoto;
   $('#preview-card').outerHTML = garmentCard(preview, { actions: false }).replace('<article class="card garment-card">', '<article class="garment-card" id="preview-card">');
-  $('#preview-rule').textContent = `${THICK[thickness].label} · ${THICK[thickness].range}에 추천돼요`;
+  $('#preview-rule').textContent = isShoes
+    ? '신발은 기온과 상관없이 코디에 추천돼요'
+    : `${THICK[thickness].label} · ${THICK[thickness].range}에 추천돼요`;
 }
 
 $('#category-tiles').addEventListener('click', (e) => {
@@ -683,7 +690,7 @@ $('#cloth-form').addEventListener('submit', async (e) => {
   const body = {
     name: $('#cloth-name').value,
     category: state.form.category,
-    thickness: state.form.thickness,
+    thickness: state.form.category === 'shoes' ? null : state.form.thickness,
     color_hex: state.form.color,
     memo: $('#cloth-memo').value,
   };
@@ -861,7 +868,7 @@ function detailItem(category, item) {
   return `<article class="detail-item">
     ${garmentHero(item)}
     <div class="detail-info">
-      <p class="garment-meta"><span>${CATEGORY[category].label} · ${t?.label ?? ''}</span>
+      <p class="garment-meta"><span>${CATEGORY[category].label}${t ? ` · ${t.label}` : ''}</span>
         <span><span class="swatch" style="background:${safeHex(item.color_hex)}"></span>${esc(item.color_name ?? colorName(item.color_hex))}</span></p>
       <p class="detail-name">${esc(item.name)}</p>
       ${item.memo ? `<p class="detail-memo"><span class="label-caps">Memo</span>${esc(item.memo)}</p>` : ''}
