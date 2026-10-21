@@ -280,6 +280,22 @@
     </footer>
   </div>
 
+  <!-- 코디 상세: 조합에 들어 있는 옷들의 사진·이름·메모 -->
+  <dialog id="outfit-dialog" class="sheet" aria-labelledby="outfit-dialog-title">
+    <div class="sheet-inner">
+      <header class="sheet-head">
+        <div class="grow">
+          <p class="eyebrow" id="outfit-dialog-eyebrow"></p>
+          <h2 class="headline-sm" id="outfit-dialog-title"></h2>
+          <p class="muted small" id="outfit-dialog-sub"></p>
+        </div>
+        <span id="outfit-dialog-score"></span>
+        <button type="button" class="icon-btn" id="outfit-dialog-close" title="닫기" autofocus><span class="ms">close</span></button>
+      </header>
+      <div class="detail-list" id="outfit-dialog-items"></div>
+    </div>
+  </dialog>
+
   <div id="toast" class="toast" role="status" hidden></div>
   <script type="module" src="/js/app.js"></script>
 </body>

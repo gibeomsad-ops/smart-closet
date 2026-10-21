@@ -355,7 +355,8 @@ function renderLooks() {
   list.innerHTML = state.combos.map((c, i) => {
     const pieces = piecesOf(c);
     const names = [...new Set(pieces.map(([, it]) => it.color_name))].join(' · ');
-    return `<article class="card look">
+    return `<article class="card look" data-detail="look" data-index="${i}" tabindex="0" role="button"
+      aria-label="추천 ${i + 1} 옷 상세 보기">
       <div class="look-hero">
         ${pieces.map(([, it]) => `<span class="band" style="background:${safeHex(it.color_hex)}"></span>`).join('')}
         <span class="tag">Look 0${i + 1}</span>
@@ -370,7 +371,8 @@ function renderLooks() {
           <ul>${(c.reasons.length ? c.reasons : ['적용된 색조합 규칙이 없어요.']).map(reasonItem).join('')}</ul>
         </div>
         <div>
-          <p class="pieces-head"><span class="label-caps">Wardrobe pieces</span><span class="small">${pieces.length}개 아이템</span></p>
+          <p class="pieces-head"><span class="label-caps">Wardrobe pieces</span>
+            <span class="detail-hint">${pieces.length}개 아이템 · 자세히 보기 ${icon('chevron_right')}</span></p>
         </div>
         <div class="pieces">${pieces.map(([cat, it]) => pieceRow(cat, it)).join('')}</div>
         <div class="look-actions">
@@ -385,7 +387,11 @@ $('#refresh-rec').addEventListener('click', loadRecommendations);
 
 $('#rec-list').addEventListener('click', async (e) => {
   const btn = e.target.closest('[data-save]');
-  if (!btn) return;
+  if (!btn) {
+    const card = e.target.closest('[data-detail]');
+    if (card) openLookDetail(Number(card.dataset.index));
+    return;
+  }
   const c = state.combos[Number(btn.dataset.save)];
   btn.disabled = true;
   try {
@@ -417,11 +423,10 @@ async function loadClothes() {
   $('#closet-count').textContent = `총 ${items.length}개 아이템`;
 }
 
-function garmentCard(c, { actions = true } = {}) {
+// 옷 사진(없으면 옷 색 패널 + 종류 아이콘)과 종류·두께 표시
+function garmentHero(c) {
   const t = THICK[c.thickness];
-  const name = c.color_name ?? colorName(c.color_hex);
-  return `<article class="card garment-card">
-    <div class="garment-hero ${hexToHsl(safeHex(c.color_hex)).l > 65 ? 'light' : ''}" style="background:${safeHex(c.color_hex)}">
+  return `<div class="garment-hero ${hexToHsl(safeHex(c.color_hex)).l > 65 ? 'light' : ''}" style="background:${safeHex(c.color_hex)}">
       ${c.photo_url
         ? `<img class="garment-photo" src="${esc(c.photo_url)}" alt="${esc(c.name)} 사진" loading="lazy" decoding="async" />`
         : icon(CATEGORY[c.category].icon, 'icon')}
@@ -430,7 +435,13 @@ function garmentCard(c, { actions = true } = {}) {
         <span class="badge ${c.thickness === 'thick' ? 'thick' : ''}">${t.label} · ${t.range.replace(' 코디', '')}</span>
         <span class="hex">${esc(c.color_hex.toUpperCase())}</span>
       </div>
-    </div>
+    </div>`;
+}
+
+function garmentCard(c, { actions = true } = {}) {
+  const name = c.color_name ?? colorName(c.color_hex);
+  return `<article class="card garment-card">
+    ${garmentHero(c)}
     <div class="garment-body">
       <p class="garment-meta"><span>${CATEGORY[c.category].label}</span>
         <span><span class="swatch" style="background:${safeHex(c.color_hex)}"></span>${esc(name)}</span></p>
@@ -717,6 +728,7 @@ async function loadOutfits() {
   list.innerHTML = '<div class="empty">불러오는 중…</div>';
   try {
     const outfits = await api('/api/outfits');
+    state.saved = outfits;
     $('#saved-count').textContent = outfits.length;
     if (!outfits.length) {
       list.innerHTML = '<div class="empty">저장한 코디가 없어요. 오늘의 코디에서 마음에 드는 룩을 저장해 보세요.</div>';
@@ -728,7 +740,8 @@ async function loadOutfits() {
       const m = (o.reason ?? '').match(/^색조합 (-?\d+)점 · (.*)$/s);
       const reasons = (m ? m[2] : o.reason ?? '').split(' / ').filter(Boolean);
       const date = new Date(o.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
-      return `<article class="card saved">
+      return `<article class="card saved" data-detail="saved" data-index="${i}" tabindex="0" role="button"
+        aria-label="저장한 코디 옷 상세 보기">
         <div class="saved-hero">
           ${pieces.map(([, it]) => `<span style="background:${safeHex(it.color_hex)}"></span>`).join('')}
           <span class="tag">Look #${String(outfits.length - i).padStart(2, '0')}</span>
@@ -743,6 +756,7 @@ async function loadOutfits() {
           </div>
           <div class="pieces">${pieces.length ? pieces.map(([cat, it]) => pieceRow(cat, it)).join('') : '<p class="muted">삭제된 옷으로 구성된 코디예요.</p>'}</div>
           ${reasons.length ? `<div class="reason-box">${icon('palette')}<ul>${reasons.map(reasonItem).join('')}</ul></div>` : ''}
+          <p class="detail-hint">자세히 보기 ${icon('chevron_right')}</p>
         </div>
       </article>`;
     }).join('');
@@ -753,7 +767,12 @@ async function loadOutfits() {
 
 $('#saved-list').addEventListener('click', async (e) => {
   const btn = e.target.closest('[data-remove]');
-  if (!btn || !confirm('이 코디를 삭제할까요?')) return;
+  if (!btn) {
+    const card = e.target.closest('[data-detail]');
+    if (card) openSavedDetail(Number(card.dataset.index));
+    return;
+  }
+  if (!confirm('이 코디를 삭제할까요?')) return;
   try {
     await api(`/api/outfits/${encodeURIComponent(btn.dataset.remove)}`, { method: 'DELETE' });
     toast('삭제했어요.');
@@ -762,6 +781,77 @@ $('#saved-list').addEventListener('click', async (e) => {
     toast(err.message);
   }
 });
+
+// ── 코디 상세 (사진 · 이름 · 메모) ──────────────────
+function detailItem(category, item) {
+  const t = THICK[item.thickness];
+  return `<article class="detail-item">
+    ${garmentHero(item)}
+    <div class="detail-info">
+      <p class="garment-meta"><span>${CATEGORY[category].label} · ${t?.label ?? ''}</span>
+        <span><span class="swatch" style="background:${safeHex(item.color_hex)}"></span>${esc(item.color_name ?? colorName(item.color_hex))}</span></p>
+      <p class="detail-name">${esc(item.name)}</p>
+      ${item.memo ? `<p class="detail-memo"><span class="label-caps">Memo</span>${esc(item.memo)}</p>` : ''}
+    </div>
+  </article>`;
+}
+
+function openOutfitDetail({ eyebrow, title, sub, score, outfit }) {
+  const pieces = piecesOf(outfit);
+  $('#outfit-dialog-eyebrow').innerHTML = `<span class="dot"></span>${esc(eyebrow)}`;
+  $('#outfit-dialog-title').textContent = title;
+  $('#outfit-dialog-sub').textContent = sub;
+  $('#outfit-dialog-score').innerHTML = score == null ? '' : harmony(score);
+  $('#outfit-dialog-items').innerHTML = pieces.length
+    ? pieces.map(([cat, it]) => detailItem(cat, it)).join('')
+    : '<p class="muted">이 코디의 옷이 모두 삭제되었어요.</p>';
+  const dialog = $('#outfit-dialog');
+  if (!dialog.open) dialog.showModal();
+  document.body.classList.add('modal-open');
+  $('#outfit-dialog-items').scrollTop = 0;
+}
+
+function openLookDetail(i) {
+  const c = state.combos[i];
+  if (!c) return;
+  const pieces = piecesOf(c);
+  openOutfitDetail({
+    eyebrow: `Look 0${i + 1} · ${mainRule(c.reasons)}`,
+    title: [...new Set(pieces.map(([, it]) => it.color_name))].join(' · '),
+    sub: `오늘 ${state.temperature}°C 서울 기준 추천 · ${pieces.length}개 아이템`,
+    score: c.score,
+    outfit: c,
+  });
+}
+
+function openSavedDetail(i) {
+  const o = state.saved?.[i];
+  if (!o) return;
+  const pieces = piecesOf(o);
+  const m = (o.reason ?? '').match(/^색조합 (-?\d+)점/);
+  const date = new Date(o.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+  openOutfitDetail({
+    eyebrow: `Saved Look #${String(state.saved.length - i).padStart(2, '0')}`,
+    title: [...new Set(pieces.map(([, it]) => it.color_name))].join(' · ') || '저장한 코디',
+    sub: `${date} 저장 · ${Number(o.temperature)}°C 서울 · ${pieces.length}개 아이템`,
+    score: m ? Number(m[1]) : null,
+    outfit: o,
+  });
+}
+
+const outfitDialog = $('#outfit-dialog');
+$('#outfit-dialog-close').addEventListener('click', () => outfitDialog.close());
+// 창 바깥(배경)을 누르면 닫는다.
+outfitDialog.addEventListener('click', (e) => { if (e.target === outfitDialog) outfitDialog.close(); });
+outfitDialog.addEventListener('close', () => document.body.classList.remove('modal-open'));
+
+// 키보드: 카드에서 Enter·Space로 상세 열기
+['#rec-list', '#saved-list'].forEach((sel) => $(sel).addEventListener('keydown', (e) => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-detail]')) {
+    e.preventDefault();
+    e.target.click();
+  }
+}));
 
 // ── 시작 ─────────────────────────────────────────────
 // 세션 쿠키가 살아 있으면 바로 들어가고, 아니면 로그인 화면을 보여 준다.
