@@ -49,3 +49,40 @@ test('추천: 기온에 맞는 옷만, 점수순 상위 3개', () => {
   const hot = recommend(clothes, 28);
   assert.equal(hot.combos.length, 0); // 얇은 하의가 없음
 });
+
+test('랜덤 코디: 규칙과 무관하게 종류별 1개, 상의·하의 없으면 null', async () => {
+  const { randomOutfit, comboKey } = await import('../lib/recommend.js');
+  const c = (id, category, thickness) => ({ id, category, thickness, color_hex: '#FF0000', name: `#${id}` });
+  // 28°C에는 절대 추천되지 않을 두꺼운 옷들
+  const clothes = [c(1, 'top', 'thick'), c(2, 'top', 'thick'), c(3, 'bottom', 'thick'), c(4, 'outer', 'thick'), c(5, 'shoes', null)];
+  const r = randomOutfit(clothes);
+  assert.equal(r.top.category, 'top');
+  assert.equal(r.bottom.id, 3);
+  assert.equal(r.outer.id, 4);
+  assert.equal(r.shoes.id, 5);
+  assert.equal(randomOutfit([c(1, 'top', 'thin')]), null);
+  assert.equal(randomOutfit([c(1, 'top', 'thin'), c(3, 'bottom', 'thin')]).outer, null);
+
+  // 고른 결과가 고르게 섞이는지 (상의 2개 중 둘 다 나와야 함)
+  const seen = new Set(Array.from({ length: 50 }, () => randomOutfit(clothes).top.id));
+  assert.deepEqual([...seen].sort(), [1, 2]);
+
+  // exclude와 다른 조합을 고른다
+  const first = randomOutfit(clothes, { rand: () => 0 });
+  let n = 0;
+  const seq = () => (n++ < 4 ? 0 : 0.99);
+  const second = randomOutfit(clothes, { exclude: comboKey(first), rand: seq });
+  assert.notEqual(comboKey(second), comboKey(first));
+});
+
+test('랜덤 코디 유지: 조합 키로 같은 코디를 다시 만들고, 옷이 없어지면 null', async () => {
+  const { comboFromKey, comboKey } = await import('../lib/recommend.js');
+  const c = (id, category) => ({ id, category, thickness: 'thin', color_hex: '#000000', name: `#${id}` });
+  const clothes = [c(1, 'top'), c(2, 'bottom'), c(3, 'outer'), c(4, 'shoes')];
+  const kept = comboFromKey('1|2||4', clothes);
+  assert.equal(comboKey(kept), '1|2||4');
+  assert.equal(kept.outer, null);
+  assert.equal(comboFromKey('1|2|3|9', clothes), null); // 지운 신발
+  assert.equal(comboFromKey('2|1||', clothes), null);   // 종류가 맞지 않음
+  assert.equal(comboFromKey(undefined, clothes), null);
+});

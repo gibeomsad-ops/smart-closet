@@ -46,7 +46,8 @@ npm test               # 색조합·추천 규칙 테스트
 | GET | `/api/weather` | 서울 현재 날씨 |
 | PUT | `/api/clothes/:id/photo` | 옷 사진 올리기 (JPG/PNG/WebP 바이트, 3MB 이하) |
 | GET / DELETE | `/api/clothes/:id/photo` | 옷 사진 보기 · 삭제 |
-| GET | `/api/recommendations` | 오늘 기온 기준 추천 TOP 3 |
+| GET | `/api/recommendations` | 오늘 기온 기준 추천 TOP 3 + 랜덤 코디 (`?random=조합키`로 지금 랜덤 코디 유지) |
+| GET | `/api/recommendations/random` | 랜덤 코디 다시 뽑기 (`?exclude=조합키`와 다른 조합) |
 | GET / POST / DELETE | `/api/outfits[/:id]` | 저장한 코디 |
 | PATCH | `/api/outfits/:id` | 저장한 코디 이름 짓기 `{name}` (40자 이내, 빈 값이면 이름 삭제) |
 

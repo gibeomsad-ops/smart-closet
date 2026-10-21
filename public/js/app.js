@@ -188,6 +188,7 @@ function enterApp(id) {
 
 function signedOut() {
   state.id = null;
+  state.random = null;
   state.clothes = [];
   state.loaded = false;
   showGate();
@@ -323,26 +324,73 @@ function renderWeather(w, rule) {
     <p class="weather-advice">${icon('checkroom')} <span>${esc(rule.label)}<br /><span class="muted">${outerAdvice[rule.outer]}</span></span></p>`;
 }
 
+// 랜덤 코디 조합 키 (서버 recommend.js의 comboKey와 같은 형식: "상의|하의|아우터|신발" id)
+const comboKey = (c) => [c.top, c.bottom, c.outer, c.shoes].map((it) => (it ? String(it.id) : '')).join('|');
+const RANDOM_REASON = '랜덤 코디 · 규칙 없이 무작위로 고른 조합';
+const isRandomReason = (reason) => String(reason ?? '').startsWith('랜덤 코디');
+
 async function loadRecommendations() {
   renderDate();
   const list = $('#rec-list');
   list.innerHTML = '<div class="empty">오늘의 코디를 고르는 중…</div>';
   try {
-    const data = await api('/api/recommendations');
+    // 지금 보고 있던 랜덤 코디가 있으면 그대로 유지해 달라고 함께 보낸다.
+    const keep = state.random ? `?random=${encodeURIComponent(comboKey(state.random))}` : '';
+    const data = await api(`/api/recommendations${keep}`);
     state.combos = data.combos;
+    state.random = data.random;
     state.temperature = data.weather.temperature;
     renderWeather(data.weather, data.rule);
     $('#rec-rule').textContent = `오늘 기준 · ${data.rule.label}`;
     $('#rec-warnings').innerHTML = data.warnings
       .map((w) => `<p class="warning">${icon('info')} ${esc(w)}</p>`).join('');
     renderLooks();
+    renderRandom();
   } catch (err) {
     if (err.status === 401) return;
     const weatherFailed = err.kind?.startsWith('WEATHER');
     $('#weather').innerHTML = `<span class="muted">${icon(weatherFailed ? 'cloud_off' : 'error')} ${
       weatherFailed ? '날씨 정보를 불러오지 못했어요.' : '서버 오류로 추천을 불러오지 못했어요.'}</span>`;
     list.innerHTML = `<div class="empty">${esc(err.message)}</div>`;
+    $('#random-section').hidden = true;
   }
+}
+
+// 추천 카드. key: TOP 3는 0~2, 랜덤 코디는 'random'
+function lookCard(c, key) {
+  const random = key === 'random';
+  const pieces = piecesOf(c);
+  const names = [...new Set(pieces.map(([, it]) => it.color_name))].join(' · ');
+  const label = random ? 'Look 04' : `Look 0${key + 1}`;
+  return `<article class="card look ${random ? 'wide' : ''}" data-detail="look" data-index="${key}" tabindex="0" role="button"
+    aria-label="${random ? '랜덤 코디' : `추천 ${key + 1}`} 옷 상세 보기">
+    <div class="look-hero">
+      ${pieces.map(([, it]) => `<span class="band" style="background:${safeHex(it.color_hex)}"></span>`).join('')}
+      <span class="tag">${label}</span>
+      ${random ? `<span class="random-pill">${icon('casino')} RANDOM</span>` : harmony(c.score)}
+      <div class="look-title">
+        <p class="label-caps">${random ? 'Random Pick' : mainRule(c.reasons)}</p>
+        <h3>${esc(names)}</h3>
+      </div>
+    </div>
+    <div class="look-body">
+      ${random
+        ? `<div class="reason-box">${icon('casino')}<ul><li>기온·두께·색조합 규칙 없이 옷장에서 무작위로 고른 조합이에요.</li></ul></div>`
+        : `<div class="reason-box">${icon('palette')}
+            <ul>${(c.reasons.length ? c.reasons : ['적용된 색조합 규칙이 없어요.']).map(reasonItem).join('')}</ul>
+          </div>`}
+      <div>
+        <p class="pieces-head"><span class="label-caps">Wardrobe pieces</span>
+          <span class="detail-hint">${pieces.length}개 아이템 · 자세히 보기 ${icon('chevron_right')}</span></p>
+      </div>
+      <div class="pieces">${pieces.map(([cat, it]) => pieceRow(cat, it)).join('')}</div>
+      <div class="look-actions">
+        ${c.saved_outfit_id
+          ? `<button class="btn is-saved" disabled>${icon('check')} 저장됨</button>`
+          : `<button class="btn primary" data-save="${key}">${icon('bookmark_add')} 코디 저장</button>`}
+      </div>
+    </div>
+  </article>`;
 }
 
 function renderLooks() {
@@ -352,49 +400,48 @@ function renderLooks() {
       <br /><button class="btn outline" data-goto="form">${icon('add')} 옷 등록하기</button></div>`;
     return;
   }
-  list.innerHTML = state.combos.map((c, i) => {
-    const pieces = piecesOf(c);
-    const names = [...new Set(pieces.map(([, it]) => it.color_name))].join(' · ');
-    return `<article class="card look" data-detail="look" data-index="${i}" tabindex="0" role="button"
-      aria-label="추천 ${i + 1} 옷 상세 보기">
-      <div class="look-hero">
-        ${pieces.map(([, it]) => `<span class="band" style="background:${safeHex(it.color_hex)}"></span>`).join('')}
-        <span class="tag">Look 0${i + 1}</span>
-        ${harmony(c.score)}
-        <div class="look-title">
-          <p class="label-caps">${mainRule(c.reasons)}</p>
-          <h3>${esc(names)}</h3>
-        </div>
-      </div>
-      <div class="look-body">
-        <div class="reason-box">${icon('palette')}
-          <ul>${(c.reasons.length ? c.reasons : ['적용된 색조합 규칙이 없어요.']).map(reasonItem).join('')}</ul>
-        </div>
-        <div>
-          <p class="pieces-head"><span class="label-caps">Wardrobe pieces</span>
-            <span class="detail-hint">${pieces.length}개 아이템 · 자세히 보기 ${icon('chevron_right')}</span></p>
-        </div>
-        <div class="pieces">${pieces.map(([cat, it]) => pieceRow(cat, it)).join('')}</div>
-        <div class="look-actions">
-          ${c.saved_outfit_id
-            ? `<button class="btn is-saved" disabled>${icon('check')} 저장됨</button>`
-            : `<button class="btn primary" data-save="${i}">${icon('bookmark_add')} 코디 저장</button>`}
-        </div>
-      </div>
-    </article>`;
-  }).join('');
+  list.innerHTML = state.combos.map((c, i) => lookCard(c, i)).join('');
 }
+
+function renderRandom() {
+  $('#random-section').hidden = false;
+  $('#reroll-random').hidden = !state.random;
+  $('#random-look').innerHTML = state.random
+    ? lookCard(state.random, 'random')
+    : '<div class="empty">상의와 하의를 하나 이상 등록하면 랜덤 코디를 뽑아 드려요.</div>';
+}
+
+const lookByKey = (key) => (key === 'random' ? state.random : state.combos[Number(key)]);
 
 $('#refresh-rec').addEventListener('click', loadRecommendations);
 
-$('#rec-list').addEventListener('click', async (e) => {
+$('#reroll-random').addEventListener('click', async (e) => {
+  const btn = e.currentTarget;
+  btn.disabled = true;
+  btn.classList.remove('spinning');
+  void btn.offsetWidth; // 애니메이션 다시 시작
+  btn.classList.add('spinning');
+  try {
+    const exclude = state.random ? `?exclude=${encodeURIComponent(comboKey(state.random))}` : '';
+    const { random } = await api(`/api/recommendations/random${exclude}`);
+    state.random = random;
+    renderRandom();
+  } catch (err) {
+    toast(err.message);
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+async function onLookClick(e) {
   const btn = e.target.closest('[data-save]');
   if (!btn) {
     const card = e.target.closest('[data-detail]');
-    if (card) openLookDetail(Number(card.dataset.index));
+    if (card) openLookDetail(card.dataset.index);
     return;
   }
-  const c = state.combos[Number(btn.dataset.save)];
+  const key = btn.dataset.save;
+  const c = lookByKey(key);
   btn.disabled = true;
   try {
     const saved = await api('/api/outfits', {
@@ -405,20 +452,25 @@ $('#rec-list').addEventListener('click', async (e) => {
         outer_id: c.outer?.id ?? null,
         shoes_id: c.shoes?.id ?? null,
         temperature: state.temperature,
-        reason: `색조합 ${c.score}점 · ${c.reasons.join(' / ') || '적용된 규칙 없음'}`,
+        reason: key === 'random'
+          ? RANDOM_REASON
+          : `색조합 ${c.score}점 · ${c.reasons.join(' / ') || '적용된 규칙 없음'}`,
       },
     });
     // 다시 그려도 '저장됨'이 유지되도록 상태에 기록한다.
-    c.saved_outfit_id = saved.id;
-    btn.removeAttribute('data-save');
-    btn.className = 'btn is-saved';
-    btn.innerHTML = `${icon('check')} 저장됨`;
+    // (TOP 3와 랜덤 코디가 같은 조합일 수도 있으니 같은 조합은 모두 저장됨으로)
+    const k = comboKey(c);
+    [...state.combos, state.random].filter((x) => x && comboKey(x) === k).forEach((x) => { x.saved_outfit_id = saved.id; });
+    renderLooks();
+    renderRandom();
     toast(saved.duplicate ? '오늘 이미 저장한 코디예요.' : '코디를 저장했어요.');
   } catch (err) {
     btn.disabled = false;
     toast(err.message);
   }
-});
+}
+$('#rec-list').addEventListener('click', onLookClick);
+$('#random-look').addEventListener('click', onLookClick);
 
 // ── 내 옷장 ──────────────────────────────────────────
 async function loadClothes() {
@@ -779,7 +831,10 @@ function renderSaved() {
     const pieces = piecesOf(o);
     // reason 형식: "색조합 N점 · 규칙1 / 규칙2"
     const m = (o.reason ?? '').match(/^색조합 (-?\d+)점 · (.*)$/s);
-    const reasons = (m ? m[2] : o.reason ?? '').split(' / ').filter(Boolean);
+    const random = isRandomReason(o.reason);
+    const reasons = random
+      ? ['기온·두께·색조합 규칙 없이 무작위로 고른 조합이에요.']
+      : (m ? m[2] : o.reason ?? '').split(' / ').filter(Boolean);
     const date = new Date(o.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
     return `<article class="card saved" data-detail="saved" data-index="${i}" tabindex="0" role="button"
       aria-label="${esc(o.name || '저장한 코디')} 옷 상세 보기">
@@ -791,7 +846,7 @@ function renderSaved() {
         <div class="saved-top">
           <p class="saved-date">${esc(date)} 저장 <span class="dot"></span> ${icon('thermostat')} ${esc(Number(o.temperature))}°C 서울</p>
           <div class="saved-top-right">
-            ${m ? harmony(Number(m[1])) : ''}
+            ${random ? `<span class="random-pill">${icon('casino')} RANDOM</span>` : m ? harmony(Number(m[1])) : ''}
             <button class="icon-btn danger" data-remove="${esc(o.id)}" title="삭제">${icon('delete_outline')}</button>
           </div>
         </div>
@@ -897,15 +952,18 @@ function openOutfitDetail({ eyebrow, title, sub, score, outfit }) {
   $('#outfit-dialog-items').scrollTop = 0;
 }
 
-function openLookDetail(i) {
-  const c = state.combos[i];
+function openLookDetail(key) {
+  const c = lookByKey(key);
   if (!c) return;
+  const random = key === 'random';
   const pieces = piecesOf(c);
   openOutfitDetail({
-    eyebrow: `Look 0${i + 1} · ${mainRule(c.reasons)}`,
+    eyebrow: random ? 'Look 04 · Random Pick' : `Look 0${Number(key) + 1} · ${mainRule(c.reasons)}`,
     title: [...new Set(pieces.map(([, it]) => it.color_name))].join(' · '),
-    sub: `오늘 ${state.temperature}°C 서울 기준 추천 · ${pieces.length}개 아이템`,
-    score: c.score,
+    sub: random
+      ? `규칙 없이 무작위로 고른 조합 · ${pieces.length}개 아이템`
+      : `오늘 ${state.temperature}°C 서울 기준 추천 · ${pieces.length}개 아이템`,
+    score: random ? null : c.score,
     outfit: c,
   });
 }
@@ -918,7 +976,7 @@ function openSavedDetail(i) {
   const date = new Date(o.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
   const colors = [...new Set(pieces.map(([, it]) => it.color_name))].join(' · ');
   openOutfitDetail({
-    eyebrow: `Saved ${lookNumber(i)}${o.name ? ` · ${colors}` : ''}`,
+    eyebrow: `Saved ${lookNumber(i)}${isRandomReason(o.reason) ? ' · Random Pick' : ''}${o.name ? ` · ${colors}` : ''}`,
     title: o.name || colors || '저장한 코디',
     sub: `${date} 저장 · ${Number(o.temperature)}°C 서울 · ${pieces.length}개 아이템`,
     score: m ? Number(m[1]) : null,
@@ -933,7 +991,7 @@ outfitDialog.addEventListener('click', (e) => { if (e.target === outfitDialog) o
 outfitDialog.addEventListener('close', () => document.body.classList.remove('modal-open'));
 
 // 키보드: 카드에서 Enter·Space로 상세 열기
-['#rec-list', '#saved-list'].forEach((sel) => $(sel).addEventListener('keydown', (e) => {
+['#rec-list', '#random-look', '#saved-list'].forEach((sel) => $(sel).addEventListener('keydown', (e) => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-detail]')) {
     e.preventDefault();
     e.target.click();
