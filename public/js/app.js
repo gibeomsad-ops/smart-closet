@@ -376,7 +376,9 @@ function renderLooks() {
         </div>
         <div class="pieces">${pieces.map(([cat, it]) => pieceRow(cat, it)).join('')}</div>
         <div class="look-actions">
-          <button class="btn primary" data-save="${i}">${icon('bookmark_add')} 코디 저장</button>
+          ${c.saved_outfit_id
+            ? `<button class="btn is-saved" disabled>${icon('check')} 저장됨</button>`
+            : `<button class="btn primary" data-save="${i}">${icon('bookmark_add')} 코디 저장</button>`}
         </div>
       </div>
     </article>`;
@@ -395,7 +397,7 @@ $('#rec-list').addEventListener('click', async (e) => {
   const c = state.combos[Number(btn.dataset.save)];
   btn.disabled = true;
   try {
-    await api('/api/outfits', {
+    const saved = await api('/api/outfits', {
       method: 'POST',
       body: {
         top_id: c.top.id,
@@ -406,8 +408,12 @@ $('#rec-list').addEventListener('click', async (e) => {
         reason: `색조합 ${c.score}점 · ${c.reasons.join(' / ') || '적용된 규칙 없음'}`,
       },
     });
+    // 다시 그려도 '저장됨'이 유지되도록 상태에 기록한다.
+    c.saved_outfit_id = saved.id;
+    btn.removeAttribute('data-save');
+    btn.className = 'btn is-saved';
     btn.innerHTML = `${icon('check')} 저장됨`;
-    toast('코디를 저장했어요.');
+    toast(saved.duplicate ? '오늘 이미 저장한 코디예요.' : '코디를 저장했어요.');
   } catch (err) {
     btn.disabled = false;
     toast(err.message);
