@@ -18,7 +18,7 @@ npm test               # 색조합·추천 규칙 테스트
 
 테이블이 아직 없다면 `db/schema.sql`을 Neon SQL Editor에서 실행합니다.
 이미 테이블이 있다면 `db/` 폴더의 변경 SQL을 번호 순서대로 실행합니다.
-(`002_add_password.sql`: 비밀번호, `003_add_clothing_photos.sql`: 옷 사진)
+(`002_add_password.sql`: 비밀번호, `003_add_clothing_photos.sql`: 옷 사진, `004_add_outfit_name.sql`: 코디 이름)
 
 ## Vercel 배포
 
@@ -48,6 +48,7 @@ npm test               # 색조합·추천 규칙 테스트
 | GET / DELETE | `/api/clothes/:id/photo` | 옷 사진 보기 · 삭제 |
 | GET | `/api/recommendations` | 오늘 기온 기준 추천 TOP 3 |
 | GET / POST / DELETE | `/api/outfits[/:id]` | 저장한 코디 |
+| PATCH | `/api/outfits/:id` | 저장한 코디 이름 짓기 `{name}` (40자 이내, 빈 값이면 이름 삭제) |
 
 ## 옷 사진
 

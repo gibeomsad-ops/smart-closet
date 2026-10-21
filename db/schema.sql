@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS outfits (
   shoes_id INTEGER REFERENCES clothes(id),
   temperature NUMERIC(4, 1) NOT NULL,
   reason TEXT,
+  name TEXT,                          -- 사용자가 지은 코디 이름 (40자 이내)
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 

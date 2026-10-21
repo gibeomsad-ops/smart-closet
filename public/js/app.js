@@ -727,45 +727,118 @@ async function loadOutfits() {
   const list = $('#saved-list');
   list.innerHTML = '<div class="empty">불러오는 중…</div>';
   try {
-    const outfits = await api('/api/outfits');
-    state.saved = outfits;
-    $('#saved-count').textContent = outfits.length;
-    if (!outfits.length) {
-      list.innerHTML = '<div class="empty">저장한 코디가 없어요. 오늘의 코디에서 마음에 드는 룩을 저장해 보세요.</div>';
-      return;
-    }
-    list.innerHTML = outfits.map((o, i) => {
-      const pieces = piecesOf(o);
-      // reason 형식: "색조합 N점 · 규칙1 / 규칙2"
-      const m = (o.reason ?? '').match(/^색조합 (-?\d+)점 · (.*)$/s);
-      const reasons = (m ? m[2] : o.reason ?? '').split(' / ').filter(Boolean);
-      const date = new Date(o.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
-      return `<article class="card saved" data-detail="saved" data-index="${i}" tabindex="0" role="button"
-        aria-label="저장한 코디 옷 상세 보기">
-        <div class="saved-hero">
-          ${pieces.map(([, it]) => `<span style="background:${safeHex(it.color_hex)}"></span>`).join('')}
-          <span class="tag">Look #${String(outfits.length - i).padStart(2, '0')}</span>
-        </div>
-        <div class="saved-body">
-          <div class="saved-top">
-            <p class="saved-date">${esc(date)} 저장 <span class="dot"></span> ${icon('thermostat')} ${esc(Number(o.temperature))}°C 서울</p>
-            <div class="saved-top-right">
-              ${m ? harmony(Number(m[1])) : ''}
-              <button class="icon-btn danger" data-remove="${esc(o.id)}" title="삭제">${icon('delete_outline')}</button>
-            </div>
-          </div>
-          <div class="pieces">${pieces.length ? pieces.map(([cat, it]) => pieceRow(cat, it)).join('') : '<p class="muted">삭제된 옷으로 구성된 코디예요.</p>'}</div>
-          ${reasons.length ? `<div class="reason-box">${icon('palette')}<ul>${reasons.map(reasonItem).join('')}</ul></div>` : ''}
-          <p class="detail-hint">자세히 보기 ${icon('chevron_right')}</p>
-        </div>
-      </article>`;
-    }).join('');
+    state.saved = await api('/api/outfits');
+    renderSaved();
   } catch (err) {
     if (err.status !== 401) list.innerHTML = `<div class="empty">${esc(err.message)}</div>`;
   }
 }
 
+const OUTFIT_NAME_MAX = 40;
+const lookNumber = (i) => `Look #${String(state.saved.length - i).padStart(2, '0')}`;
+
+// 코디 이름 영역: 보기 모드 / 편집 모드
+function outfitNameBox(o, editing = false) {
+  if (editing) {
+    return `<form class="name-form" data-name-form="${esc(o.id)}">
+      <input name="name" maxlength="${OUTFIT_NAME_MAX}" value="${esc(o.name ?? '')}"
+        placeholder="예: 출근룩, 주말 데이트" aria-label="코디 이름" autocomplete="off" enterkeyhint="done" />
+      <button class="btn primary small-btn">저장</button>
+      <button type="button" class="btn outline small-btn" data-name-cancel>취소</button>
+    </form>`;
+  }
+  return `<div class="name-view">
+    <h3 class="outfit-name ${o.name ? '' : 'unnamed'}">${o.name ? esc(o.name) : '이름 없는 코디'}</h3>
+    <button type="button" class="text-link gold name-edit" data-name-edit title="코디 이름 ${o.name ? '바꾸기' : '짓기'}">
+      ${icon('edit')} ${o.name ? '이름 바꾸기' : '이름 짓기'}</button>
+  </div>`;
+}
+
+function renderSaved() {
+  const list = $('#saved-list');
+  const outfits = state.saved;
+  $('#saved-count').textContent = outfits.length;
+  if (!outfits.length) {
+    list.innerHTML = '<div class="empty">저장한 코디가 없어요. 오늘의 코디에서 마음에 드는 룩을 저장해 보세요.</div>';
+    return;
+  }
+  list.innerHTML = outfits.map((o, i) => {
+    const pieces = piecesOf(o);
+    // reason 형식: "색조합 N점 · 규칙1 / 규칙2"
+    const m = (o.reason ?? '').match(/^색조합 (-?\d+)점 · (.*)$/s);
+    const reasons = (m ? m[2] : o.reason ?? '').split(' / ').filter(Boolean);
+    const date = new Date(o.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+    return `<article class="card saved" data-detail="saved" data-index="${i}" tabindex="0" role="button"
+      aria-label="${esc(o.name || '저장한 코디')} 옷 상세 보기">
+      <div class="saved-hero">
+        ${pieces.map(([, it]) => `<span style="background:${safeHex(it.color_hex)}"></span>`).join('')}
+        <span class="tag">${lookNumber(i)}</span>
+      </div>
+      <div class="saved-body">
+        <div class="saved-top">
+          <p class="saved-date">${esc(date)} 저장 <span class="dot"></span> ${icon('thermostat')} ${esc(Number(o.temperature))}°C 서울</p>
+          <div class="saved-top-right">
+            ${m ? harmony(Number(m[1])) : ''}
+            <button class="icon-btn danger" data-remove="${esc(o.id)}" title="삭제">${icon('delete_outline')}</button>
+          </div>
+        </div>
+        <div class="name-box" data-name-box="${i}">${outfitNameBox(o)}</div>
+        <div class="pieces">${pieces.length ? pieces.map(([cat, it]) => pieceRow(cat, it)).join('') : '<p class="muted">삭제된 옷으로 구성된 코디예요.</p>'}</div>
+        ${reasons.length ? `<div class="reason-box">${icon('palette')}<ul>${reasons.map(reasonItem).join('')}</ul></div>` : ''}
+        <p class="detail-hint">자세히 보기 ${icon('chevron_right')}</p>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function editOutfitName(box, editing) {
+  const o = state.saved[Number(box.dataset.nameBox)];
+  box.innerHTML = outfitNameBox(o, editing);
+  if (editing) {
+    const input = box.querySelector('input');
+    input.focus();
+    input.select();
+  }
+}
+
+$('#saved-list').addEventListener('submit', async (e) => {
+  const form = e.target.closest('[data-name-form]');
+  if (!form) return;
+  e.preventDefault();
+  const box = form.closest('[data-name-box]');
+  const o = state.saved[Number(box.dataset.nameBox)];
+  const name = form.elements.name.value.trim();
+  if ((name || null) === (o.name || null)) return editOutfitName(box, false);
+  const buttons = form.querySelectorAll('button');
+  buttons.forEach((b) => { b.disabled = true; });
+  try {
+    const row = await api(`/api/outfits/${encodeURIComponent(o.id)}`, { method: 'PATCH', body: { name } });
+    o.name = row.name;
+    editOutfitName(box, false);
+    box.closest('[data-detail]').setAttribute('aria-label', `${o.name || '저장한 코디'} 옷 상세 보기`);
+    toast(o.name ? `'${o.name}'(으)로 이름을 지었어요.` : '코디 이름을 지웠어요.');
+  } catch (err) {
+    buttons.forEach((b) => { b.disabled = false; });
+    toast(err.message);
+  }
+});
+
+// 이름 입력 중 Esc는 편집 취소
+$('#saved-list').addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && e.target.closest('[data-name-form]')) {
+    e.preventDefault();
+    editOutfitName(e.target.closest('[data-name-box]'), false);
+  }
+});
+
 $('#saved-list').addEventListener('click', async (e) => {
+  // 이름 영역은 카드 상세를 열지 않는다.
+  const nameBox = e.target.closest('[data-name-box]');
+  if (nameBox) {
+    if (e.target.closest('[data-name-edit]')) editOutfitName(nameBox, true);
+    if (e.target.closest('[data-name-cancel]')) editOutfitName(nameBox, false);
+    return;
+  }
   const btn = e.target.closest('[data-remove]');
   if (!btn) {
     const card = e.target.closest('[data-detail]');
@@ -830,9 +903,10 @@ function openSavedDetail(i) {
   const pieces = piecesOf(o);
   const m = (o.reason ?? '').match(/^색조합 (-?\d+)점/);
   const date = new Date(o.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+  const colors = [...new Set(pieces.map(([, it]) => it.color_name))].join(' · ');
   openOutfitDetail({
-    eyebrow: `Saved Look #${String(state.saved.length - i).padStart(2, '0')}`,
-    title: [...new Set(pieces.map(([, it]) => it.color_name))].join(' · ') || '저장한 코디',
+    eyebrow: `Saved ${lookNumber(i)}${o.name ? ` · ${colors}` : ''}`,
+    title: o.name || colors || '저장한 코디',
     sub: `${date} 저장 · ${Number(o.temperature)}°C 서울 · ${pieces.length}개 아이템`,
     score: m ? Number(m[1]) : null,
     outfit: o,
